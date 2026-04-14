@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.A.D.O.J. | Terminal de Procédure</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-dark: #0f172a;
+            --panel: rgba(30, 41, 59, 0.8);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-muted: #94a3b8;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --warning: #f59e0b;
+        }
+
+        /* --- BASES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: white;
+            line-height: 1.6;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 20px;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- SCROLLBARS MODERNES --- */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { 
+            background: rgba(255,255,255,0.1); 
+            border-radius: 10px; 
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        /* --- COLONNE GAUCHE (RECHERCHE) --- */
+        .search-container {
+            background: var(--panel);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .search-bar {
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .search-bar:focus { outline: none; border-color: var(--primary); background: rgba(0,0,0,0.5); }
+
+        .results-list {
+            overflow-y: auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-right: 5px;
+        }
+
+        .infraction-card {
+            background: rgba(255,255,255,0.03);
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            border-left: 4px solid #64748b;
+        }
+        .infraction-card:hover { background: rgba(255,255,255,0.08); transform: translateX(5px); }
+        .infraction-card.LV1 { border-color: #94a3b8; }
+        .infraction-card.LV2 { border-color: #fbbf24; }
+        .infraction-card.LV3 { border-color: #f97316; }
+        .infraction-card.LV4 { border-color: #ef4444; }
+
+        /* --- COLONNE DROITE (DOSSIER) --- */
+        .summary-panel {
+            background: var(--panel);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin: 20px 0 10px 0;
+            letter-spacing: 1px;
+        }
+        .section-title:first-child { margin-top: 0; }
+
+        .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+        .input-grid input {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            padding: 10px;
+            border-radius: 8px;
+            color: white;
+            font-family: inherit;
+            width: 100%;
+        }
+        .full-width { grid-column: 1 / -1; }
+
+        select {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            padding: 10px;
+            border-radius: 8px;
+            color: white;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .totals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .total-box {
+            background: rgba(0,0,0,0.4);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--primary);
+            text-align: center;
+        }
+        .total-box.success { border-color: var(--success); }
+        .total-box h2 { margin-bottom: 5px; font-size: 0.7rem; color: var(--primary); text-transform: uppercase; }
+        .total-box.success h2 { color: var(--success); }
+        .total-box .value { font-size: 1.5rem; font-weight: 800; font-family: 'Fira Code', monospace; }
+
+        .selected-list {
+            flex-grow: 1;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 10px;
+            margin: 15px 0;
+            min-height: 100px;
+        }
+        .selected-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .btn-action {
+            width: 100%;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .btn-generate { background: var(--primary); color: white; }
+        .btn-generate:hover { background: var(--primary-hover); transform: translateY(-2px); }
+        .btn-clear { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger); }
+        .btn-clear:hover { background: var(--danger); color: white; }
+
+        /* MODAL */
+        #options-modal {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+            display: none; justify-content: center; align-items: center; z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: var(--panel); padding: 30px; border-radius: 20px; 
+            width: 90%; max-width: 450px; border: 1px solid var(--border);
+        }
+        .opt-btn {
+            width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+            color: white; padding: 12px; border-radius: 10px; margin-bottom: 10px;
+            cursor: pointer; text-align: left; transition: 0.2s;
+        }
+        .opt-btn:hover { background: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <div class="search-container">
+        <h1 style="font-size: 1.1rem; margin: 0; color: var(--primary); font-weight: 800;">S.A.D.O.J | Base de données pénale</h1>
+        <input type="text" class="search-bar" id="search" placeholder="Rechercher une infraction..." onkeyup="filterInfractions()">
+        <div class="results-list" id="results"></div>
+    </div>
+
+    <div class="summary-panel">
+        <div class="section-title">Informations du Sujet</div>
+        <div class="input-grid">
+            <input type="text" id="suspect-nom" placeholder="Nom">
+            <input type="text" id="suspect-prenom" placeholder="Prénom">
+            <input type="text" class="full-width" id="suspect-id" placeholder="N° de Passeport / ID">
+        </div>
+
+        <div class="section-title">Officier en charge</div>
+        <div class="input-grid">
+            <input type="text" id="officier-nom" placeholder="Nom de l'officier">
+            <input type="text" id="officier-id" placeholder="Matricule">
+        </div>
+
+        <div class="section-title">Procédure & Comportement</div>
+        <select id="cooperation-level" onchange="updateSummary()">
+            <option value="1.0">Comportement Normal (Base)</option>
+            <option value="0.8">Coopératif (-20% Amende/Peine)</option>
+            <option value="1.2">Non Coopératif (+20% Amende/Peine)</option>
+        </select>
+
+        <div class="totals-grid">
+            <div class="total-box">
+                <h2>Amende Finale</h2>
+                <div class="value" id="total-amende">0 $</div>
+            </div>
+            <div class="total-box success">
+                <h2>Peine Finale</h2>
+                <div class="value" id="total-temps">0 min</div>
+            </div>
+        </div>
+
+        <div class="section-title">Chefs d'inculpation retenus</div>
+        <div class="selected-list" id="selected-list"></div>
+        
+        <button class="btn-action btn-generate" onclick="genererCasierPDF()">Générer l'extrait de Casier Judiciaire</button>
+        <button class="btn-action btn-clear" onclick="clearAll()">Réinitialiser les données</button>
+    </div>
+
+    <div id="options-modal">
+        <div class="modal-content" id="modal-content"></div>
+    </div>
+
+    <script>
+        // --- BASE DE DONNÉES OFFICIELLE COMPLÈTE ---
+        const bdd = {
+            // ================== CATÉGORIE 1 : INFRACTIONS ==================
+            "911_raccroche": { nom: "911 Raccroché", cat: "LV1", amende: 500, temps: 0, art: "Art 2-1.7", type: "fixe" },
+            "masque": { nom: "Dissimulation du visage", cat: "LV1", amende: 500, temps: 5, art: "Art 3-1.1", type: "fixe", note: "GAV" },
+            "attroupement": { nom: "Attroupement illégal", cat: "LV1", amende: 500, temps: 10, art: "Art 3-1.2", type: "fixe", note: "GAV" },
+            "ivresse_publique": { nom: "Ivresse sur la voie publique", cat: "LV1", amende: 1000, temps: 15, art: "Art 3-1.4", type: "fixe", note: "Cellule de dégrisement" },
+            "mendicite": { nom: "Mendicité", cat: "LV1", amende: 80, temps: 0, art: "Art 3-1.5", type: "fixe", note: "Rappel à la loi" },
+            "degradation_nature": { nom: "Dégradation de la nature", cat: "LV1", amende: 500, temps: 5, art: "Art 4-1.3", type: "fixe", note: "GAV" },
+            "stationnement": { nom: "Stationnement illégal ou gênant", cat: "LV1", amende: 500, temps: 5, art: "Art 3-2.0", type: "fixe", note: "Mise en fourrière" },
+            "feu_rouge": { 
+                nom: "Non-respect d'un feu rouge", cat: "LV1", art: "Art 3-1.8", type: "code",
+                options: [
+                    { label: "Base", amende: 250, temps: 0 },
+                    { label: "Accident avec dommages matériels", amende: 1000, temps: 14 },
+                    { label: "Accident avec blessures", amende: 500, temps: 10 }
+                ]
+            },
+            "exces_vitesse": { 
+                nom: "Excès de vitesse", cat: "LV1", art: "Art 3-1.7", type: "code",
+                options: [
+                    { label: "Base", amende: 500, temps: 10 },
+                    { label: "> 80 km/h", amende: 750, temps: 10 },
+                    { label: "> 90 km/h", amende: 950, temps: 10 },
+                    { label: "> 140 km/h", amende: 1500, temps: 10 }
+                ]
+            },
+            "stop": { 
+                nom: "Non-respect d'un panneau Stop", cat: "LV1", art: "Art 3-1.9", type: "code",
+                options: [
+                    { label: "Base", amende: 250, temps: 0 },
+                    { label: "Accident avec dommages matériels", amende: 890, temps: 10 },
+                    { label: "Accident avec blessures", amende: 500, temps: 8 }
+                ]
+            },
+            "sans_permis": { 
+                nom: "Conduite sans permis de conduire", cat: "LV1", art: "Art 2-2.1", type: "code",
+                options: [
+                    { label: "Suspendu/Expiré", amende: 1200, temps: 12 },
+                    { label: "Récidive", amende: 2000, temps: 20 }
+                ]
+            },
+            "ivresse_volant": { 
+                nom: "Conduite en état d'ivresse", cat: "LV1", art: "Art 2-2.2", type: "code",
+                options: [
+                    { label: "Base", amende: 1200, temps: 20 },
+                    { label: "Taux supérieur à 0,15 %", amende: 2500, temps: 20 },
+                    { label: "Refus de se soumettre au test d’alcoolémie", amende: 3000, temps: 30 },
+                    { label: "Récidive", amende: 3500, temps: 45 }
+                ]
+            },
+            "conduite_stup": { 
+                nom: "Conduite ou à pied sous l'emprise de stupéfiants", cat: "LV1", art: "Art 2-2.3", type: "code",
+                options: [
+                    { label: "Base", amende: 1800, temps: 25 },
+                    { label: "Refus de test salivaire ou sanguin", amende: 2300, temps: 30 },
+                    { label: "Conduite sous stupéfiants + alcool", amende: 6000, temps: 45 },
+                    { label: "Récidive", amende: 10000, temps: 60 }
+                ]
+            },
+            "injure": { nom: "Injure", cat: "LV1", amende: 250, temps: 5, art: "Art 5-4.2", type: "fixe", note: "GAV" },
+
+            // ================== CATÉGORIE 2 : DÉLITS MINEURS ==================
+            "refus_soumettre": { nom: "Refus de se soumettre", cat: "LV2", amende: 1000, temps: 10, art: "Art 2-1.3", type: "fixe", note: "GAV" },
+            "refus_obtemperer": { nom: "Refus d'obtempérer", cat: "LV2", amende: 1000, temps: 10, art: "Art 2-1.4", type: "fixe", note: "GAV" },
+            "conduite_dangereuse": { nom: "Conduite dangereuse", cat: "LV2", amende: 1200, temps: 20, art: "Art 2-2.4", type: "fixe", note: "GAV" },
+            "conduite_contresens": { nom: "Conduite en contre-sens", cat: "LV2", amende: 1100, temps: 10, art: "Art 2-2.5", type: "fixe", note: "GAV" },
+            "delit_fuite": { nom: "Délit de fuite", cat: "LV2", amende: 1100, temps: 20, art: "Art 2-1.5", type: "fixe", note: "GAV" },
+            "trouble_ordre": { nom: "Trouble à l'ordre public", cat: "LV2", amende: 2000, temps: 15, art: "Art 2-1.6", type: "fixe", note: "GAV" },
+            "intrusion_privee": { nom: "Intrusion dans une propriété privée", cat: "LV2", amende: 2200, temps: 15, art: "Art 3-1.3", type: "fixe", note: "GAV" },
+            "manifestation_illegale": { nom: "Manifestation illégale", cat: "LV2", amende: 2050, temps: 30, art: "Art 3-1.6", type: "fixe", note: "GAV" },
+            "chasse_illegale": { nom: "Chasse illégale", cat: "LV2", amende: 890, temps: 0, art: "Art 4-1.1", type: "fixe" },
+            "peche_illegale": { nom: "Pêche illégale", cat: "LV2", amende: 890, temps: 0, art: "Art 4-1.2", type: "fixe" },
+            "agression_mineure": { nom: "Agression mineure", cat: "LV2", amende: 1050, temps: 10, art: "Art 5-1.1", type: "fixe", note: "GAV" },
+            "non_assistance": { nom: "Non-assistance à personne en danger", cat: "LV2", amende: 9000, temps: 20, art: "Art 5-2.1", type: "fixe", note: "GAV" },
+            "mise_en_danger": { nom: "Mise en danger de la vie d'autrui", cat: "LV2", amende: 2500, temps: 10, art: "Art 5-2.6", type: "fixe", note: "GAV" },
+            "harcelement": { nom: "Harcèlement", cat: "LV2", amende: 1000, temps: 0, art: "Art 5-4.1", type: "fixe", note: "Mesure d'éloignement (Justice)" },
+            "diffamation": { nom: "Diffamation", cat: "LV2", amende: 2840, temps: 5, art: "Art 5-4.3", type: "fixe", note: "GAV" },
+            "denonciation_calomnieuse": { nom: "Dénonciation calomnieuse", cat: "LV2", amende: 3000, temps: 15, art: "Art 5-4.4", type: "fixe", note: "GAV" },
+            "menace": { nom: "Menace", cat: "LV2", amende: 1000, temps: 10, art: "Art 5-4.5", type: "fixe", note: "GAV" },
+            "vol": { nom: "Vol", cat: "LV2", amende: 750, temps: 15, art: "Art 6-1.1", type: "fixe", note: "GAV" },
+            "alcool_revente": { 
+                nom: "Trafic d'alcool", cat: "LV2", art: "Art 7-2.4", type: "code",
+                options: [{ label: "Bouteille d'alcool", amende: 200, temps: 15, unite: true }]
+            },
+            "sous_location": { 
+                nom: "Sous-location illicite", cat: "LV2", art: "Art 6-3.1", type: "code",
+                options: [
+                    { label: "Délit Mineur", amende: 1500, temps: 15 },
+                    { label: "Délit Majeur (Échelle/Faux)", amende: 2500, temps: 20 }
+                ]
+            },
+            "degradation_bien": { 
+                nom: "Dégradation de bien", cat: "LV2", art: "Art 6-2.4", type: "code",
+                options: [
+                    { label: "Bien d'un tiers", amende: 2000, temps: 10 },
+                    { label: "Bien de l'État / Public", amende: 6000, temps: 20 }
+                ]
+            },
+            "braquage_atm": { 
+                nom: "Braquage ATM", cat: "LV2", art: "Art 6-1.3", type: "code",
+                options: [
+                    { label: "Sans arme", amende: 1000, temps: 10 },
+                    { label: "Présence d'une arme à feu", amende: 2000, temps: 10 }
+                ]
+            },
+            "chantage": { nom: "Chantage", cat: "LV2", amende: 2000, temps: 5, art: "Art 6-2.2", type: "fixe", note: "GAV" },
+            "escroquerie": { nom: "Escroquerie", cat: "LV2", amende: 2000, temps: 5, art: "Art 6-2.3", type: "fixe", note: "GAV | Indemnité d’un bien/service" },
+            "incendie_volontaire": { nom: "Incendie volontaire", cat: "LV2", amende: 1500, temps: 10, art: "Art 6-2.5", type: "fixe", note: "GAV" },
+            "asso_malfaiteurs": { nom: "Association de malfaiteurs", cat: "LV2", amende: 1300, temps: 20, art: "Art 8-1.1", type: "fixe", note: "GAV" },
+            "arme_blanche": { nom: "Possession d'une arme blanche", cat: "LV2", amende: 1800, temps: 10, art: "Art 7-1.10", type: "fixe", note: "GAV | Saisie" },
+            "substances_illicites": { nom: "Détention de substances illicites", cat: "LV2", amende: 800, temps: 10, art: "Art 7-2.1", type: "fixe", note: "GAV | Saisie drogue" },
+
+            // ================== CATÉGORIE 3 : DÉLITS MAJEURS ==================
+            "abus_pouvoir": { nom: "Abus de pouvoir", cat: "LV3", amende: 11200, temps: 30, art: "Art 2-1.1", type: "fixe", note: "UP" },
+            "corruption": { nom: "Tentative de corruption", cat: "LV3", amende: 10000, temps: 35, art: "Art 2-1.2", type: "fixe", note: "UP | Fédéral" },
+            "obstruction_justice_maj": { nom: "Obstruction à la justice", cat: "LV3", amende: 7500, temps: 30, art: "Art 2-1.8", type: "fixe", note: "UP" },
+            "outrage_justice_maj": { nom: "Outrage à la justice", cat: "LV3", amende: 15000, temps: 40, art: "Art 2-1-9", type: "fixe", note: "UP" },
+            "faux_usage_maj": { nom: "Faux et usage de faux", cat: "LV3", amende: 8000, temps: 20, art: "Art 2-1.10", type: "fixe", note: "UP" },
+            "agression_majeure": { nom: "Agression majeure", cat: "LV3", amende: 3500, temps: 20, art: "Art 5-1.2", type: "fixe", note: "UP" },
+            "mutilation": { nom: "Mutilation", cat: "LV3", amende: 5000, temps: 15, art: "Art 5-1.3", type: "fixe", note: "GAV" },
+            "homicide_involontaire": { nom: "Homicide involontaire", cat: "LV3", amende: 10000, temps: 25, art: "Art 5-2.4", type: "fixe", note: "UP" },
+            "agression_sexuelle": { nom: "Agression sexuelle", cat: "LV3", amende: 5000, temps: "Perpétuité", art: "Art 5-3.1", type: "fixe", note: "Perpétuité" },
+            "prostitution": { nom: "Prostitution", cat: "LV3", amende: 8000, temps: 25, art: "Art 5-3.4", type: "fixe", note: "UP | Fédéral" },
+            "recel": { nom: "Recel", cat: "LV3", amende: 10000, temps: 30, art: "Art 6-1.2", type: "fixe", note: "UP" },
+            "braquage_fleeca": { nom: "Braquage Fleeca Bank", cat: "LV3", amende: 12000, temps: 45, art: "Art 6-1.3", type: "fixe", note: "UP | Saisie" },
+            "braquage_bijouterie": { nom: "Braquage de Bijouterie", cat: "LV3", amende: 18000, temps: 60, art: "Art 6-1.3", type: "fixe", note: "UP | Saisie" },
+            "braquage_superette": { nom: "Braquage de Supérette", cat: "LV3", amende: 2580, temps: 20, art: "Art 6-1.3", type: "fixe", note: "UP | Saisie" },
+            "braquage_pacific": { nom: "Braquage Pacific Standard", cat: "LV3", amende: 100000, temps: 90, art: "Art 6-1.3", type: "fixe", note: "UP | Saisie" },
+            "extorsion": { nom: "Extorsion", cat: "LV3", amende: 15000, temps: 20, art: "Art 6-2.1", type: "fixe", note: "UP" },
+            "exhibition_armes": { nom: "Exhibition d'armes", cat: "LV3", amende: 10000, temps: 20, art: "Art 7-1.1", type: "fixe", note: "UP | Saisie" },
+            "possession_arme_sans_permis": { nom: "Possession d'une arme sans PPA", cat: "LV3", amende: 15000, temps: 25, art: "Art 7-1.2", type: "fixe", note: "UP | Saisie" },
+            "possession_arme_modifiee": { nom: "Possession d'une arme modifiée", cat: "LV3", amende: 10000, temps: 15, art: "Art 7-1.4", type: "fixe", note: "UP | Saisie" },
+            "possession_fusil_precision": { nom: "Possession d'un fusil de précision", cat: "LV3", amende: 20000, temps: 20, art: "Art 7-1.6", type: "fixe", note: "UP | Saisie" },
+            "detention_substances_revente": { nom: "Détention de substances illicites aux fins de revente", cat: "LV3", amende: 1080, temps: 15, art: "Art 7-2.2", type: "fixe", note: "UP | Saisie drogue" },
+            "entrave_succession": { nom: "Entrave au droit de succession", cat: "LV3", amende: 0, temps: 10, art: "Art 6-2.6", type: "fixe", note: "GAV" },
+            "intrusion_institution": { nom: "Intrusion dans une institution publique", cat: "LV3", amende: 25000, temps: 30, art: "Art 2-2.6", type: "fixe", note: "UP" },
+
+            // ================== CATÉGORIE 4 : CRIMES ==================
+            "sequestration": { nom: "Séquestration", cat: "LV4", amende: 30000, temps: 20, art: "Art 5-1.4", type: "fixe", note: "UP" },
+            "prise_otage": { 
+                nom: "Prise d'otage", cat: "LV4", art: "Art 5-1.5", type: "code",
+                options: [
+                    { label: "Base", amende: 20000, temps: 15 },
+                    { label: "Victime agent dépositaire de l'autorité publique", amende: 2000, temps: 10 },
+                    { label: "Usage d'armes à feu, armes blanches ou explosifs", amende: 3000, temps: 20 },
+                    { label: "+2 heures de séquestration ou +3 victimes retenues simultanément", amende: 4000, temps: 15 },
+                    { label: "bâtiment public ou lieu officiel", amende: 5000, temps: 10 },
+                    { label: "Organisation en bande", amende: 6000, temps: 20 }
+                ]
+            },
+            "homicide_volontaire": { nom: "Homicide volontaire", cat: "LV4", amende: 25000, temps: 30, art: "Art 5-2.2", type: "fixe", note: "UP" },
+            "exhibition_crime": { nom: "Exhibition", cat: "LV4", amende: 7500, temps: 25, art: "Art 5-3.5", type: "fixe", note: "UP" },
+            "tentative_homicide": { nom: "Tentative d'homicide", cat: "LV4", amende: 15000, temps: 30, art: "Art 5-2.3", type: "fixe", note: "UP" },
+            "meurtre_premeditation": { nom: "Meurtre avec préméditation", cat: "LV4", amende: 50000, temps: 40, art: "Art 5-2.4", type: "fixe", note: "UP" },
+            "viol": { nom: "Viol", cat: "LV4", amende: 50000, temps: "Perpétuité", art: "Art 5-3.2", type: "fixe", note: "Fédéral" },
+            "proxenetisme": { nom: "Proxénétisme", cat: "LV4", amende: 25000, temps: 40, art: "Art 5-3.3", type: "fixe", note: "UP | Fédéral" },
+            "engin_explosif": { nom: "Possession d'engin explosif", cat: "LV4", amende: 32000, temps: 45, art: "Art 7-1.5", type: "fixe", note: "UP | Fédéral" },
+            "fabrication_armes": { nom: "Fabrication d'armes", cat: "LV4", amende: 50000, temps: 30, art: "Art 7-1.7", type: "fixe", note: "UP | Fédéral" },
+            "trafic_armes": { 
+                nom: "Trafic d'armes", cat: "LV4", art: "Art 7-1.8", type: "code",
+                options: [
+                    { label: "Base", amende: 100000, temps: 30 },
+                    { label: "Aggravé (Guerre/Mineur/Attentat)", amende: 10000, temps: 1440, unite: true }
+                ]
+            },
+            "utilisation_arme_agent": { nom: "Utilisation d'arme à l'encontre d'un agent de l'État", cat: "LV4", amende: 30000, temps: 35, art: "Art 7-1.9", type: "fixe", note: "UP" },
+            "trafic_stupefiants": { 
+                nom: "Trafic de stupéfiants", cat: "LV4", art: "Art 7-2.3", type: "code",
+                options: [
+                    { label: "Weed", amende: 30, temps: 0, unite: true },
+                    { label: "Méthamphétamine", amende: 100, temps: 0, unite: true },
+                    { label: "Cocaïne", amende: 130, temps: 0, unite: true }
+                ]
+            },
+            "blanchiment_argent": { nom: "Blanchiment d'argent", cat: "LV4", amende: 15000, temps: 30, art: "Art 8-1.2", type: "fixe", note: "UP | Fédéral" },
+            "sedition": { nom: "Sédition", cat: "LV4", amende: 100000, temps: 35, art: "Art 8-1.3", type: "fixe", note: "UP | Fédéral" },
+            "violation_surveillance": { nom: "Violation surveillance électronique", cat: "LV4", amende: 0, temps: 0, art: "Art 8-2.1", type: "fixe", note: "Cour Supérieure" },
+            "fraude_fiscale": { 
+                nom: "Fraude fiscale", cat: "LV4", art: "Art 8-2.2", type: "code",
+                options: [
+                    { label: "Base", amende: 5000, temps: 20 },
+                    { label: "Aggravé (> 1M / Intérêts)", amende: 15000, temps: 40 }
+                ]
+            },
+            "trafic_organes": { 
+                nom: "Trafic d'organes", cat: "LV4", art: "Art 8-2.3", type: "code",
+                options: [
+                    { label: "Base (Privation de liberté)", amende: 25000, temps: 30 },
+                    { label: "Organisation criminelle", amende: 3000, temps: 10 },
+                    { label: "Victime mineure ou vulnérable", amende: 9800, temps: 15 },
+                    { label: "Décès ou mutilation grave", amende: 5000, temps: 20 },
+                    { label: "Traffic transfontalier", amende: 1000, temps: 5 },
+                    { label: "Moyens violents / Coercition", amende: 8890, temps: 10 },
+                    { label: "Mise en danger de la vie d'autrui", amende: 4000, temps: 10 }
+                ]
+            },
+            "terrorisme": { nom: "Terrorisme", cat: "LV4", amende: 2000000, temps: "Perpétuité", art: "Art 8-1.4", type: "fixe", note: "Fédéral" },
+            "traite_humaine": { nom: "Traite Humaine", cat: "LV4", amende: 1500000, temps: "Perpétuité", art: "Art 8-1.5", type: "fixe", note: "Fédéral" },
+            "evasion": { nom: "Évasion", cat: "LV4", amende: 900000, temps: 45, art: "Art 8-1.6", type: "fixe", note: "UP | Fédéral" },
+            "conspiration": { nom: "Conspiration", cat: "LV4", amende: 2000000, temps: "Perpétuité", art: "Art 8-1.7", type: "fixe", note: "Fédéral" },
+            "viol_constitution": { nom: "Viol de la Constitution", cat: "LV4", amende: 5000000, temps: "Perpétuité", art: "Art 8-1.8", type: "fixe", note: "Fédéral" },
+            "haute_trahison": { nom: "Haute trahison", cat: "LV4", amende: 5000000, temps: "Perpétuité", art: "Art 8-1.9", type: "fixe", note: "Fédéral" }
+        };
+
+        let dossier = [];
+        let signatureTitle = "AUTHORIZED OFFICER"; // Par défaut
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const role = urlParams.get('role');
+
+            const inputNom = document.getElementById('officier-nom');
+            const inputMatricule = document.getElementById('officier-id');
+            const sectionOfficier = document.querySelectorAll('.section-title');
+
+            if (role === 'prosecutor') {
+                // --- MODE PROCUREUR ---
+                signatureTitle = "AUTHORIZED ATTORNEY";
+                if (inputNom) inputNom.placeholder = "Nom du Procureur";
+                if (inputMatricule) inputMatricule.style.display = 'none'; // MASQUE LE MATRICULE
+                
+                sectionOfficier.forEach(el => {
+                    if(el.innerText.includes("OFFICIER")) el.innerText = "PROCUREUR EN CHARGE";
+                });
+            } 
+            else if (role === 'visitor') {
+                // --- MODE VISITEUR ---
+                const btnPDF = document.querySelector('.btn-generate');
+                if (btnPDF) btnPDF.style.display = 'none';
+                if (inputMatricule) inputMatricule.style.display = 'none';
+                if (inputNom) inputNom.style.display = 'none';
+                
+                sectionOfficier.forEach(el => {
+                    if(el.innerText.includes("OFFICIER")) el.style.display = 'none';
+                });
+            }
+        };
+
+        function filterInfractions() {
+            const query = document.getElementById('search').value.toLowerCase();
+            const results = document.getElementById('results');
+            results.innerHTML = "";
+            if (query.length < 2) return;
+            Object.keys(bdd).forEach(key => {
+                const item = bdd[key];
+                if (item.nom.toLowerCase().includes(query) || item.art.toLowerCase().includes(query)) {
+                    const div = document.createElement('div');
+                    div.className = `infraction-card ${item.cat}`;
+                    div.innerHTML = `<strong>${item.nom}</strong> <small style="float:right">${item.art}</small>`;
+                    div.onclick = () => addInfraction(key);
+                    results.appendChild(div);
+                }
+            });
+        }
+
+        function addInfraction(key) {
+            const item = bdd[key];
+            if (item.type === "code") openOptions(key);
+            else { dossier.push({ nom: item.nom, amende: item.amende, temps: item.temps }); updateSummary(); }
+        }
+
+        function openOptions(key) {
+            const item = bdd[key];
+            const modal = document.getElementById('options-modal');
+            const content = document.getElementById('modal-content');
+            modal.style.display = "flex";
+            content.innerHTML = `<h2 style="margin-top:0">${item.nom}</h2><p style="color:#94a3b8">Choisissez la circonstance :</p>`;
+            item.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "opt-btn";
+                btn.innerText = `${opt.label} (${opt.amende}$)`;
+                btn.onclick = () => {
+                    if (opt.unite) {
+                        const qte = prompt("Quantité ?", "1");
+                        if (qte && !isNaN(qte)) dossier.push({ nom: `${item.nom} (${opt.label} x${qte})`, amende: opt.amende * qte, temps: opt.temps * qte });
+                    } else { dossier.push({ nom: `${item.nom} (${opt.label})`, amende: opt.amende, temps: opt.temps }); }
+                    modal.style.display = "none";
+                    updateSummary();
+                };
+                content.appendChild(btn);
+            });
+        }
+
+        function updateSummary() {
+            const list = document.getElementById('selected-list');
+            const totalA = document.getElementById('total-amende');
+            const totalT = document.getElementById('total-temps');
+            const coopVal = parseFloat(document.getElementById('cooperation-level').value);
+            list.innerHTML = "";
+            let baseA = 0; let baseT = 0; let perp = false;
+            dossier.forEach(item => {
+                baseA += item.amende;
+                if (item.temps === 9999 || item.temps === "Perpétuité") perp = true;
+                else if (typeof item.temps === 'number') baseT += item.temps;
+                const div = document.createElement('div');
+                div.className = "selected-item";
+                div.innerHTML = `<span>${item.nom}</span> <strong>${item.amende}$</strong>`;
+                list.appendChild(div);
+            });
+            const finalA = Math.round(baseA * coopVal);
+            const finalT = perp ? "PERPÉTUITÉ" : Math.round(baseT * coopVal) + " min";
+            totalA.innerText = `${finalA.toLocaleString()} $`;
+            totalT.innerText = finalT;
+        }
+
+        function clearAll() {
+            dossier = [];
+            document.getElementById('suspect-nom').value = ""; document.getElementById('suspect-prenom').value = "";
+            document.getElementById('suspect-id').value = ""; document.getElementById('cooperation-level').value = "1.0";
+            updateSummary(); document.getElementById('search').value = ""; document.getElementById('results').innerHTML = "";
+        }
+
+        function genererCasierPDF() {
+            if(dossier.length === 0) { alert("Dossier vide."); return; }
+            
+            const officierN = document.getElementById('officier-nom').value || "N/A";
+            const officierId = document.getElementById('officier-id').value || ""; // Peut être vide pour le procureur
+            const nomS = document.getElementById('suspect-nom').value || "N/A";
+            const preS = document.getElementById('suspect-prenom').value || "N/A";
+            const idS = document.getElementById('suspect-id').value || "N/A";
+            const aT = document.getElementById('total-amende').innerText;
+            const tT = document.getElementById('total-temps').innerText;
+            const date = new Date().toLocaleDateString('fr-FR');
+            const authCode = "SAD0J-" + Math.random().toString(36).substr(2, 7).toUpperCase();
+            
+            const coopSelect = document.getElementById('cooperation-level');
+            const coopText = coopSelect.options[coopSelect.selectedIndex].text;
+
+            let bA = 0, bT = 0, perp = false;
+            dossier.forEach(i => { 
+                bA += i.amende; 
+                if (i.temps === 9999 || i.temps === "Perpétuité") perp = true; 
+                else bT += i.temps; 
+            });
+
+            const win = window.open('', '_blank');
+            win.document.write(`
+                <html>
+                <head>
+                    <title>Dossier ${authCode}</title>
+                    <style>
+                        body { font-family: 'Courier New', monospace; padding: 50px; } 
+                        .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 80px; color: rgba(0,0,0,0.05); font-weight: bold; pointer-events: none; } 
+                        .gov-header { text-align: center; border-bottom: 4px solid #000; padding-bottom: 10px; margin-bottom: 30px; } 
+                        .doc-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; } 
+                        .doc-table th, .doc-table td { padding: 8px; border: 1px solid #000; font-size: 13px; } 
+                        .title-bar { background: #000; color: #fff; padding: 5px 10px; font-weight: bold; margin-bottom: 10px; }
+                        .sig-line { margin-top: 60px; border-top: 1px solid #000; width: 300px; text-align: center; float: right; }
+                    </style>
+                </head>
+                <body onload="window.print();"> 
+                    <div class="watermark">CONFIDENTIEL</div> 
+                    <div class="gov-header"><p>STATE OF SAN ANDREAS - DOJ</p><h1>OFFICIAL CRIMINAL RECORD</h1></div> 
+                    <div style="display:flex; justify-content:space-between; margin-bottom:20px;"><span>DOSSIER: ${authCode}</span><span>DATE: ${date}</span></div> 
+                    <div class="title-bar">SECTION I - SUJET</div> 
+                    <table class="doc-table"><tr><th>NOM</th><th>PRÉNOM</th><th>ID</th></tr><tr><td>${nomS.toUpperCase()}</td><td>${preS}</td><td>${idS}</td></tr></table> 
+                    <div class="title-bar">SECTION II - INCULPATIONS</div> 
+                    <table class="doc-table"><tr><th>NATURE</th><th>AMENDE</th><th>PEINE</th></tr>
+                        ${dossier.map(i => `<tr><td>${i.nom}</td><td>${i.amende}$</td><td>${i.temps === 9999 ? "PERPÉTUITÉ" : i.temps + "m"}</td></tr>`).join('')}
+                    </table> 
+                    <div class="title-bar">SECTION III - VERDICT</div> 
+                    <table class="doc-table">
+                        <tr><td>Base: ${bA.toLocaleString()}$ / ${perp ? 'PERP' : bT + 'm'}</td><td>Modif: ${coopText}</td></tr>
+                        <tr><td><strong>TOTAL: ${aT}</strong></td><td><strong>PEINE: ${tT}</strong></td></tr>
+                    </table> 
+                    <div class="sig-line">
+                        <span style="font-family: 'Brush Script MT', cursive; font-size: 26px;">${officierN}</span><br>
+                        <span style="font-size: 11px; font-family: Arial;">${officierId}</span><br>
+                        <strong>${signatureTitle}</strong>
+                    </div>
+                </body>
+                </html>
+            `);
+            win.document.close();
+        }
+
+        // --- PROTOCOLE DE SÉCURITÉ ---
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', e => { 
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'p' || e.key === 'a' || e.key === 'c'))) { 
+                e.preventDefault(); 
+                return false; 
+            } 
+        });
+    </script>
+</body>
+</html>

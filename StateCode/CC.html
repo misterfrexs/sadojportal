@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: transparent !important; /* Transparence forcée pour s'intégrer à ton portail */
+            color: #e2e8f0; 
+            margin: 0; 
+            padding: 30px;
+
+            /* PROTCOLE DE SÉCURITÉ : Anti-sélection de texte */
+        body {
+            -webkit-user-select: none; /* Safari / Chrome */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Standard */
+        }
+        }
+        
+        /* Barre de défilement discrète */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
+
+        .header-container { text-align: center; margin-bottom: 20px; }
+        .doc-image { display: inline-block; max-width: 180px; height: auto; }
+        
+        /* Thème Émeraude pour le Code Civil */
+        .law-header { margin-bottom: 40px; border-bottom: 2px solid #10b981; padding-bottom: 20px; text-align: center; }
+        .law-header h2 { margin: 0; color: #fff; font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; }
+        .law-header p { margin: 10px 0 0 0; color: #94a3b8; font-weight: 800; }
+        
+        .livre-title { background: #10b981; color: white; padding: 12px 20px; border-radius: 4px; margin: 40px 0 20px 0; text-transform: uppercase; font-weight: 800; font-size: 1.2rem; }
+        .titre-section { color: #34d399; border-bottom: 1px solid rgba(16, 185, 129, 0.3); margin: 30px 0 15px 0; padding-bottom: 5px; font-weight: 700; text-transform: uppercase; font-size: 1.1rem; }
+
+        .law-article { margin-bottom: 20px; padding: 20px; background: rgba(255, 255, 255, 0.02); border-radius: 8px; border-left: 4px solid #10b981; }
+        .law-article h4 { margin: 0 0 10px 0; color: #6ee7b7; font-size: 1rem; text-transform: uppercase; font-weight: 800; }
+        .law-article p { margin: 0 0 10px 0; font-size: 0.95rem; line-height: 1.6; text-align: justify; }
+        .law-article p:last-child { margin-bottom: 0; }
+        
+        ul { margin: 10px 0; padding-left: 20px; font-size: 0.95rem; line-height: 1.6;}
+        li { margin-bottom: 5px; }
+        strong { color: #fff; }
+
+        .schema-container { text-align: center; margin: 20px 0; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px dashed #34d399; }
+        .schema-container img { max-width: 100%; height: auto; border-radius: 4px; }
+        .schema-caption { color: #94a3b8; font-size: 0.85rem; margin-top: 10px; font-style: italic; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem; }
+        th, td { border: 1px solid rgba(16, 185, 129, 0.3); padding: 10px; text-align: left; vertical-align: top; }
+        th { background-color: rgba(16, 185, 129, 0.1); color: #6ee7b7; }
+
+        .footer-note { text-align: center; color: #475569; font-size: 0.85rem; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <img src="./images/sceau_doj.png" class="doc-image" alt="Sceau Officiel">
+    </div>
+
+    <div class="law-header">
+        <h2>Code Civil</h2>
+        <p>ÉTAT DE SAN ANDREAS - VERSION INTÉGRALE</p>
+    </div>
+
+    <div class="titre-section">Préambule</div>
+    <div class="law-article">
+        <p><strong>Article 0-1 :</strong> Ce document établit les droits et devoirs des citoyens de l'État de San Andreas.</p>
+        <p><strong>Article 0-2 :</strong> Ce document est soumis à l'autorité du Département de la Justice et de la Cour Suprême de l’Etat de San Andreas.</p>
+    </div>
+
+    <div class="livre-title">Livre I : Droits et devoirs du citoyen</div>
+    
+    <div class="law-article">
+        <h4>Article 1-1.1</h4>
+        <p>Chaque citoyen a les obligations suivantes :</p>
+        <ul>
+            <li>Respecter les lois en vigueur ;</li>
+            <li>Contribuer au financement de l'État par le paiement des impôts, qui soutient les services publics et le développement de la ville ;</li>
+            <li>Participer à la vie politique en exerçant son droit de vote (en cas de fraude, le visa peut être révoqué) ;</li>
+            <li>Faire preuve de civilité dans tous les aspects de la vie quotidienne ;</li>
+            <li>Encourager l'entraide entre citoyens ;</li>
+            <li>Soutenir le dynamisme de la ville en prenant part aux événements publics ;</li>
+            <li>La liberté de circulation dans les limites du territoire.</li>
+        </ul>
+        <p>Chaque citoyen a le droit, lors d'un interrogatoire :</p>
+        <ul>
+            <li>D'être assisté par un avocat en cas d'arrestation ou d'enquête, qu'il soit suspect ou simple témoin. Si la personne exprime le souhait d'avoir un avocat, l'interrogatoire peut se dérouler sans sa présence, mais les informations obtenues ne pourront pas être retenues contre elle, sauf en cas d'aveux signés ;</li>
+            <li>L'avocat et son client ont le droit de s'entretenir en privé, et rien de ce qui sera dit durant cet entretien ne pourra être utilisé contre le client.</li>
+        </ul>
+        <p>Chaque citoyen a le droit, lors d'une arrestation :</p>
+        <ul>
+            <li>De garder le silence, car tout ce qui sera dit après l'énoncé des faits reprochés pourra et sera utilisé contre lui lors d'une audience ou d'un procès (excepté en cas de demande d'un avocat) ;</li>
+            <li>De faire appel à un avocat pour le représenter. Si le citoyen n'a pas d'avocat, il peut demander un avocat commis d'office, payé par le gouvernement, sous réserve de disponibilité ;</li>
+            <li>De bénéficier de l'assistance d'un avocat à tout moment ;</li>
+            <li>De recevoir une assistance médicale et des vivres pendant la période de détention.</li>
+        </ul>
+    </div>
+    
+    <div class="law-article">
+        <h4>Article 1-1.2</h4>
+        <p>Tout citoyen doit pouvoir justifier de la provenance du véhicule qu'il conduit si celui-ci ne lui appartient pas. Des vérifications seront effectuées chaque fois que les forces de l’ordre auront des doutes sur la légitimité de cette justification.</p>
+    </div>
+    
+    <div class="law-article">
+        <h4>Article 1-1.3</h4>
+        <p>Tout véhicule acheté et possédé doit être immatriculé auprès du service des cartes grises, actuellement encadré par les entreprises de dépanneurs. Le défaut d'enregistrement d'un véhicule dans la base de données d'immatriculation entraînera une amende, sauf si le véhicule a été loué auprès d'un concessionnaire.</p>
+    </div>
+    
+    <div class="law-article">
+        <h4>Article 1-1.4</h4>
+        <p>Les centres de contrôle technique sont présentement dirigés par les dépanneurs, et eux seuls sont habilités à effectuer les vérifications sur l'ensemble des véhicules. Le premier contrôle technique doit être effectué après l’achat d’un véhicule, et il est de la responsabilité du citoyen de prendre rendez-vous avec une entreprise de dépannage.</p>
+    </div>
+    
+    <div class="law-article">
+        <h4>Article 1-1.5</h4>
+        <p>Tout citoyen doit être en mesure de justifier de son identité. Si le citoyen ne peut pas fournir de pièce d'identité, il pourra être emmené au poste de police pour un relevé d’empreintes et placé en cellule jusqu’à ce qu’une personne se porte garante de son identité. Seuls les agents de police sont habilités à effectuer les arrestations à la suite d’un contrôle d’identité, qui peuvent être accompagnées d’une amende.</p>
+    </div>
+    
+    <div class="law-article">
+        <h4>Article 1-1.6</h4>
+        <p>Tout civil en possession (sur lui-même ou dans un lieu de stockage dont il est propriétaire) d'une somme égale ou supérieure à 10 000 $ devra justifier de l'origine de cet argent et fournir des preuves.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 1-1.7 : Droit Miranda</h4>
+        <p>« Madame/Monsieur, vous êtes placé(e) en état d'arrestation pour les faits qui vous sont reprochés. Vous avez le droit de garder le silence. Si vous renoncez à ce droit, tout ce que vous direz pourra être utilisé contre vous devant une cour de justice. Vous avez le droit à la présence d’un avocat lors de l’interrogatoire. Si vous n’en avez pas les moyens, un avocat vous sera fourni gratuitement. Durant chaque interrogatoire, vous pourrez à tout moment exercer ces droits, refuser de répondre aux questions ou de faire une déposition. Une fois en cellule, vous avez le droit à des vivres alimentaires et à des soins médicaux. Avec ces droits en tête, Madame/Monsieur, avez-vous compris vos droits et avez-vous une déclaration à faire ? »</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 1-1.8</h4>
+        <p>Un officier de police dispose de 15 minutes après l'arrivée au poste pour informer une personne en état d'arrestation de ses droits Miranda (cf. article 4-1.5 du Code de procédure pénale).</p>
+    </div>
+
+    <div class="livre-title">Livre II : Zones réglementées</div>
+    
+    <div class="law-article">
+        <h4>Article 2-1.1</h4>
+        <p>La pratique de la chasse est soumise à l'obtention d'un permis de port d'armes ainsi que d'un permis de chasse. Il est interdit d'utiliser un véhicule professionnel pour chasser. Pour toute information concernant la chasse, veuillez vous adresser au bureau du Gouverneur. (Certaines périodes de chasse peuvent être en vigueur, et la chasse est temporairement interdite).</p>
+        <ul>
+            <li>Le permis de chasse est obligatoire en complément du permis de port d'armes.</li>
+            <li>Seul l'usage du mousquet est autorisé pour la chasse, toutes les autres armes sont interdites.</li>
+            <li>Il est interdit de chasser avec un véhicule professionnel ou de fonction ; seuls les véhicules adaptés aux routes dégradées ou montagneuses sont permis.</li>
+            <li>La zone de chasse est limitée au parc national du Mont Chiliad.</li>
+            <li>Les périodes de chasse autorisées sont du 1ᵉʳ au 8 (inclus) et du 15 au 22 (inclus) de chaque mois. La chasse est autorisée uniquement pour les lapins et les cerfs, les coyotes, les pumas et les sangliers. Tout autre animal chassé sera considéré comme une activité illégale.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 2-1.2 : Classification des zones</h4>
+        <p>Les zones sont classées en 5 catégories réglementées :</p>
+        <table>
+            <tr>
+                <th>Niveau</th>
+                <th>Niveau 1</th>
+                <th>Niveau 2</th>
+                <th>Niveau 3</th>
+                <th>Niveau 3</th>
+                <th>Niveau 4</th>
+            </tr>
+            <tr>
+                <td><strong>Personne autorisée</strong></td>
+                <td>Civil avec accréditation</td>
+                <td>
+                    - Police Locale<br>
+                    - Police Fédérale<br>
+                    - EMS<br>
+                    - Gouvernement
+                </td>
+                <td>
+                    - Police locale<br>
+                    - Police fédérale<br>
+                    - Gouvernement
+                </td>
+                <td>
+                    - Police fédérale<br>
+                    - Gouvernement
+                </td>
+                <td>
+                    - Police fédérale<br>
+                    - Gouvernement
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.3 : Zones</h4>
+        <div class="schema-container">
+            <img src="./images/ZonesCC.png" alt="Carte des Zones Réglementées">
+        </div>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.4</h4>
+        <p>Une accréditation doit être délivrée pour chaque zone.</p>
+    </div>
+
+    <div class="livre-title">Livre III : Gestion du patrimoine</div>
+    
+    <div class="law-article">
+        <h4>Article 3-1.1</h4>
+        <p>Toute opération de location ou de vente portant sur un bien immobilier doit obligatoirement faire l'objet d'un acte écrit, conforme aux normes en vigueur :</p>
+        <ul>
+            <li><strong>dans le cadre d'une location</strong>, par un contrat de bail signé entre les parties ;</li>
+            <li><strong>dans le cadre d'une vente</strong>, par un acte authentique de vente établi par un professionnel habilité ou par l'agence immobilière mandatée.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 3-1.2</h4>
+        <p>Le locataire souhaitant résilier son contrat de location est tenu d'en informer l'agence immobilière gestionnaire du bien au minimum sept (7) jours calendaires avant la remise des clés. La notification doit être faite par écrit, par tout moyen permettant d'en établir la date certaine.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 3-1.3</h4>
+        <p>En cas de résiliation anticipée sans respect du délai de préavis prévu à l'article 3-1.2, le locataire demeure redevable :</p>
+        <ul>
+            <li>du paiement des loyers jusqu'à la date effective de clôture du contrat, laquelle correspond soit à la date de notification écrite, soit à la date de constat par l'agence, augmentée d'un délai de sept (7) jours, selon celle intervenant en dernier ;</li>
+            <li>ainsi que de dommages et intérêts équivalents à quatre-vingt dix pour cent (90 %) du montant des loyers dus.</li>
+        </ul>
+        <p><em>Exemple : pour un solde locatif de 10 500 $, le montant total dû sera de 19 950 $.</em></p>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 3-1.4</h4>
+        <p>La sous-location, partielle ou totale, du bien loué est strictement interdite. Tout manquement à cette interdiction expose le locataire à :</p>
+        <ul>
+            <li>des poursuites judiciaires engagées par l'agence immobilière ;</li>
+            <li>des amendes contractuelles au profit de ladite agence, dont le montant est fixé par voie réglementaire ou selon les clauses du bail.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 3-1.5</h4>
+        <p>Seule l'agence immobilière mandatée est autorisée à établir un acte de vente portant sur un bien immobilier. Le propriétaire du bien ne peut directement procéder à la vente ni établir lui-même un acte de cession, sauf dispositions contraires expressément prévues par la loi ou stipulées dans le mandat de gestion.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 3-1.6</h4>
+        <p>En cas d'achat d'un bien en location, un acheteur est prioritaire sur un locataire pour l'acquisition du bien si :</p>
+        <ul>
+            <li>Le locataire actuel n'a pas exprimé son souhait d'acheter le bien à la fin de son bail ou n'a pas rédigé de promesse d'achat (par exemple, dans le cas d'une location occasionnelle ou temporaire).</li>
+        </ul>
+        <p>Si le locataire a exprimé par écrit à son agent immobilier son intention d'acheter le bien dans lequel il réside, alors :</p>
+        <ul>
+            <li>Le locataire dispose de deux semaines à compter de la date de rédaction de sa demande d'achat pour acquérir le bien. Passé ce délai, il pourra continuer à louer le bien, mais ne sera plus prioritaire pour l'achat si un autre acheteur souhaite l'acquérir.</li>
+        </ul>
+        <p>Pour être prioritaire sur l'achat, vous devez présenter une promesse d'achat signée par le potentiel acheteur, l'agent immobilier, et un avocat. Ce document doit inclure les mentions obligatoires suivantes : noms, adresse de la propriété, prix d'achat TTC. Une seule promesse d'achat est autorisée par location.</p>
+        <p>En cas de vente d'un bien immobilier sous promesse d'achat au nom d'un autre bénéficiaire, l'agent immobilier sera poursuivi pour escroquerie. Le délai de deux semaines après l'expiration de la promesse d'achat doit être respecté pour émettre une nouvelle promesse d'achat sur ce même bien, si la précédente n'a pas été respectée.</p>
+    </div>
+
+    <div class="livre-title">Livre IV : Les droits de succession</div>
+    
+    <div class="law-article">
+        <h4>Article 4-1.1 : Ouverture de la succession et qualité pour succéder</h4>
+        <p>Les droits de succession sont applicables à toute transmission de patrimoine post mortem. L'ouverture de la succession est subordonnée à la présentation d'un lien de parenté légalement reconnu, d'un testament valide, ou à la soumission d'un dossier complet devant le greffe du tribunal compétent, comprenant :</p>
+        <ul>
+            <li>l'acte de décès ;</li>
+            <li>la preuve d'identité des ayants droit ;</li>
+            <li>et tout document établissant la qualité d'héritier, de légataire ou d'exécuteur testamentaire.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 4-1.2 : Évaluation de l'actif successoral</h4>
+        <p>Le patrimoine successoral est évalué sur la base de la valeur nette des biens du défunt à la date du décès. Cette évaluation comprend l'ensemble des biens immobiliers (maisons, terrains, immeubles) et des biens mobiliers, notamment les véhicules terrestres, les aéronefs (avions, hélicoptères, ULM), les bateaux, les comptes bancaires, les bijoux, œuvres d'art, titres financiers et autres actifs mobiliers.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 4-1.3 : Limitation de la part transmissible</h4>
+        <p>Le montant total transmissible au titre de la succession ne peut excéder 60 % de la valeur nette du patrimoine ou être plafonné à une somme fixe de 750 000 $, selon le montant le moins élevé des deux.</p>
+        <p>Exemples :</p>
+        <ul>
+            <li>Pour un patrimoine évalué à 1 000 000 $, la part maximale transmissible est de 600 000 $ (60 %).</li>
+            <li>Pour un patrimoine de 2 000 000 $, la part maximale transmissible est limitée à 750 000 $, en vertu du plafond.</li>
+        </ul>
+        <p>Aucun bien ou montant excédant cette limite ne peut être transféré à titre successoral, quel que soit le nombre ou la qualité des bénéficiaires.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 4-1.4 : Régime fiscal applicable</h4>
+        <p>La part du patrimoine effectivement transmise aux bénéficiaires, dans la limite prévue à l'article 4-1.3, est exonérée de toute taxe, droit de mutation ou imposition gouvernementale, sous réserve du respect des obligations de déclaration et de transparence devant l'administration compétente.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 4-1.5 : Affectation du solde non transmissible</h4>
+        <p>La fraction du patrimoine excédant la part maximale transmissible, soit jusqu'à 60 % de l'actif successoral ou toute somme excédant 750 000 $, est affectée à un fonds public de solidarité successorale. Ce fonds est institué à des fins d'intérêt général et est dirigé par une autorité administrative désignée par décret. Le solde non transmissible ne peut faire l'objet d'aucune disposition testamentaire, donation post-mortem ni réclamation par un tiers, sauf dispositions contraires prévues par la loi.</p>
+    </div>
+
+    <div class="livre-title">Livre V : Stand Your Ground</div>
+    
+    <div class="titre-section">Titre 1 : Le devoir de retrait</div>
+    <div class="law-article">
+        <p><strong>Article 5-1.1 :</strong> Le devoir de retrait consiste à fuir ou à battre en retraite dans certaines situations.</p>
+        <p><strong>Article 5-1.2 :</strong> L'utilisation de la force de manière excessive ou inutile, en lieu et place du devoir de retrait, entraîne des poursuites pénales.</p>
+        <p><strong>Article 5-1.3 :</strong> Ce devoir s'applique à tout citoyen de San Andreas, à l'exception des agents de police municipale, étatique et fédérale dans l'exercice de leurs fonctions.</p>
+    </div>
+
+    <div class="titre-section">Titre 2 : La légitime défense</div>
+    <div class="law-article">
+        <p><strong>Article 5-2.1 :</strong> La légitime défense est définie comme l'utilisation de la force strictement nécessaire et proportionnée.</p>
+        <p><strong>Article 5-2.2 :</strong> La force est considérée comme nécessaire lorsque le devoir de retrait est impossible. Elle est également considérée comme indispensable pour limiter les dommages ou désamorcer une situation susceptible de s'aggraver.</p>
+        <p><strong>Article 5-2.3 :</strong> L'acte de légitime défense a pour objectif de protéger ou de neutraliser un individu dangereux.</p>
+        <p><strong>Article 5-2.4 :</strong> La légitime défense peut inclure une réponse létale ou non, à condition qu'elle soit proportionnée, adaptée à l'environnement, et justifiée.</p>
+        <p><strong>Article 5-2.5 :</strong> Une défense proportionnée est indispensable, peut être invoquée devant une Cour de justice pour justifier le recours à la légitime défense.</p>
+        <p><strong>Article 5-2.6 :</strong> L'usage de moyens autorisés ou non par la loi peut être justifié par la légitime défense. Par exemple, l'utilisation d'une arme sans permis port d’armes pour parer à un danger imminent ou pour protéger autrui peut être considérée comme de la légitime défense.</p>
+        <p><strong>Article 5-2.7 :</strong> La Cour supérieure de San Andreas est la seule autorité compétente pour déterminer la légitimité d'un acte commis sous couvert de légitime défense.</p>
+    </div>
+
+    <div class="titre-section">Titre 3 : Les services de police</div>
+    <div class="law-article">
+        <p><strong>Article 5-3.1 :</strong> Le devoir de retrait ne s'applique pas aux services de police, conformément à l'article 5-1.3 du présent code. Les agents de police ont, au contraire, un devoir d'action, encadré par les dispositions du présent chapitre.</p>
+        <p><strong>Article 5-3.2 :</strong> Les services de police ont le droit et le devoir d'utiliser tous les moyens nécessaires pour préserver leur vie ainsi que celle d'autrui dans le cadre de la légitime défense. Cela inclut l'utilisation de moyens létaux si l'intégrité physique de soi-même ou d'autrui est menacée par des individus armés, même avec des armes blanches.</p>
+        <p><strong>Article 5-3.3 :</strong> L'utilisation de moyens létaux est justifiée uniquement dans les cas suivants :</p>
+        <ul>
+            <li>Si un individu exhibe une arme tranchante ou perforante et se montre menaçant, et qu'il s'approche d'un officier de police après deux sommations verbales, l'officier est en droit d'utiliser un moyen létal.</li>
+            <li>Si un individu exhibe une arme tranchante ou perforante et se trouve à moins de 6,5 mètres d'un officier de police, ce dernier peut utiliser un moyen létal sans sommation préalable.</li>
+            <li>Si un individu refuse d'obéir à un ordre d'un officier de police après avoir commis un délit majeur ou un crime, et si l'officier a des raisons de croire que le suspect pourrait, dans sa fuite, mettre en danger sa vie ou celle d'autrui.</li>
+            <li>Si les officiers de police n'ont pas d'autre moyen que l'utilisation d'une arme à feu pour immobiliser ou stopper un véhicule, dans le cas où les fugitifs ont commis un crime ou mettent en danger la vie d'autrui par leur conduite. Dans ce cas, l'utilisation d'une arme à feu doit être justifiée par la nécessité et l'environnement approprié.</li>
+            <li>Si les officiers de police n'ont pas d'autre choix que d'utiliser un moyen létal pour empêcher un individu de perpétrer ou de répéter un acte criminel.</li>
+        </ul>
+        <p><strong>Article 5-3.4 :</strong> Lorsqu'ils font usage d'une arme à feu ou de tout autre moyen létal, les agents de police peuvent faire l'objet d'une enquête interne ou d'une enquête menée par le bureau du procureur pour vérifier la nécessité et la légitimité de leur intervention.</p>
+    </div>
+
+    <div class="titre-section">Titre 4 : La protection d'une propriété privée</div>
+    <div class="law-article">
+        <p><strong>Article 5-4.1 :</strong> Dans l'État de San Andreas, une propriété privée est définie comme tout bien personnel appartenant à un individu, à plusieurs individus, ou à une personne morale. Une personne morale est une entité dotée de droits et de devoirs, au même titre qu'une personne physique.</p>
+        <p><strong>Article 5-4.2 :</strong> La défense de sa propriété par des moyens usuels et nécessaires peut être jugée légale et justifiée par un juge.</p>
+        <p><strong>Article 5-4.3 :</strong> La force létale ou tout autre moyen létal peuvent être utilisés afin de défendre sa propriété privée après une sommation orale ou écrite. Sont considérées comme propriétés privées pour l'article 3-3 : les terrains, les habitations et les locaux d'entreprises. Ne sont pas considérés comme propriétés privées pour l'article 3-3 tout autre bien tel qu'un véhicule ou un bien personnel comme l'argent.</p>
+        <p><strong>Article 5-4.4 :</strong> L'usage d'un moyen létal contre un individu ayant violé une propriété privée, mais qui est en train de fuir ou de quitter les lieux sera considéré comme une tentative d'homicide. Si cet acte entraîne la mort de l'individu, il sera qualifié d'homicide volontaire.</p>
+    </div>
+
+    <div class="footer-note">
+        Code Civil - État de San Andreas (Version 1 du 27/02/2026)<br>
+        Tous droits réservés - Mister Frexs "Andrew Miller"
+    </div>
+
+    <script>
+        // 1. Bloquer le clic droit (Menu contextuel)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // 2. Bloquer les événements Copier / Couper à la source
+        document.addEventListener('copy', function(e) { e.preventDefault(); });
+        document.addEventListener('cut', function(e) { e.preventDefault(); });
+
+        // 3. Bloquer tous les raccourcis clavier sensibles
+        document.addEventListener('keydown', function(e) {
+            // Bloquer F12 (Outils de développement)
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (Inspecteur et Console Chrome/Edge/Firefox)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+U (Voir le code source)
+            if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+A, Ctrl+C, Ctrl+X, Ctrl+S, Ctrl+P (Sélection, Copie, Sauvegarde, Impression)
+            if (e.ctrlKey && (e.key === 'a' || e.key === 'A' || e.key === 'c' || e.key === 'C' || e.key === 'x' || e.key === 'X' || e.key === 's' || e.key === 'S' || e.key === 'p' || e.key === 'P')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // 4. Le piège : Boucle Anti-Débogage (Gèle le navigateur si la console est forcée)
+        // Même si un utilisateur trouve un moyen d'ouvrir la console depuis le menu du navigateur, 
+        // cette boucle va déclencher une pause infinie dans son outil de triche.
+        setInterval(function() {
+            (function() {
+                return false;
+            }["constructor"]("debugger")());
+        }, 100);
+    </script>
+</body>
+</html>

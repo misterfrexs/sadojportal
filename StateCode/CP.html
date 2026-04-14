@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0f172a !important; /* Ce !important force le fond bleu nuit */
+            color: #e2e8f0; /* Texte clair */
+            margin: 0; 
+            padding: 30px;
+
+    /* PROTCOLE DE SÉCURITÉ : Anti-sélection de texte */
+        body {
+            -webkit-user-select: none; /* Safari / Chrome */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Standard */
+        }
+    }
+        .header-container { text-align: center; margin-bottom: 20px; }
+        .doc-image { display: inline-block; max-width: 180px; height: auto; }
+        .law-header { margin-bottom: 40px; border-bottom: 2px solid #ef4444; padding-bottom: 20px; text-align: center; }
+        .law-header h2 { margin: 0; color: #fff; font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; }
+        .law-header p { margin: 10px 0 0 0; color: #94a3b8; font-weight: 800; }
+        
+        .livre-title { background: #ef4444; color: white; padding: 12px 20px; border-radius: 4px; margin: 40px 0 20px 0; text-transform: uppercase; font-weight: 800; font-size: 1.2rem; }
+        .titre-section { color: #ef4444; border-bottom: 1px solid rgba(239, 68, 68, 0.3); margin: 30px 0 15px 0; padding-bottom: 5px; font-weight: 700; text-transform: uppercase; font-size: 1.1rem; }
+
+        .law-article { margin-bottom: 20px; padding: 20px; background: rgba(255, 255, 255, 0.02); border-radius: 8px; border-left: 4px solid #ef4444; }
+        .law-article h4 { margin: 0 0 10px 0; color: #f87171; font-size: 1rem; text-transform: uppercase; font-weight: 800; }
+        .law-article p { margin: 0 0 10px 0; color: #e2e8f0; font-size: 0.95rem; line-height: 1.6; text-align: justify; }
+        .law-article p:last-child { margin-bottom: 0; }
+        
+        ul { margin: 10px 0; padding-left: 20px; color: #e2e8f0; font-size: 0.95rem; line-height: 1.6;}
+        li { margin-bottom: 5px; }
+        strong { color: #fff; }
+
+        .footer-note { text-align: center; color: #475569; font-size: 0.85rem; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <img src="./images/sceau_doj.png" class="doc-image" alt="Sceau Officiel">
+    </div>
+
+    <div class="law-header">
+        <h2>Code Pénal</h2>
+        <p>ÉTAT DE SAN ANDREAS</p>
+    </div>
+
+    <div class="titre-section">Préambule</div>
+    <div class="law-article">
+        <p><strong>Art 0-1 :</strong> Les infractions pénales sont classées en trois catégories, selon leur gravité : infractions, délits et crimes.</p>
+        <p><strong>Art 0-2 :</strong> La loi définit les crimes et délits et établit les peines applicables à leurs auteurs.</p>
+        <p><strong>Art 0-3 :</strong> La loi pénale s'interprète de manière stricte.</p>
+        <p><strong>Art 0-4 :</strong> La loi pénale s'applique uniformément à tous, sur l'ensemble du territoire.</p>
+        <p><strong>Art 0-5 :</strong> Les juridictions pénales sont compétentes pour interpréter les actes administratifs, réglementaires ou individuels et évaluer leur légalité lorsque cela est nécessaire à la résolution du procès pénal qui leur est soumis.</p>
+    </div>
+
+    <div class="livre-title">Livre I : La responsabilité pénale</div>
+    
+    <div class="law-article">
+        <h4>Art 1-1.1</h4>
+        <p>Sont pénalement responsables, les personnes qui commettent une infraction ou y participent en tant que complices sur le territoire de l'État, tous les citoyens de l'État, ainsi que ceux dont les actes ont pour victimes des citoyens ou résidents de l'État.</p>
+    </div>
+    
+    <div class="law-article">
+        <h4>Art 1-2.1</h4>
+        <p>Ne sont pas pénalement responsables, les personnes atteintes d'une déficience mentale si sévère qu'elles ne peuvent comprendre la loi ni les bonnes mœurs ; celles qui ont commis une infraction par nécessité absolue et impérieuse ; et celles qui ont agi en état de légitime défense, en protégeant leur intégrité physique ou leurs biens, ou ceux d'autrui, à condition d'avoir agi de bonne foi.</p>
+    </div>
+    
+    <div class="law-article">
+        <h4>Art 1-3.1</h4>
+        <p>Une personne complice d'un crime, d'un délit ou d'une infraction est passible des mêmes poursuites et peines que l'auteur principal.</p>
+    </div>
+    
+    <div class="law-article">
+        <h4>Art 1-4.1</h4>
+        <p>Est complice d'un crime ou d'un délit toute personne qui, sciemment, par aide ou assistance, en facilite la préparation, la commission, la fuite ou la dissimulation ; le responsable hiérarchique qui donne des ordres illégaux ; ainsi que toute personne qui, par menace, persuasion, conviction, encouragement, abus d'autorité, ou par don ou transaction, incite autrui à commettre un crime ou un délit.</p>
+    </div>
+    
+    <div class="law-article">
+        <h4>Art 1-5.1</h4>
+        <p>La tentative d'infraction est punie de la même manière que l'infraction elle-même.</p>
+    </div>
+    
+    <div class="law-article">
+        <h4>Art 1-6.1</h4>
+        <p>La tentative est constituée dès lors qu'un commencement d'exécution est manifeste, même si celle-ci a été interrompue ou a échoué en raison de circonstances indépendantes de la volonté de l'auteur.</p>
+    </div>
+
+    <div class="livre-title">Livre II : Atteinte à l'autorité publique</div>
+    
+    <div class="law-article">
+        <h4>Art 2-1.1 : Abus de pouvoir</h4>
+        <p>Lorsqu'un agent dépositaire de la force publique ne respecte pas la loi, la procédure pénale ou les droits d'un suspect dans l'exercice de ses fonctions, cela constitue un abus de pouvoir.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.2 : Corruption</h4>
+        <p>Proposer à un agent de l'État une somme, un bien, ou une faveur est un acte de "corruption". Accepter une telle proposition en tant qu'agent de l'État constitue également un acte de "corruption".</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.3 : Refus de se soumettre</h4>
+        <p>Le fait de refuser de se soumettre à des vérifications lors d'un contrôle constitue un "refus de se soumettre".</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.4 : Refus d'obtempérer</h4>
+        <p>Se soustraire à une sommation d'un agent de la force publique constitue un acte de "refus d'obtempérer". Cependant, rester passif face aux sommations ne constitue pas un refus d'obtempérer.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.5 : Délit de fuite</h4>
+        <p>Le fait de prendre la fuite après avoir commis une agression physique, une dégradation de bien, ou dans le cadre d'un accident, constitue un délit de fuite.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.6 : Trouble à l'ordre public</h4>
+        <p>Toute personne qui perturbe volontairement la paix publique par ses actes est coupable de "Trouble à l'ordre public".</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.7 : 911 Raccroché</h4>
+        <p>Le canular téléphonique consiste à appeler les services de secours, qu'il s'agisse des forces de l'ordre ou des secours incendie, dans le but de s'amuser en inventant une intervention factice.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.8 : Obstruction à la justice</h4>
+        <p>L'obstruction à la justice se définit par toute interférence dans le travail des policiers, magistrats, ou tout autre dépositaire de l'autorité publique, par exemple lors d'une enquête de police.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.9 : Outrage à la justice</h4>
+        <p>L’outrage à la justice désigne tout comportement irrespectueux ou entravant le bon déroulement des procédures judiciaires. Il peut être direct (insultes envers un juge, perturbation d’audience) ou indirect (non-respect d’une ordonnance judiciaire). Cette infraction est sanctionnée par des amendes ou des peines d’emprisonnement, selon sa gravité. Son objectif est de préserver l’autorité du tribunal et d’assurer le respect des décisions judiciaires.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.10 : Faux et usage de faux</h4>
+        <p>Constitue un faux toute altération frauduleuse de la vérité, de nature à causer un préjudice, accomplie par quelque moyen que ce soit dans un écrit ou tout autre support d'expression de la pensée destiné à prouver un droit ou un fait ayant des conséquences juridiques.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-2.1 : Conduite sans permis de conduire</h4>
+        <p>Conduire un véhicule motorisé sans posséder un permis de conduire valide délivré par les autorités compétentes. Cette infraction inclut les cas où le permis est expiré, suspendu, ou révoqué.</p>
+        <ul>
+            <li>Conduite avec un permis suspendu, expiré ou révoqué : 1 700 $ d'amende et 10 minutes de garde à vue.</li>
+            <li>Récidive : 2 000 $ d'amende et 20 minutes de garde à vue.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-2.2 : Conduite en état d'ivresse</h4>
+        <p>Conduire un véhicule motorisé avec un taux d'alcool dans le sang supérieur à 0,08% (ou 0,4 mg/L d'air expiré), ou tout comportement de conduite manifestement altéré par la consommation d'alcool.</p>
+        <ul>
+            <li><strong>Circonstances aggravantes :</strong></li>
+            <li>Taux supérieur à 0,15 % : 2 500 $ d'amende et 20 minutes de garde à vue.</li>
+            <li>Refus de se soumettre au test d'alcoolémie : 3 000 $ d'amende et 30 minutes de garde à vue.</li>
+            <li>Récidive : 3 500 $ d'amende et 45 minutes d'emprisonnement.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-2.3 : Conduite ou à pied sous l'emprise de stupéfiants</h4>
+        <p>Conduire un véhicule motorisé ou à pied sous l'influence de substances classées comme stupéfiants (cannabis, cocaïne, méthamphétamine, weed), qu'elles aient été consommées de manière licite ou illicite.</p>
+        <ul>
+            <li><strong>Circonstances aggravantes :</strong></li>
+            <li>Refus de test salivaire ou sanguin : 2 300 $ d'amende et 30 minutes de garde à vue.</li>
+            <li>Conduite sous stupéfiants + alcool : 6 000 $ d'amende et 45 minutes d'emprisonnement.</li>
+            <li>Récidive : 10 000 $ d'amende et 60 minutes d'emprisonnement.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-2.4 : Conduite dangereuse</h4>
+        <p>La conduite dangereuse désigne le fait de conduire un véhicule de manière imprudente, en mettant en danger la sécurité des personnes ou des biens. Elle inclut des comportements comme les excès de vitesse, les dépassements risqués ou la conduite agressive. Cette infraction est passible de sanctions pénales et administratives.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-2.5 : Conduite en contre-sens</h4>
+        <p>La conduite à contre-sens consiste à circuler dans une voie réservée à la circulation opposée, mettant en danger la sécurité des usagers. Ce comportement crée un risque élevé d’accidents graves. Il est strictement interdit et sanctionné par la loi.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-2.6 : Intrusion dans une institution publique</h4>
+        <p>Désigne l'entrée non autorisée, le maintien ou l'accès illégal à des bâtiments, locaux ou installations appartenant à une autorité gouvernementale ou à un organisme public, tels que les services de police, le département de la justice (DOJ) ou autres institutions officielles de l'Etat.</p>
+    </div>
+
+    <div class="livre-title">Livre III : Atteinte à la paix publique</div>
+    
+    <div class="law-article">
+        <h4>Art 3-1.1 : Dissimulation de visage</h4>
+        <p>La dissimulation du visage désigne l'acte de couvrir son visage dans un lieu public, que ce soit par le port d'un accessoire ou autre moyen, en dépit des règlements en vigueur ou d'une injonction émise par un agent des forces de l'ordre.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 3-1.2 : Attroupement illégal</h4>
+        <p>Un attroupement est considéré illégal lorsqu'un groupe se forme dans un espace public ou sur la voie publique et que ce groupe participe à une bagarre, obstrue la circulation ou commet une ou plusieurs infractions. Ce groupe devient également illégal s'il refuse de se disperser malgré une ou plusieurs injonctions d'un agent de l'autorité publique.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 3-1.3 : Intrusion dans une propriété privée</h4>
+        <p>L'intrusion dans une propriété privée correspond à la présence non autorisée d'une personne sur une propriété, contre la volonté du propriétaire.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 3-1.4 : Ivresse sur la voie publique</h4>
+        <p>L'ivresse sur la voie publique est définie par un comportement dangereux ou inapproprié, manifestement dû à une consommation excessive d'alcool.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 3-1.5 : Mendicité</h4>
+        <p>La mendicité consiste à solliciter de l'argent ou tout autre bien sûr la voie publique.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 3-1.6 : Manifestation illégale</h4>
+        <p>Une manifestation est jugée illégale si elle est organisée sans déclaration préalable auprès des autorités, si elle a été interdite par les services compétents, ou si la déclaration fournie est incomplète ou trompeuse. La participation à une telle manifestation est également illégale.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 3-1.7 : Excès de vitesse</h4>
+        <ul>
+            <li>Excès de vitesse inférieur à 60 km/h : Amende de 500 $</li>
+            <li>Excès de vitesse supérieur à 80 km/h : Amende de 750 $</li>
+            <li>Excès de vitesse supérieur à 90 km/h : Amende de 950 $</li>
+            <li>Excès de vitesse supérieur à 140 km/h : Amende de 1 500 $</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 3-1.8 : Non-respect d'un feu rouge</h4>
+        <p>Le non-respect d'un feu rouge constitue une atteinte à la sécurité publique, ayant un impact potentiel sur la sécurité routière, les biens et les personnes en cas d'accident. Cette infraction entraîne une amende de 250 $.</p>
+        <ul>
+            <li><strong>Circonstances aggravantes :</strong></li>
+            <li>Accident avec blessures : amende de 500 $ et 10 minutes de garde à vue.</li>
+            <li>Accident avec dommages matériels : amende de 1 000 $ et 15 minutes de garde à vue.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 3-1.9 : Non-respect d'un panneau Stop</h4>
+        <p>Le non-respect d'un panneau Stop constitue une menace pour la sécurité routière et peut entraîner des dommages matériels ou des blessures. Cette infraction entraîne une amende de 250 $.</p>
+        <ul>
+            <li><strong>Circonstances aggravantes :</strong></li>
+            <li>Accident avec blessures : amende de 500 $ et 10 minutes de garde à vue.</li>
+            <li>Accident avec dommages matériels : amende de 890 $ et 15 minutes de garde à vue.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 3-2.0 : Stationnement gênant ou illégal</h4>
+        <p>Le stationnement gênant ou illégal désigne le fait de garer un véhicule dans un endroit interdit ou de manière à entraver la circulation, l’accès ou la sécurité. Cela inclut les zones interdites, les trottoirs, les passages piétons ou les sorties de garage. Ce type de stationnement est passible d’amendes et de mise en fourrière.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 3-2.1 : Véhicule en mauvais état</h4>
+        <p>Un véhicule en mauvais état présente des défaillances techniques ou des dommages pouvant compromettre la sécurité routière. Il peut inclure des problèmes mécaniques, des parties endommagées ou un mauvais entretien. Ce type de véhicule peut être soumis à des contrôles et des sanctions jusqu’à son interdiction de circulation.</p>
+    </div>
+
+    <div class="livre-title">Livre IV : Atteinte à l'environnement</div>
+    
+    <div class="law-article">
+        <h4>Art 4-1.1 : Chasse illégale</h4>
+        <p>Il est formellement interdit de pratiquer la chasse avec des armes autres que le fusil à pompe et la carabine semi-automatique. Il est également interdit de chasser dans les réserves, les zones protégées de l'État de San Andreas, ainsi que de traquer des espèces menacées d'extinction.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 4-1.2 : Pêche illégale</h4>
+        <p>Pêcher en haute mer sans détenir une licence appropriée constitue un acte de pêche illégale.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 4-1.3 : Dégradation de la nature</h4>
+        <p>Il est strictement interdit de laisser des objets au sol sans les ramasser, afin de préserver l'environnement.</p>
+    </div>
+
+    <div class="livre-title">Livre V : Atteintes aux personnes</div>
+    
+    <div class="titre-section">Titre 1 - Agressions physiques</div>
+    
+    <div class="law-article">
+        <h4>Art 5-1.1 : Agression mineure</h4>
+        <p>Une agression mineure se caractérise par l'exercice de violences physiques ou psychologiques sur une personne, entraînant un trouble psychologique ou une blessure légère chez la victime.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-1.2 : Agression majeure</h4>
+        <p>Une agression majeure se définit par l'exercice de violences physiques ou psychologiques sur une personne, provoquant un trouble psychologique ou une blessure importante, causant une incapacité notable.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-1.3 : Mutilation</h4>
+        <p>La mutilation consiste à infliger à une personne des blessures corporelles causant des dommages irréversibles.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-1.4 : Séquestration</h4>
+        <p>La séquestration désigne le fait de retenir une personne contre son gré, en utilisant la force, des moyens d'entrave, ou l'intimidation.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-1.5 : Prise d'otage</h4>
+        <p>La prise d'otage se définit comme le fait de détenir une personne contre son gré, dans le but d'obtenir une rançon, un avantage, ou d'exercer une pression sur une autorité publique ou une tierce personne.</p>
+        <ul>
+            <li><strong>Circonstances aggravantes :</strong></li>
+            <li>Victime agent dépositaire de l'autorité publique (policier, magistrat, fonctionnaire, etc.) : Peine portée à + 10 minutes de prison ferme et amende de 2 000 $.</li>
+            <li>Usage d'armes à feu, armes blanches ou explosifs pendant la prise d'otage : Peine portée à + 20 minutes de prison ferme et amende de 3 000 $.</li>
+            <li>Plus de 2 heures de séquestration ou plus de 3 victimes retenues simultanément : Peine portée à + 15 minutes de prison ferme et amende de 4 000 $.</li>
+            <li>Prise d'otage dans un bâtiment public ou lieu officiel : Peine portée à + 10 minutes de prison ferme et amende de 5 000 $.</li>
+            <li>Organisation en bande (plusieurs complices agissant ensemble) : Peine portée à + 20 minutes de prison ferme et amende de 6 000 $.</li>
+        </ul>
+    </div>
+
+    <div class="titre-section">Titre 2 - Atteinte à la vie</div>
+
+    <div class="law-article">
+        <h4>Art 5-2.1 : Non-assistance à personne en danger</h4>
+        <p>Le fait de ne pas alerter les secours ni porter assistance, sans se mettre soi-même en danger, lorsqu'une vie humaine est en péril, constitue une non-assistance à personne en danger.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-2.2 : Homicide volontaire</h4>
+        <p>L'homicide volontaire est défini comme l'acte de causer intentionnellement, mais sans préméditation, la mort d'une personne par quelque moyen que ce soit.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-2.3 : Tentative d'homicide</h4>
+        <p>La tentative d'homicide volontaire consiste à essayer de causer intentionnellement, mais sans préméditation, la mort d'une personne sans y parvenir.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-2.4 : Homicide involontaire</h4>
+        <p>L'homicide involontaire se caractérise par le fait de causer la mort d'une personne sans en avoir l'intention.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-2.5 : Meurtre avec préméditation</h4>
+        <p>Le meurtre avec préméditation désigne l'acte de causer la mort d'une personne après avoir planifié et organisé l'acte.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-2.6 : Mise en danger de la vie d'autrui</h4>
+        <p>Le fait d'exposer autrui à un risque immédiat de mort ou de blessures, graves ou non, par quelque moyen que ce soit, constitue une mise en danger de la vie d'autrui.</p>
+    </div>
+
+    <div class="titre-section">Titre 3 - Atteintes sexuelles</div>
+
+    <div class="law-article">
+        <h4>Art 5-3.1 : Agression sexuelle</h4>
+        <p>Une agression sexuelle est définie par un comportement suggestif et insistant, impliquant une violence sexuelle sans acte de pénétration.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-3.2 : Viol</h4>
+        <p>Le viol est l'acte de réaliser une pénétration sexuelle sur une personne non consentante, avec la ruse, la force ou la contrainte.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-3.3 : Proxénétisme</h4>
+        <p>Le proxénétisme consiste à diriger ou organiser un réseau visant à obtenir des gains financiers par le biais de la prostitution.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-3.4 : Prostitution</h4>
+        <p>La prostitution se définit par le fait de proposer des services sexuels en échange d'une rémunération en nature ou en espèces.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-3.5 : Exhibition</h4>
+        <p>L’exhibition désigne le fait de montrer volontairement quelque chose en public, souvent de manière choquante ou déplacée.</p>
+    </div>
+
+    <div class="titre-section">Titre 4 - Atteintes psychiques</div>
+
+    <div class="law-article">
+        <h4>Art 5-4.1 : Harcèlement</h4>
+        <p>Le harcèlement se caractérise par la répétition de propos ou d'actes susceptibles de nuire au bien-être mental d'une personne.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-4.2 : Injure</h4>
+        <p>Une injure se définit par des propos fortement offensants tenus à l'encontre d'une personne.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-4.3 : Diffamation</h4>
+        <p>La diffamation consiste à attribuer à une personne physique ou morale des faits ou des propos faux ou partiellement faux, en sachant pertinemment que les informations rapportées sont inexactes.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-4.4 : Dénonciation calomnieuse</h4>
+        <p>La dénonciation calomnieuse se caractérise par l'attribution mensongère de faits ou de propos à une personne physique ou morale, en sachant que ces informations sont erronées ou partiellement erronées.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 5-4.5 : Menace</h4>
+        <p>Le fait de proférer des menaces à l'encontre d'une personne, que ce soit des menaces physiques, concernant ses biens ou sa vie, constitue une infraction de menace.</p>
+    </div>
+
+    <div class="livre-title">Livre VI : Atteintes aux biens</div>
+    
+    <div class="titre-section">Titre 1 – Vol et revente de biens volés</div>
+
+    <div class="law-article">
+        <h4>Article 6-1.1 – Vol</h4>
+        <p>Le vol est défini comme la soustraction frauduleuse d’un bien appartenant à autrui, sans le consentement de ce dernier.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 6-1.2 – Recel</h4>
+        <p>Constitue un acte de recel le fait de détenir, d'acheter ou de revendre un bien en ayant connaissance de son origine frauduleuse.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 6-1.3 – Braquages</h4>
+        <p>Le braquage se définit comme l’attaque d’un convoi de fonds, d’un commerce, d’un coffre-fort ou d’une banque (y compris d’un ATM), à l’aide d’armes ou d’explosifs, dans le but de s’approprier leur contenu.</p>
+        <ul>
+            <li><strong>Circonstance atténuante ou aggravante :</strong> Le montant de l’amende varie en fonction du lieu ciblé (voir la liste des sanctions pénales et financières).</li>
+            <li><strong>Circonstance aggravante :</strong> Est qualifié de braquage à main armée tout fait commis par des auteurs munis d'armes à feu ou d'armes blanches. En raison de cette circonstance aggravante, l'amende encourue est portée au double du tarif de base.</li>
+        </ul>
+    </div>
+
+    <div class="titre-section">Titre 2 – Atteintes financières</div>
+
+    <div class="law-article">
+        <h4>Article 6-2.1 – Extorsion</h4>
+        <p>L’extorsion consiste à obtenir, de manière répétée, un bien ou une somme d’argent par la menace ou la contrainte exercée sur une personne ou ses biens.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 6-2.2 – Chantage</h4>
+        <p>Le chantage désigne le fait d’obtenir un avantage, un bien ou de l’argent d’une personne, par la pression, la menace ou la contrainte, de manière ponctuelle ou non régulière.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 6-2.3 – Escroquerie</h4>
+        <p>Est considérée comme une escroquerie l’action de tromper une personne en abusant de sa confiance, dans le but d’obtenir un bien, un service ou de l’argent à travers une offre frauduleuse.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 6-2.4 – Dégradation de bien appartenant à un tiers</h4>
+        <p>Constitue une dégradation de bien le fait de détériorer, de modifier ou de détruire, en tout ou en partie, un bien appartenant à autrui, sans l’autorisation de son propriétaire.</p>
+        <ul>
+            <li><strong>Circonstance aggravante :</strong> Si le bien appartient à l'État ou à un service public, la sanction est portée à une amende de 6 000 $, au remboursement des dommages, et à 20 minutes de rétention (UP).</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 6-2.5 – Incendie volontaire</h4>
+        <p>Est coupable d’incendie volontaire toute personne qui, de manière délibérée et malveillante, met le feu à une structure, un terrain, un véhicule ou toute propriété, ou incite, aide ou conseille un tel acte.</p>
+        <ul>
+            <li><strong>Circonstance aggravante :</strong> Si l’incendie est motivé par la haine, vise à blesser une ou plusieurs personnes, cause des blessures, ou cible un bien d’une institution publique, d’un bâtiment gouvernemental ou fédéral, la peine est portée à une amende de 10 000 $ et à 45 minutes de rétention.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Article 6-2.6 : Entrave à la transmission successorale et solidarité publique</h4>
+        <p>Constitue une entrave au droit de succession tout acte délibéré visant à empêcher, détourner ou fausser la procédure légale de transmission du patrimoine telle que définie aux articles 4-1.1 à 4-1.5 du Code Civil, Livre IV : “Les droits de succession”.</p>
+        <ul>
+            <li><strong>Peine :</strong> Amende égale à 100 % du montant de la somme détournée et/ou une peine de prison ferme décidé par la Cour Supérieure.</li>
+            <li><strong>Circonstance aggravante :</strong> Si l'entrave est commise avec l'aide d'un officier de droit (avocat, notaire, Procureur, Juge), la radiation professionnelle immédiate est requise en plus des sanctions pénales.</li>
+        </ul>
+        <p>Sont notamment visés par cet article :</p>
+        <ul>
+            <li>1. La dissimulation d'actifs : Le fait d'omettre volontairement de déclarer des biens mobiliers ou immobiliers lors de l'inventaire.</li>
+            <li>2. Le contournement du plafond légal : Toute manœuvre visant à transmettre une part supérieure au plafond de 60 % ou de 750 000 $.</li>
+            <li>3. Le détournement du fonds de solidarité : Toute action ayant pour but d'empêcher l'affectation automatique du solde non transmissible au Fonds Public de Solidarité Successorale.</li>
+            <li>4. La fraude documentaire : La présentation de faux documents d'identité, de testaments falsifiés ou de liens de parenté fictifs devant le greffe du tribunal.</li>
+        </ul>
+    </div>
+
+    <div class="titre-section">Titre 3 : Atteintes à la propriété immobilière</div>
+
+    <div class="law-article">
+        <h4>Article 6-3.1 – Sous-location illicite</h4>
+        <p>La sous-location illicite est définie comme le fait pour un locataire de mettre à disposition tout ou partie d'un bien immobilier dont il n'est pas propriétaire à un tiers, en échange d'une contrepartie financière ou matérielle, sans l'accord écrit et explicite du propriétaire.</p>
+        <ul>
+            <li><strong>Circonstance aggravante :</strong> Si la sous-location est pratiquée de manière habituelle, à grande échelle, ou s'accompagne d'une fraude documentaire (faux contrat), l'infraction est requalifiée en délit majeur.</li>
+            <li>Délit mineur : 1 500 $ d'amende et 15 minutes de garde à vue.</li>
+            <li>Délit majeur : 2 500 $ d'amende et 20 minutes d'emprisonnement.</li>
+        </ul>
+    </div>
+
+    <div class="livre-title">Livre VII : Armes et stupéfiants</div>
+    
+    <div class="titre-section">Titre 1 : Les armes</div>
+
+    <div class="law-article">
+        <h4>Art 7-1.1 : Exhibition d'arme</h4>
+        <p>Il est interdit de sortir ou de laisser une arme visible sans motif valable dans un lieu public ou sur la voie publique. Cette interdiction ne s'applique pas aux agents dépositaires des pouvoirs publics lorsqu'ils agissent dans le cadre de leurs fonctions.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 7-1.2 : Possession d'une arme à feu sans permis de port d'arme</h4>
+        <p>Posséder une arme, même légalement acquise, sans être en possession d'un permis de port d'arme constitue une infraction de possession d'une arme à feu sans permis de port d'arme. Autoriser délibérément une personne sans permis de port d'arme à porter une arme, même légale, est également interdit.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 7-1.3 : Possession d'un objet tranchant illégal</h4>
+        <p>Porter sur soi un objet tranchant de plus de 10 centimètres, susceptible de couper, trancher, ou poignarder, sans justification contextuelle, constitue une infraction de possession d'un objet tranchant illégal.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 7-1.4 : Possession d'une arme illégalement modifiée</h4>
+        <p>Détenir une arme à feu modifiée avec des composants optionnels pour lui ajouter des fonctions qu'elle ne possédait pas à l'origine est illégal.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 7-1.5 : Possession d'engin explosif</h4>
+        <p>Détenir un explosif, qu'il soit artisanal ou non, ou un dispositif contenant un composant hautement inflammable, est strictement interdit.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 7-1.6 : Possession d'un fusil de précision à lunette</h4>
+        <p>La possession d'un fusil de précision équipé d'une lunette est illégale, à l'exception des carabines dépourvues de lunette.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 7-1.7 : Fabrication d'armes</h4>
+        <p>Il est illégal de fabriquer une ou plusieurs armes de quelque manière que ce soit.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 7-1.8 : Trafic d'armes</h4>
+        <p>Toute transaction illégale visant à vendre des armes à des individus constitue un acte de trafic d'armes.</p>
+        <ul>
+            <li><strong>Circonstances aggravantes :</strong> Si l'arme est vendue à un mineur, si elle est une arme de guerre, ou si elle est vendue dans le but de commettre un attentat ou un meurtre, la peine est de 24 heures d'emprisonnement et une amende de 10 000 $ par arme vendue.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 7-1.9 : Utilisation d'arme à l'encontre d'un agent de l'État</h4>
+        <p>Il est illégal de brandir, viser ou faire usage d'une arme à feu contre un agent de l'État.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 7-1.10 : Possession d’une arme blanche</h4>
+        <p>Il est interdit de porter sur soi ou de détenir, dans l'espace public et sans motif légitime (professionnel ou motif valable de transport), tout instrument tranchant, perforant ou contondant susceptible de constituer une arme dangereuse pour la sécurité publique.</p>
+    </div>
+
+    <div class="titre-section">Titre 2 : Les stupéfiants</div>
+
+    <div class="law-article">
+        <h4>Art 7-2.1 : Détention de substances illicites</h4>
+        <p>La possession de stupéfiants est rigoureusement interdite, quel que soit l'endroit. Notez que l'usage (consommation) est juridiquement assimilé à la détention.</p>
+        <ul>
+            <li><strong>Sanctions et seuils :</strong> Est formellement prohibée la consommation dans l'espace public ainsi que la détention d'une quantité supérieure à 500 grammes (équivalent à 5 pochons).</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 7-2.2 : Détention de substances illicites aux fins de revente</h4>
+        <p>Est qualifiée de détention en vue de la revente toute possession de substances illicites dont le poids total est inférieur à 1kg.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 7-2.3 : Trafic de stupéfiants</h4>
+        <p>Le trafic est caractérisé par toute transaction illégale visant à céder des stupéfiants à une tierce personne. Cette infraction est officiellement retenue dès lors que l'individu transporte ou dissimule, via un véhicule ou tout autre contenant, une quantité égale ou supérieure à 1kg.</p>
+        <ul>
+            <li>Weed : 30 $/unité</li>
+            <li>Méthamphétamine : 100 $/unité</li>
+            <li>Cocaïne : 130 $/unité</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 7-2.4 : Détention d'alcool prohibé aux fins de revente</h4>
+        <p>Le fait de posséder de l'alcool interdit dans l'intention de le commercialiser est sanctionné proportionnellement au volume saisi.</p>
+        <ul>
+            <li><strong>Peine encourue :</strong> Une amende de 200 $ par unité d'alcool, assortie d'une période de 15 minutes de garde à vue.</li>
+        </ul>
+    </div>
+
+    <div class="livre-title">Livre VIII : Crimes majeurs</div>
+
+    <div class="law-article">
+        <h4>Art 8-1.1 : Association de malfaiteurs</h4>
+        <p>Le fait de se regrouper volontairement avec d'autres personnes en vue de commettre un crime ou un délit. L'usage de signes distinctifs ou de vêtements de couleur commune peut être considéré comme un indice d'une telle association.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 8-1.2 : Blanchiment d'argent</h4>
+        <p>Le blanchiment d'argent consiste à dissimuler l'origine de fonds obtenus de manière illégale, notamment en les injectant dans le circuit économique par des activités telles que les spéculations illégales, le trafic de drogue ou d'armes, les activités mafieuses, l'extorsion, la corruption ou la fraude fiscale.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 8-1.3 : Sédition</h4>
+        <p>Le fait de s'emparer, seul ou avec d'autres, d'un territoire appartenant à l'État de San Andreas et de revendiquer sa souveraineté.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 8-1.4 : Terrorisme</h4>
+        <p>Toute série d'actes de violence, tels que des attentats ou des prises d'otages, perpétrés par un individu ou une organisation dans le but de créer un climat de peur, de faire pression sur un gouvernement, ou d'exprimer une haine envers une communauté, un pays où un système.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 8-1.5 : Traite humaine</h4>
+        <p>La traite humaine consiste à recruter, transporter ou héberger une personne par la contrainte, la force ou la ruse, afin de l'exploiter par le travail forcé ou l'esclavage sexuel. Contrairement au trafic d'organes, elle vise l'asservissement durable de l'individu pour en tirer un profit régulier.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 8-1.6 : Évasion</h4>
+        <p>L'évasion est définie comme la fuite d'un établissement pénitentiaire ou d'une institution représentant l'ordre et la justice, dans le but d'échapper à une procédure ou de ne pas achever une peine.</p>
+        <ul>
+            <li><strong>Circonstance aggravante :</strong> Lorsque l'évasion est organisée avec l'aide de complices, la peine encourue est une amende de 1 200 000 $ et 55 minutes d'emprisonnement pour l'individu et ses complices.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 8-1.7 : Conspiration</h4>
+        <p>Si deux personnes ou plus conspirent pour :</p>
+        <ul>
+            <li>Commettre un crime quelconque.</li>
+            <li>Inculper faussement une autre personne avec malveillance pour un crime, ou inciter à cette inculpation ou arrestation.</li>
+            <li>Poursuivre ou maintenir une action, une poursuite ou une procédure de manière injustifiée.</li>
+            <li>Tromper ou frauder une personne de ses biens par des moyens criminels, ou obtenir de l'argent ou des biens par des prétextes ou des promesses mensongères avec l'intention frauduleuse de ne pas les tenir.</li>
+            <li>Commettre un acte nuisible à la santé ou à la moralité publique, ou entraver la justice ou la bonne administration des lois.</li>
+            <li>Attenter à la personne du gouverneur, du lieutenant-gouverneur, d'un juge ou procureur d'un État ou territoire.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 8-1.8 : Viol de la Constitution</h4>
+        <p>Le viol de la Constitution se réfère à toute action qui contrevient à la Constitution des États-Unis d’Amérique, à celle de l'État de San Andreas, ou aux Droits de l'Homme et du Citoyen.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 8-1.9 : Haute trahison</h4>
+        <p>La haute trahison se caractérise par un acte d'extrême déloyauté envers son pays, son chef d'État, son gouvernement ou ses institutions, souvent lié à des actes d'intelligence avec l'ennemi. Il s'agit généralement d'une infraction politique impliquant des détenteurs d'autorité dans l'exercice de leurs fonctions.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 8-2.1 : Violation de surveillance électronique</h4>
+        <p>Le manquement aux obligations liées au placement sous surveillance électronique consiste, pour la personne concernée, à ne pas se conformer aux conditions fixées par l’autorité judiciaire dans le cadre de cette mesure alternative à l’incarcération.</p>
+        <p>Constituent notamment des manquements :</p>
+        <ul>
+            <li>Le fait de quitter, sans autorisation préalable, le domicile ou tout autre lieu de résidence fixé par la décision judiciaire, en dehors des plages horaires autorisées.</li>
+            <li>Toute altération, désactivation, détérioration ou retrait volontaire du dispositif de surveillance électronique.</li>
+            <li>Le non-respect des restrictions géographiques ou horaires imposées par la juridiction compétente.</li>
+            <li>Le défaut de recharge du dispositif ou toute action empêchant son bon fonctionnement.</li>
+            <li>Le refus de se soumettre aux contrôles et vérifications prévus par les autorités compétentes.</li>
+        </ul>
+        <p><strong>Sanctions encourues :</strong></p>
+        <ul>
+            <li>Révocation immédiate du placement sous surveillance électronique et incarcération sans délai dans un établissement pénitentiaire.</li>
+            <li>Poursuites judiciaires susceptibles d’être engagées pour évasion, en fonction des dispositions légales applicables.</li>
+            <li>Peines complémentaires pouvant être prononcées : amendes, prolongation de la peine initialement fixée, ou toute autre sanction pénale prévue par la loi.</li>
+        </ul>
+        <p><strong>Appréciation judiciaire :</strong> Le montant de l’amende et la durée d’une éventuelle peine privative de liberté sont laissés à l’appréciation souveraine de la juridiction compétente, en fonction de la nature, de la gravité et de la réitération éventuelle des manquements constatés.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 8-2.2 : Fraude fiscale</h4>
+        <p>La fraude fiscale est définie comme le fait de déclarer intentionnellement des informations fiscales erronées ou trompeuses pour éviter ou réduire ses obligations fiscales. Les formes courantes incluent la sous-déclaration volontaire des revenus, l'utilisation abusive de déductions, ou la falsification de documents. Le montant de la fraude fiscale s’élève à la somme dérobée.</p>
+        <ul>
+            <li><strong>Circonstances aggravantes :</strong></li>
+            <li>Supérieur à 1 000 000 de dollars ;</li>
+            <li>Pénalités avec intérêt ;</li>
+            <li>Peines de prison pouvant atteindre 40 minutes de rétention.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 8-2.3 : Trafic d’organes</h4>
+        <p>Le trafic d'organes est défini comme le fait de prélever, vendre, acheter ou transporter illégalement des organes humains. Il implique souvent l’exploitation de personnes vulnérables, la violation de l’intégrité physique et la participation à des réseaux criminels organisés. Les victimes peuvent être forcées ou manipulées, et les opérations se font hors cadre médical légal. Le préjudice causé concerne autant la santé physique des victimes que la morale publique.</p>
+        <ul>
+            <li><strong>1. Amende forfaitaire :</strong> Peine : 30 minutes de prison. Amende : 25 000 $. L'infraction de base est sanctionnée par une peine privative de liberté. En présence d'une ou plusieurs circonstances aggravantes définies au paragraphe II, le cumul des peines peut atteindre un plafond de 60 minutes d’emprisonnement.</li>
+            <li><strong>2. Majoration par circonstance aggravante :</strong></li>
+            <li>Organisation criminelle : + 3 000 $ | + 10 min</li>
+            <li>Victime mineure ou vulnérable : + 9 800 $ | + 15 min</li>
+            <li>Décès ou mutilation grave : + 5 000 $ | + 20 min</li>
+            <li>Traffic transfontalier : + 1 000 $ | + 5 min</li>
+            <li>Moyens violents / Coercition : + 8 890 $ | + 10 min</li>
+            <li>Mise en danger de la vie d’autrui : + 4 000 $ | + 10 min</li>
+        </ul>
+        <p>Une peine de prison pouvant atteindre 50 minutes d’emprisonnement.</p>
+    </div>
+
+    <div class="livre-title">Livre IX : Procédures policières</div>
+
+    <div class="law-article">
+        <h4>Art 9-1.1 : Procédure d'interpellation et de privation de liberté</h4>
+        <p>Toute mesure d'arrestation doit être conduite sous peine de nullité selon les modalités suivantes :</p>
+        <ul>
+            <li>Identification : Déclinaison de l'identité et du matricule de l'agent intervenant.</li>
+            <li>Signification : Énonciation immédiate du motif légal de l'interpellation.</li>
+            <li>Notification des droits : Lecture des droits fondamentaux, incluant le droit au silence et le droit à l'assistance d'un conseil.</li>
+            <li>Mesures de sûreté : Emploi des entraves strictement limité aux cas de risque de fuite ou de dangerosité avérée.</li>
+            <li>Transfèrement : Acheminement sans délai vers un service de police pour identification, palpation de sécurité et, le cas échéant, placement en rétention.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 9-1.2 : Cadre réglementaire du contrôle routier</h4>
+        <p>Lors de toute interception d'un véhicule, les agents sont tenus de :</p>
+        <ul>
+            <li>Exiger la présentation des titres de conduite et de circulation (permis, certificat d'immatriculation, attestation d'assurance).</li>
+            <li>Notifier les motifs matériels ou juridiques motivant le contrôle.</li>
+            <li>S'abstenir de toute visite de l'habitacle sans le consentement exprès du conducteur ou l'existence d'une cause réelle et sérieuse.</li>
+            <li>Activer les dispositifs d'enregistrement vidéo individuels.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 9-1.3 : Doctrine de l'usage de la force</h4>
+        <p>L'usage de la force par les agents doit être strictement nécessaire, gradué et proportionné à la menace :</p>
+        <ul>
+            <li>Progressivité : Recours prioritaire aux sommations verbales et aux moyens de force intermédiaire avant tout usage d'une arme de service.</li>
+            <li>Rapport d'incident : Toute coercition physique impose la rédaction d'un rapport circonstancié remis à la hiérarchie sous 24 heures.</li>
+            <li>Responsabilité : Tout usage excessif ou illégitime de la force est constitutif d'un abus de pouvoir sanctionné par l'article 2-1.1 du présent code.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 9-1.4 : Réglementation des poursuites</h4>
+        <p>L'engagement d'une poursuite est conditionné par les critères suivants :</p>
+        <ul>
+            <li>Le suspect doit être présumé auteur d'un crime ou d'un délit de gravité caractérisée.</li>
+            <li>L'évaluation du risque ne doit pas faire prévaloir l'interpellation sur la sécurité des tiers.</li>
+            <li>Le maintien d'une liaison radio constante avec le centre de commandement pour coordination et validation.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 9-1.5 : Interventions des unités spécialisées (SWAT)</h4>
+        <p>Le déploiement des unités tactiques est réservé aux situations suivantes :</p>
+        <ul>
+            <li>Menace avérée contre la sécurité publique (prises d'otages, individus armés et retranchés).</li>
+            <li>Autorisation formelle préalable délivrée par un officier de commandement.</li>
+            <li>Établissement systématique d'un plan d'opération et d'un périmètre d'exclusion.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 9-1.6 : Diligences d'enquête</h4>
+        <p>L'ouverture d'une procédure d'enquête suite à la constatation d'une infraction comprend :</p>
+        <ul>
+            <li>La sécurisation et le gel de la scène de crime.</li>
+            <li>Le recueil des dépositions et la mise sous scellés des indices matériels.</li>
+            <li>La clôture des investigations par un rapport d'enquête authentifié.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 9-1.7 : Voies de recours des administrés</h4>
+        <p>Tout citoyen peut contester la régularité d'une intervention policière par :</p>
+        <ul>
+            <li>1. Le dépôt d'une plainte administrative auprès du commandement local.</li>
+            <li>2. Une audition par un officier supérieur.</li>
+            <li>3. En cas d'absence de résolution sous sept (7) jours, la saisine du Bureau du Procureur ou du Procureur Général de l'État de San Andreas.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 9-1.8 : Devoir de déontologie et d'exemplarité</h4>
+        <p>Les agents de la force publique sont assujettis aux obligations suivantes :</p>
+        <ul>
+            <li>Agir avec probité, neutralité et intégrité en toute circonstance.</li>
+            <li>Interdiction absolue d'utiliser les prérogatives de puissance publique à des fins privées.</li>
+            <li>Garantie du respect des libertés publiques et des principes fondamentaux du serment professionnel.</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 9-1.9 : Délais de rétention et plafonds de peine</h4>
+        <p>Toute mesure de privation de liberté doit respecter les durées maximales suivantes, sous peine de nullité de la procédure :</p>
+        <ul>
+            <li>1. Garde à Vue (GAV) : Le placement en cellule de sûreté au sein des locaux de police ne peut excéder une durée de 30 minutes.</li>
+            <li>2. Peine d'Incarceration : La peine de prison ferme prononcée à l'issue de la procédure pour l'ensemble des délits mineurs cumulés ne peut excéder un plafond de 50 minutes, sauf en cas de récidive ou de crime majeur.</li>
+            <li>3. Libération immédiate : Tout dépassement de ces délais sans mise en accusation formelle ou autorisation d'un magistrat entraîne la remise en liberté sans délai du suspect.</li>
+        </ul>
+    </div>
+
+    <div class="footer-note">
+        Code Pénal (Version 3 du 18/03/2026)<br>
+        Tous droits réservés - Mister Frexs "Andrew Miller"
+    </div>
+
+    <script>
+        // 1. Bloquer le clic droit (Menu contextuel)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // 2. Bloquer les événements Copier / Couper à la source
+        document.addEventListener('copy', function(e) { e.preventDefault(); });
+        document.addEventListener('cut', function(e) { e.preventDefault(); });
+
+        // 3. Bloquer tous les raccourcis clavier sensibles
+        document.addEventListener('keydown', function(e) {
+            // Bloquer F12 (Outils de développement)
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (Inspecteur et Console Chrome/Edge/Firefox)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+U (Voir le code source)
+            if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+A, Ctrl+C, Ctrl+X, Ctrl+S, Ctrl+P (Sélection, Copie, Sauvegarde, Impression)
+            if (e.ctrlKey && (e.key === 'a' || e.key === 'A' || e.key === 'c' || e.key === 'C' || e.key === 'x' || e.key === 'X' || e.key === 's' || e.key === 'S' || e.key === 'p' || e.key === 'P')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // 4. Le piège : Boucle Anti-Débogage (Gèle le navigateur si la console est forcée)
+        // Même si un utilisateur trouve un moyen d'ouvrir la console depuis le menu du navigateur, 
+        // cette boucle va déclencher une pause infinie dans son outil de triche.
+        setInterval(function() {
+            (function() {
+                return false;
+            }["constructor"]("debugger")());
+        }, 100);
+    </script>
+</body>
+</html>

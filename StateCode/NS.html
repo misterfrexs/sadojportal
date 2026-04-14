@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #111827 !important; 
+            color: #e2e8f0; 
+            margin: 0; 
+            padding: 30px; 
+            height: 100%;
+
+            /* PROTCOLE DE SÉCURITÉ : Anti-sélection de texte */
+        body {
+            -webkit-user-select: none; /* Safari / Chrome */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Standard */
+        }
+        }
+
+        /* Barre de défilement discrète */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111827; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
+
+        .header-container { text-align: center; margin-bottom: 20px; }
+        .doc-image { display: inline-block; max-width: 180px; height: auto; }
+        
+        .law-header { margin-bottom: 40px; border-bottom: 2px solid #ef4444; padding-bottom: 20px; text-align: center; }
+        .law-header h2 { margin: 0; color: #fff; font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; }
+        .law-header p { margin: 10px 0 0 0; color: #fca5a5; font-weight: 800; }
+        
+        /* Grille tactique */
+        .level-grid { display: flex; flex-direction: column; gap: 25px; }
+        
+        .level-card { background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 25px; border-left: 6px solid #475569; }
+        .level-card h3 { margin: 0 0 20px 0; font-size: 1.5rem; text-transform: uppercase; display: flex; align-items: center; justify-content: space-between; }
+        .level-card .badge { font-size: 0.85rem; padding: 6px 12px; border-radius: 4px; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* Couleurs d'alerte */
+        .level-5 { border-color: #22c55e; } .level-5 h3 { color: #22c55e; } .level-5 .badge { background: #22c55e; }
+        .level-4 { border-color: #eab308; } .level-4 h3 { color: #eab308; } .level-4 .badge { background: #eab308; color: #000; }
+        .level-3 { border-color: #f97316; } .level-3 h3 { color: #f97316; } .level-3 .badge { background: #f97316; }
+        .level-2 { border-color: #ef4444; } .level-2 h3 { color: #ef4444; } .level-2 .badge { background: #ef4444; }
+        .level-1 { border-color: #7f1d1d; background: rgba(127, 29, 29, 0.1); } .level-1 h3 { color: #f87171; } .level-1 .badge { background: #7f1d1d; }
+
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .info-item { background: rgba(0,0,0,0.2); padding: 15px; border-radius: 6px; }
+        .info-item span.label { display: block; font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; margin-bottom: 6px; font-weight: 800;}
+        .info-item span.value { font-size: 0.95rem; color: #f8fafc; font-weight: 400; line-height: 1.4; display: block; }
+        
+        .full-width { grid-column: 1 / -1; }
+        
+        .footer-note { text-align: center; color: #475569; font-size: 0.85rem; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <img src="./images/sceau_doj.png" class="doc-image" alt="Sceau Officiel du DOJ">
+    </div>
+
+    <div class="law-header">
+        <h2>Tableau des Niveaux de Sécurité</h2>
+        <p>GESTION DES SITUATIONS COURANTES ET DE CRISE DE SAN ANDREAS</p>
+    </div>
+
+    <div class="level-grid">
+        
+        <div class="level-card level-5">
+            <h3>Niveau 5 <span class="badge">Aucun danger apparent</span></h3>
+            <div class="info-grid">
+                <div class="info-item"><span class="label">Durée & Renouvellement</span><span class="value">Non applicable (n/a)</span></div>
+                <div class="info-item"><span class="label">Approbateur</span><span class="value">Gouvernement et Département de la Justice</span></div>
+                <div class="info-item full-width"><span class="label">Droits des forces de l'ordre</span><span class="value">Aucune autorisation supplémentaire.</span></div>
+                <div class="info-item full-width"><span class="label">Armement autorisé</span><span class="value">Aucun armement supplémentaire.</span></div>
+            </div>
+        </div>
+
+        <div class="level-card level-4">
+            <h3>Niveau 4 <span class="badge">Menace potentielle</span></h3>
+            <div class="info-grid">
+                <div class="info-item"><span class="label">Durée</span><span class="value">96 Heures (Renouvelable 72h)</span></div>
+                <div class="info-item"><span class="label">Approbateur</span><span class="value">Gouvernement et Département de la Justice</span></div>
+                <div class="info-item full-width"><span class="label">Droits des forces de l'ordre</span><span class="value">Autorisation de fouiller les personnes et les véhicules, pouvoir d'interdire l'accès à certaines zones.</span></div>
+                <div class="info-item full-width"><span class="label">Armement autorisé</span><span class="value">Armement de base, comme pistolets, matraques et fusil à pompe.</span></div>
+            </div>
+        </div>
+
+        <div class="level-card level-3">
+            <h3>Niveau 3 <span class="badge">Sécurité publique partiellement compromise</span></h3>
+            <div class="info-grid">
+                <div class="info-item"><span class="label">Durée</span><span class="value">72 Heures (Renouvelable 48h)</span></div>
+                <div class="info-item"><span class="label">Approbateur</span><span class="value">Gouvernement et Département de la Justice</span></div>
+                <div class="info-item full-width"><span class="label">Droits des forces de l'ordre</span><span class="value">Autorisation de fouiller les domiciles en cas d'urgence. Autorisation de placer des individus en garde à vue pendant une durée maximale de 48 heures (1 heure IRL).</span></div>
+                <div class="info-item full-width"><span class="label">Armement autorisé</span><span class="value">Armement similaire à celui du niveau 4 + Carabine.</span></div>
+            </div>
+        </div>
+
+        <div class="level-card level-2">
+            <h3>Niveau 2 <span class="badge">Sécurité publique non assurée</span></h3>
+            <div class="info-grid">
+                <div class="info-item"><span class="label">Durée</span><span class="value">48 Heures (Renouvelable 24h)</span></div>
+                <div class="info-item"><span class="label">Approbateur</span><span class="value">Gouvernement et Département de la Justice</span></div>
+                <div class="info-item full-width"><span class="label">Droits des forces de l'ordre</span><span class="value">Autorisation de réquisitionner des véhicules et d'ordonner des évacuations massives.</span></div>
+                <div class="info-item full-width"><span class="label">Armement autorisé</span><span class="value">Armement de défense, tels que gaz lacrymogènes et boucliers, fusils d'assaut (police en tenue d'intervention déployée).</span></div>
+            </div>
+        </div>
+
+        <div class="level-card level-1">
+            <h3>Niveau 1 <span class="badge">Danger Imminent / Urgence absolue</span></h3>
+            <div class="info-grid">
+                <div class="info-item"><span class="label">Durée</span><span class="value">48 Heures (Renouvelable 24h)</span></div>
+                <div class="info-item"><span class="label">Approbateur</span><span class="value">Gouvernement et Département de la Justice</span></div>
+                <div class="info-item full-width"><span class="label">Droits des forces de l'ordre</span><span class="value">Autorisation de faire usage de la force, y compris d'ouvrir le feu si justifié par la menace.</span></div>
+                <div class="info-item full-width"><span class="label">Armement autorisé</span><span class="value">Armement létal lourd (Carabines spéciales, fusils d'assaut lourds). Intervention tactique lourde.</span></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-note">
+        Niveaux de Sécurité de l'État - Tous droits réservés - Mister Frexs "Andrew Miller"
+    </div>
+
+    <script>
+        // 1. Bloquer le clic droit (Menu contextuel)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // 2. Bloquer les événements Copier / Couper à la source
+        document.addEventListener('copy', function(e) { e.preventDefault(); });
+        document.addEventListener('cut', function(e) { e.preventDefault(); });
+
+        // 3. Bloquer tous les raccourcis clavier sensibles
+        document.addEventListener('keydown', function(e) {
+            // Bloquer F12 (Outils de développement)
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (Inspecteur et Console Chrome/Edge/Firefox)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+U (Voir le code source)
+            if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+A, Ctrl+C, Ctrl+X, Ctrl+S, Ctrl+P (Sélection, Copie, Sauvegarde, Impression)
+            if (e.ctrlKey && (e.key === 'a' || e.key === 'A' || e.key === 'c' || e.key === 'C' || e.key === 'x' || e.key === 'X' || e.key === 's' || e.key === 'S' || e.key === 'p' || e.key === 'P')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // 4. Le piège : Boucle Anti-Débogage (Gèle le navigateur si la console est forcée)
+        // Même si un utilisateur trouve un moyen d'ouvrir la console depuis le menu du navigateur, 
+        // cette boucle va déclencher une pause infinie dans son outil de triche.
+        setInterval(function() {
+            (function() {
+                return false;
+            }["constructor"]("debugger")());
+        }, 100);
+    </script>
+</body>
+</html>

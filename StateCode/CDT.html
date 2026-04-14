@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style> 
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #111827 !important; /* Gris-bleu très sombre */
+            color: #e2e8f0; 
+            margin: 0; 
+            padding: 30px; 
+            height: 100%;
+
+            /* PROTCOLE DE SÉCURITÉ : Anti-sélection de texte */
+        body {
+            -webkit-user-select: none; /* Safari / Chrome */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Standard */
+        }
+        }
+
+        /* Barre de défilement discrète */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111827; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
+
+        .header-container { text-align: center; margin-bottom: 20px; }
+        .doc-image { display: inline-block; max-width: 180px; height: auto; }
+        
+        /* Thème Violet / Indigo pour le Code du Travail */
+        .law-header { margin-bottom: 40px; border-bottom: 2px solid #8b5cf6; padding-bottom: 20px; text-align: center; }
+        .law-header h2 { margin: 0; color: #fff; font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; }
+        .law-header p { margin: 10px 0 0 0; color: #a78bfa; font-weight: 800; }
+        
+        .livre-title { background: #8b5cf6; color: white; padding: 12px 20px; border-radius: 4px; margin: 40px 0 20px 0; text-transform: uppercase; font-weight: 800; font-size: 1.2rem; }
+        .titre-section { color: #c4b5fd; border-bottom: 1px solid rgba(139, 92, 246, 0.3); margin: 30px 0 15px 0; padding-bottom: 5px; font-weight: 700; text-transform: uppercase; font-size: 1.1rem; }
+
+        .law-article { margin-bottom: 20px; padding: 20px; background: rgba(255, 255, 255, 0.02); border-radius: 8px; border-left: 4px solid #8b5cf6; }
+        .law-article h4 { margin: 0 0 10px 0; color: #ddd6fe; font-size: 1rem; text-transform: uppercase; font-weight: 800; }
+        .law-article p { margin: 0 0 10px 0; font-size: 0.95rem; line-height: 1.6; text-align: justify; }
+        .law-article p:last-child { margin-bottom: 0; }
+        
+        ul { margin: 10px 0; padding-left: 20px; font-size: 0.95rem; line-height: 1.6;}
+        li { margin-bottom: 5px; }
+        strong { color: #fff; }
+
+        .footer-note { text-align: center; color: #475569; font-size: 0.85rem; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <img src="./images/sceau_doj.png" class="doc-image" alt="Sceau Officiel du DOJ">
+    </div>
+
+    <div class="law-header">
+        <h2>Code du Travail</h2>
+        <p>ÉTAT DE SAN ANDREAS - VERSION INTÉGRALE</p>
+    </div>
+
+    <div class="titre-section">Préambule</div>
+    <div class="law-article">
+        <p><strong>Art 0-1 :</strong> Le Code du travail de l’État de San Andreas est établi pour garantir et protéger le droit fondamental de chaque travailleur à un emploi digne, équitable et sécuritaire au sein de l'État.</p>
+        <p><strong>Art 0-2 :</strong> Il a pour objectif de promouvoir la justice économique et sociale en définissant des normes minimales de travail qui sont, dans de nombreux cas, supérieures aux lois fédérales des États-Unis.</p>
+        <p><strong>Art 0-3 :</strong> Le Code est l'instrument législatif principal pour l'application des droits des employés et la supervision des obligations des employeurs.</p>
+    </div>
+
+    <div class="livre-title">Livre I : Administration et Dispositions Générales</div>
+    <div class="law-article">
+        <p><strong>Art 1-1.1 :</strong> Le Code établit le Department of Industrial Relations (DIR) comme l'agence principale chargée de protéger le bien-être de la main-d'œuvre, de faire respecter les lois du travail et d'assurer un environnement de travail sécuritaire.</p>
+        <p><strong>Art 1-2.1 :</strong> Le Bureau d’Investigation (Bureau Of Investigation, également connu sous le nom de BI) est l'organe d'application désigné pour enquêter sur les violations du Code, y compris le vol de salaire (wage theft), et pour recouvrer les sommes dues aux travailleurs, une branche directe du Department Of Justice.</p>
+        <p><strong>Art 1-3.1 :</strong> Les dispositions du présent Code s'appliquent de manière uniforme à tous les employeurs et employés opérant dans l'État de San Andreas, sauf exceptions spécifiques prévues par la loi.</p>
+    </div>
+
+    <div class="livre-title">Livre II : Réglementation et Supervision de l'Emploi</div>
+    <div class="law-article">
+        <p><strong>Art 2-1.1 :</strong> Tout employeur doit verser à ses employés un salaire minimum qui est établi annuellement par l'État et supérieur au taux minimum fédéral. Des taux spécifiques peuvent s'appliquer dans certaines juridictions locales ou pour certains secteurs.</p>
+        <p><strong>Art 2-1.2 :</strong> Un employé a droit à une rémunération au taux majoré (une fois et demie le taux régulier) pour toutes les heures travaillées au-delà de huit (8) heures par jour ou au-delà de quarante (40) heures par semaine.</p>
+        <p><strong>Art 2-1.3 :</strong> Un employé a droit à une rémunération au double du taux régulier pour toutes les heures travaillées au-delà de douze (12) heures dans une seule journée de travail ou au-delà de huit (8) heures le septième jour consécutif de travail.</p>
+        <p><strong>Art 2-1.4 :</strong> Les employeurs doivent accorder à leurs employés une période de pause repas d'au moins trente (30) minutes pour chaque quart de travail excédant cinq (5) heures, sauf dérogation mutuelle dans des conditions strictement définies.</p>
+        <p><strong>Art 2-1.5 :</strong> Les employés ont droit à une pause de repos rémunérée de dix (10) minutes pour chaque période de quatre (4) heures de travail ou fraction majeure de celle-ci.</p>
+        <p><strong>Art 2-1.6 :</strong> L'employeur est tenu de rembourser à l'employé toutes les dépenses nécessaires et raisonnables engagées ou encourues par l'employé dans l'exécution de ses tâches.</p>
+        <p><strong>Art 2-1.7 :</strong> Tout employé a droit à des congés maladie payés (Paid Sick Leave) conformément aux taux d'accumulation et d'utilisation définis par la loi de l'État.</p>
+    </div>
+
+    <div class="livre-title">Livre III : Relations d'Emploi</div>
+    <div class="law-article">
+        <p><strong>Art 3-1.1 :</strong> L'État protège le droit des employés de former, de rejoindre ou d'aider toute organisation syndicale, et de s'engager dans des activités concertées dans le but de négocier collectivement ou de fournir une aide mutuelle et une protection.</p>
+        <p><strong>Art 3-1.2 :</strong> Il est interdit à un employeur de discriminer ou d'exercer des représailles contre un employé qui exerce ses rights en vertu du présent Code ou qui signale des violations des lois du travail.</p>
+    </div>
+
+    <div class="livre-title">Livre IV : Indemnisation des Travailleurs et Assurance</div>
+    <div class="law-article">
+        <p><strong>Art 4-1.1 :</strong> Le système d'indemnisation des travailleurs est exclusif et a pour but de fournir rapidement des soins médicaux et des avantages de remplacement de salaire aux employés ayant subi une blessure ou une maladie liée au travail, sans égard à la détermination de la faute.</p>
+        <p><strong>Art 4-1.2 :</strong> L'obligation d'indemnisation est applicable à tout employeur, qui doit soit s'assurer contre la responsabilité de l'indemnisation auprès d'un assureur agréé, soit se qualifier comme auto-assureur conformément aux lois de l'État.</p>
+        <p><strong>Art 4-1.3 :</strong> Des pénalités et amendes peuvent être imposées par l'État (Division 4.5) pour le non-respect des obligations d'assurance, la fraude à l'indemnisation ou le manquement délibéré aux ordonnances rendues par les autorités compétentes.</p>
+        <p><strong>Art 4-1.4 :</strong> Toute personne qui commet sciemment ou intentionnellement une fraude afin d'obtenir ou de nier des avantages d'indemnisation des travailleurs est passible de sanctions pénales et civiles.</p>
+    </div>
+
+    <div class="livre-title">Livre V : Rééducation et Réadaptation</div>
+    <div class="law-article">
+        <p><strong>Art 5-1.1 :</strong> L'État reconnaît l'importance de la réintégration des travailleurs blessés dans la population active et exige que des programmes de retour au travail soient mis en place lorsque cela est médicalement possible.</p>
+        <p><strong>Art 5-1.2 :</strong> Un employé blessé peut avoir droit à des avantages de rééducation et de recyclage professionnel (y compris des suppléments) pour faciliter l'apprentissage de nouvelles compétences si sa blessure l'empêche de reprendre son ancien emploi.</p>
+        <p><strong>Art 5-1.3 :</strong> Le processus de réadaptation doit être initié promptement par l'employeur ou l'assureur une fois qu'il est déterminé que la blessure empêche le travailleur de reprendre son poste habituel ou un poste comparable.</p>
+        <p><strong>Art 5-1.4 :</strong> Les travailleurs admissibles à la réadaptation ont droit à un bon de recyclage professionnel supplémentaire pour couvrir le coût de la formation ou des outils nécessaires à une nouvelle carrière.</p>
+        <p><strong>Art 5-1.5 :</strong> Le travailleur blessé a le droit d'être informé de tous les avantages de réadaptation et de recyclage auxquels il a droit et de contester toute décision défavorable devant la Commission d'appel de l'indemnisation des travailleurs.</p>
+    </div>
+
+    <div class="livre-title">Livre VI : Sécurité et Santé au Travail</div>
+    <div class="law-article">
+        <p><strong>Art 6-1.1 :</strong> Tout employeur a l'obligation légale de fournir un lieu de travail sûr et sain, exempt de tout danger susceptible de causer des blessures ou la mort, et de se conformer à toutes les normes de santé et de sécurité au travail émises par le BI (Bureau d’Investigation).</p>
+        <p><strong>Art 6-1.2 :</strong> L'employeur doit établir, mettre en œuvre et maintenir un Programme écrit de Prévention des Blessures et des Maladies (IIPP) pour tous ses employés et lieux de travail.</p>
+        <p><strong>Art 6-1.3 :</strong> Les agents du Bureau d’Investigation sont habilités à mener des inspections sur les lieux de travail, avec ou sans préavis, pour enquêter sur les dangers, les plaintes et les accidents graves, et à émettre des citations et des sanctions en cas de non-conformité aux normes.</p>
+        <p><strong>Art 6-1.4 :</strong> Il est interdit à un employeur de discriminer ou de prendre des mesures de représailles contre un employé qui a déposé une plainte pour danger, participé à une enquête du Bureau d’Investigation ou exercé tout droit relatif à la sécurité au travail.</p>
+        <p><strong>Art 6-1.5 :</strong> En cas de blessure grave ou de décès lié au travail, l'employeur doit immédiatement signaler l'incident au Bureau d’Investigation, sans délai, par téléphone ou par tout autre moyen défini par la Division.</p>
+        <p><strong>Art 6-1.6 :</strong> Les employés doivent recevoir une formation adéquate sur la sécurité et la santé au travail dans une langue qu'ils comprennent, y compris sur l'utilisation sécuritaire des substances dangereuses et des équipements.</p>
+        <p><strong>Art 6-1.7 :</strong> Les employés ont le droit d'accéder à leurs dossiers d'exposition médicale et environnementale détenus par l'employeur et de participer aux comités de sécurité du lieu de travail.</p>
+        <p><strong>Art 6-1.8 :</strong> Le Code établit des normes minimales spécifiques pour l'utilisation et l'entretien des équipements potentiellement dangereux, y compris les ascenseurs, les chaudières, les récipients sous pression et les lieux de travail temporaires comme les chantiers de construction.</p>
+    </div>
+
+    <div class="footer-note">
+        Code du Travail (Version 1 du 27/02/2026)<br>
+        Tous droits réservés - Mister Frexs "Andrew Miller"
+    </div>
+
+    <script>
+        // 1. Bloquer le clic droit (Menu contextuel)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // 2. Bloquer les événements Copier / Couper à la source
+        document.addEventListener('copy', function(e) { e.preventDefault(); });
+        document.addEventListener('cut', function(e) { e.preventDefault(); });
+
+        // 3. Bloquer tous les raccourcis clavier sensibles
+        document.addEventListener('keydown', function(e) {
+            // Bloquer F12 (Outils de développement)
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (Inspecteur et Console Chrome/Edge/Firefox)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+U (Voir le code source)
+            if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+A, Ctrl+C, Ctrl+X, Ctrl+S, Ctrl+P (Sélection, Copie, Sauvegarde, Impression)
+            if (e.ctrlKey && (e.key === 'a' || e.key === 'A' || e.key === 'c' || e.key === 'C' || e.key === 'x' || e.key === 'X' || e.key === 's' || e.key === 'S' || e.key === 'p' || e.key === 'P')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // 4. Le piège : Boucle Anti-Débogage (Gèle le navigateur si la console est forcée)
+        // Même si un utilisateur trouve un moyen d'ouvrir la console depuis le menu du navigateur, 
+        // cette boucle va déclencher une pause infinie dans son outil de triche.
+        setInterval(function() {
+            (function() {
+                return false;
+            }["constructor"]("debugger")());
+        }, 100);
+    </script>
+</body>
+</html>

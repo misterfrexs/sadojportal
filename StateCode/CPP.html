@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0f172a !important; /* Ce !important force le fond bleu nuit */
+            color: #e2e8f0; /* Texte clair */
+            margin: 0; 
+            padding: 30px;
+
+            /* PROTCOLE DE SÉCURITÉ : Anti-sélection de texte */
+        body {
+            -webkit-user-select: none; /* Safari / Chrome */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Standard */
+        }
+    }
+        .header-container { text-align: center; margin-bottom: 20px; }
+        .doc-image { display: inline-block; max-width: 180px; height: auto; }
+        
+        /* Thème Bleu pour la Procédure Pénale */
+        .law-header { margin-bottom: 40px; border-bottom: 2px solid #3b82f6; padding-bottom: 20px; text-align: center; }
+        .law-header h2 { margin: 0; color: #fff; font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; }
+        .law-header p { margin: 10px 0 0 0; color: #94a3b8; font-weight: 800; }
+        
+        .livre-title { background: #3b82f6; color: white; padding: 12px 20px; border-radius: 4px; margin: 40px 0 20px 0; text-transform: uppercase; font-weight: 800; font-size: 1.2rem; }
+        .titre-section { color: #60a5fa; border-bottom: 1px solid rgba(59, 130, 246, 0.3); margin: 30px 0 15px 0; padding-bottom: 5px; font-weight: 700; text-transform: uppercase; font-size: 1.1rem; }
+
+        .law-article { margin-bottom: 20px; padding: 20px; background: rgba(255, 255, 255, 0.02); border-radius: 8px; border-left: 4px solid #3b82f6; }
+        .law-article h4 { margin: 0 0 10px 0; color: #93c5fd; font-size: 1rem; text-transform: uppercase; font-weight: 800; }
+        .law-article p { margin: 0 0 10px 0; color: #e2e8f0; font-size: 0.95rem; line-height: 1.6; text-align: justify; }
+        .law-article p:last-child { margin-bottom: 0; }
+        
+        ul { margin: 10px 0; padding-left: 20px; color: #e2e8f0; font-size: 0.95rem; line-height: 1.6;}
+        li { margin-bottom: 5px; }
+        strong { color: #fff; }
+
+        /* Style pour les images / organigrammes */
+        .schema-container { text-align: center; margin: 20px 0; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px dashed #60a5fa; }
+        .schema-container img { max-width: 100%; height: auto; border-radius: 4px; }
+        .schema-caption { color: #94a3b8; font-size: 0.85rem; margin-top: 10px; font-style: italic; }
+
+        /* Tableau stylisé pour l'Art 4-1.1 */
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem; }
+        th, td { border: 1px solid rgba(59, 130, 246, 0.3); padding: 10px; text-align: left; }
+        th { background-color: rgba(59, 130, 246, 0.1); color: #93c5fd; }
+
+        .footer-note { text-align: center; color: #475569; font-size: 0.85rem; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <img src="./images/sceau_doj.png" class="doc-image" alt="Sceau Officiel">
+    </div>
+
+    <div class="law-header">
+        <h2>Code de Procédure Pénale</h2>
+        <p>ÉTAT DE SAN ANDREAS</p>
+    </div>
+
+    <div class="titre-section">Préambule</div>
+    <div class="law-article">
+        <p><strong>Art 0-1 :</strong> La loi pénale s'applique uniquement aux faits commis après son entrée en vigueur et est dénuée d'effet rétroactif.</p>
+        <p><strong>Art 0-2 :</strong> Toute personne suspectée ou accusée est présumée innocente tant que sa culpabilité n'a pas été prouvée au-delà de tout doute raisonnable.</p>
+        <p><strong>Art 0-3 :</strong> Chaque individu a le droit de bénéficier d'un procès équitable et contradictoire, dans un délai raisonnable.</p>
+        <p><strong>Art 0-4 :</strong> Nul ne peut être tenu de témoigner contre lui-même. Toute personne poursuivie doit être informée des accusations portées contre elle.</p>
+        <p><strong>Art 0-5 :</strong> Nul ne peut être poursuivi ou puni pénalement une seconde fois pour une même infraction ayant déjà fait l'objet d'un jugement définitif.</p>
+    </div>
+
+    <div class="livre-title">Livre I : La responsabilité pénale</div>
+    
+    <div class="law-article">
+        <h4>Art 1-0 : Classification des infractions</h4>
+        <ul>
+            <li><strong>1. Infraction (Contravention) :</strong> Violation mineure n'entraînant pas de peine de prison, sanctionnée par une amende.</li>
+            <li><strong>2. Misdemeanor (Délit mineur) :</strong> Infraction sanctionnée par une amende et/ou une peine d'emprisonnement courte dans une prison de comté.</li>
+            <li><strong>3. Felony (Crime / Délit Majeur) :</strong> Infraction grave passible d'une peine d'emprisonnement stricte en pénitencier d'État, voire de la peine capitale si la loi le prévoit.</li>
+        </ul>
+    </div>
+    
+    <div class="law-article">
+        <h4>Art 1-1</h4>
+        <p>Sont pénalement responsables :</p>
+        <ul>
+            <li>Ceux qui commettent une infraction ou qui y participent comme complices sur le territoire de l'État.</li>
+            <li>Tous les citoyens de l'État.</li>
+            <li>Ceux qui causent du tort à un citoyen ou résident de l'État.</li>
+        </ul>
+    </div>
+    
+    <div class="law-article">
+        <h4>Art 1-2</h4>
+        <p>Ne sont pas pénalement responsables :</p>
+        <ul>
+            <li>Les personnes souffrant de déficiences mentales qui les empêchent de comprendre la loi ou les bonnes mœurs.</li>
+            <li>Ceux qui ont commis une infraction sous l'effet d'une nécessité absolue et impérative.</li>
+            <li>Ceux qui ont agi en légitime défense pour protéger leur intégrité physique ou leurs biens, ou ceux d'autrui, à condition d'avoir agi de bonne foi.</li>
+        </ul>
+    </div>
+    
+    <div class="law-article">
+        <h4>Art 1-3</h4>
+        <p>Un complice d'un crime, d'un délit, ou d'une infraction est passible des mêmes poursuites et peines que l'auteur principal.</p>
+    </div>
+    
+    <div class="law-article">
+        <h4>Art 1-4</h4>
+        <p>Est considéré comme complice d'un crime ou d'un délit :</p>
+        <ul>
+            <li>Toute personne qui, en toute connaissance de cause, aide ou assiste dans la préparation, la commission, la fuite ou la dissimulation de l'infraction.</li>
+            <li>Tout responsable hiérarchique qui donne des ordres illégaux.</li>
+            <li>Toute personne qui incite autrui à commettre un crime ou un délit par menace, persuasion, autorité, abus de pouvoir, ou par don ou transaction.</li>
+        </ul>
+    </div>
+    
+    <div class="law-article">
+        <h4>Art 1-5</h4>
+        <p>La tentative de commettre une infraction est punie de la même manière que l'infraction elle-même.</p>
+    </div>
+    
+    <div class="law-article">
+        <h4>Art 1-6</h4>
+        <p>La tentative est établie dès qu'un acte de commencement d'exécution a été réalisé, mais que l'infraction n'a été interrompue ou a échoué que par des circonstances indépendantes de la volonté de l'auteur.</p>
+    </div>
+
+    <div class="livre-title">Livre II : Le pouvoir de police et l’usage de la force</div>
+    
+    <div class="law-article">
+        <h4>Art 2-1.1</h4>
+        <p>Le pouvoir de police permet aux agents habilités de restreindre les libertés individuelles et d'influencer le comportement des personnes pour garantir la sécurité, la santé, la moralité et le bien-être général.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.2</h4>
+        <p>Les agents de police ont le droit d'entrer dans un commerce dans le cadre de l'application de la loi, mais ils ne peuvent pas procéder à une fouille des lieux.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.3 : Fouilles et Perquisitions</h4>
+        <ul>
+            <li><strong>Lieux publics/Commerces :</strong> Les agents peuvent librement entrer dans les espaces ouverts au public.</li>
+            <li><strong>Lieux privés :</strong> L'entrée nécessite un mandat de perquisition signé par un juge, fondé sur une cause probable.</li>
+            <li><strong>Exceptions au mandat :</strong> L'urgence (risque imminent de destruction de preuves), la poursuite active (Hot Pursuit), le consentement du propriétaire, ou la vue directe d'un crime en cours (Plain View Doctrine).</li>
+        </ul>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.4</h4>
+        <p>Toute preuve obtenue en violation des droits constitutionnels (fouille illégale, absence de mandat valide) est irrecevable en justice (Exclusionary Rule). Les preuves recueillies par des citoyens sans pouvoir de police ne sont recevables que si elles n'ont pas été obtenues par la commission d'un crime.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.5</h4>
+        <p>Les officiers de police peuvent procéder à une arrestation s'ils ont une suspicion raisonnable, fondée sur des éléments rationnels, que le suspect est sur le point de commettre, est en train de commettre, ou a déjà commis une infraction. Une arrestation peut être effectuée immédiatement sur la base de cette suspicion. Dans le cadre d'une enquête, un mandat d'arrêt obtenu auprès d'un juge est nécessaire si l'arrestation ne peut être immédiate.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.6</h4>
+        <p>Les services de police peuvent saisir tout objet raisonnablement considéré comme preuve de la commission d'une infraction, ainsi que les effets illégaux liés à celle-ci, comme les armes illégales ou les stupéfiants. Ils doivent conserver les preuves dans l'état où elles ont été trouvées. Cependant, ils peuvent réaliser de petits prélèvements ou des manipulations techniques qui n'altèrent pas leur qualité pour les besoins de l'enquête.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.7</h4>
+        <p>Les officiers de police, chargés de maintenir l'ordre public et de prévenir les abus contre les biens, les personnes et l'État, peuvent donner des injonctions aux personnes circulant ou stationnant sur la voie publique ou à proximité de lieux sensibles, ainsi qu'à celles qui sont raisonnablement suspectées ou accusées. Ces injonctions doivent être proportionnées et peuvent être émises par des moyens visuels (comme un uniforme, un badge, un véhicule sérigraphié ou un gyrophare) ou sonores (comme une sirène ou une annonce), ou tout autre moyen approprié. Les personnes visées doivent raisonnablement croire que ces injonctions proviennent d'un véritable agent de police.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.8</h4>
+        <p>Les officiers de police, qu'ils soient fédéraux, locaux ou municipaux, qui, sous couvert d'autorité, privent un citoyen de ses droits constitutionnels ou font usage d'une force excessive s'exposent à des poursuites pénales et administratives.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 2-1.9</h4>
+        <p>Les agents de la paix peuvent utiliser une force objectivement raisonnable pour effectuer une arrestation, empêcher une évasion ou surmonter une résistance.</p>
+        <ul>
+            <li><strong>Force létale :</strong> Elle n'est justifiée que lorsque l'agent croit raisonnablement, sur la base de la totalité des circonstances, que cette force est nécessaire pour défendre la vie humaine contre une menace imminente de mort ou de blessures corporelles graves.</li>
+            <li><strong>Désescalade :</strong> Lorsque cela est possible et sûr, les agents doivent utiliser des techniques de désescalade avant de recourir à la force.</li>
+        </ul>
+    </div>
+
+    <div class="livre-title">Livre III : Poste d’arrestation</div>
+    
+    <div class="law-article">
+        <h4>Art 3-1.1 : Procédure dans le cadre de délit majeur et de crime</h4>
+        <div class="schema-container">
+            <img src="./images/PDMC.png" alt="Organigramme : Procédure Crime et Délit Majeur">
+        </div>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 3-1.2 : Procédure dans le cadre de Délit mineur</h4>
+        <div class="schema-container">
+            <img src="./images/PDM.png" alt="Organigramme : Procédure Délit Mineur">
+        </div>
+    </div>
+
+    <div class="livre-title">Livre IV : Du régime d'exécution des peines et des mesures de sûreté</div>
+    
+    <div class="law-article">
+        <h4>Art 4-1.1</h4>
+        <p>Les peines de rétention sont classées par importance.</p>
+        <table>
+            <tr>
+                <th>Niveau de rétention</th>
+                <th>Lieu</th>
+                <th>Niveau de délit</th>
+                <th>Sur décision</th>
+                <th>Gestion</th>
+            </tr>
+            <tr>
+                <td>GAV</td>
+                <td>Poste de Police</td>
+                <td>Délit mineur</td>
+                <td>Force de police</td>
+                <td>Force de police</td>
+            </tr>
+            <tr>
+                <td>ATU</td>
+                <td>Hôpital (chambre sécurisée)</td>
+                <td>Délit majeur</td>
+                <td>Force de police + Médical</td>
+                <td>Force de police</td>
+            </tr>
+            <tr>
+                <td>TIG (Travaux d'Intérêts Générales)</td>
+                <td>Poste de Police</td>
+                <td>Délit mineur et/ou majeur</td>
+                <td>Bureau du Procureur Général et du Juge</td>
+                <td>Département de la Justice</td>
+            </tr>
+            <tr>
+                <td>Bracelet électronique</td>
+                <td>Poste de police</td>
+                <td>Délit majeur et Crimes</td>
+                <td>Juge</td>
+                <td>Force de police et Juge</td>
+            </tr>
+            <tr>
+                <td>UP</td>
+                <td>Pénitencier de Bolingbroke</td>
+                <td>Crimes</td>
+                <td>Justice</td>
+                <td>Département de la Justice et Juge</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 4-1.2</h4>
+        <p>Les agents de police peuvent procéder à l'arrestation d'un individu dès qu'ils ont une suspicion raisonnable que celui-ci est en train de commettre, est sur le point de commettre, ou a déjà commis une infraction pénale. Cette suspicion raisonnable doit être établie sur des éléments rationnels et ne peut pas être influencée par la race, le sexe, l'orientation sexuelle, les antécédents judiciaires, la religion, les opinions ou la situation sociale réelle ou supposée de l'individu. L'arrestation doit être effectuée immédiatement lorsque l'individu est privé de sa liberté de mouvement. Si ce n'est pas le cas, un mandat d'arrêt est requis.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 4-1.3</h4>
+        <p>Après son arrestation, le suspect doit être informé dans les plus brefs délais des faits qui lui sont reprochés, de son droit au silence, du fait que tout ce qu'il dira ou fera pourra être utilisé contre lui, de son droit à une visite médicale, et de son droit à un avocat de son choix ou d'un avocat commis d'office. Si le suspect avoue sans avoir été préalablement informé de ces droits, ses déclarations ne pourront pas être utilisées contre lui, conformément à l'arrêt Miranda contre Arizona (obligation de citer les droits constitutionnels). La lecture des droits de Miranda est également obligatoire lors de la rétention ou de la détention du suspect. En cas de non-respect, cela peut entraîner un vice de procédure et la possible annulation des charges ainsi que la libération du suspect.</p>
+        <p>Les droits Miranda doivent être répétés jusqu'à trois fois si le suspect ne les comprend pas. Si, après la troisième répétition, le suspect ne comprend toujours pas, l'agent de police doit alors faire rédiger et signer une déclaration des droits par le suspect. En cas de refus, cela sera considéré comme un refus de droits.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 4-1.4</h4>
+        <p>Le suspect a également le droit de prévenir un membre de sa famille ou son employeur par téléphone. Il a le droit d'être assisté par son avocat lors des interrogatoires. Cependant, dans les affaires liées au trafic de stupéfiants ou d'armes, l'agent de police peut refuser de permettre au suspect de prévenir un membre de sa famille ou son employeur, dans le but de protéger l'enquête. Un procès-verbal motivé doit être rédigé et joint au dossier de mise en accusation.</p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 4-1.5</h4>
+        <p>Les droits Miranda doivent être communiqués comme suit :</p>
+        <p><em>« Mme / Mr, vous êtes placé en état d'arrestation pour [faits reprochés]. Vous avez le droit de garder le silence. Si vous choisissez de ne pas exercer ce droit, tout ce que vous direz pourra être utilisé contre vous devant un tribunal. Vous avez également le droit à la présence d’un avocat lors de l’interrogatoire. Si vous n'avez pas les moyens de vous en procurer un, un avocat vous sera fourni gratuitement. Par ailleurs, vous pouvez choisir à tout moment de ne pas répondre aux questions ou de ne faire aucune déclaration. Une fois en détention, vous avez droit à des vivres et à des soins médicaux. Avec ces droits en tête, Me/M, avez-vous compris vos droits et souhaitez-vous faire une déclaration ? »</em></p>
+    </div>
+
+    <div class="law-article">
+        <h4>Art 4-1.6</h4>
+        <p>Un officier de police dispose de 15 minutes après l'arrivée au poste pour notifier les droits Miranda à une personne en état d'arrestation (cf article 1-1.8 du Code Civil).</p>
+    </div>
+
+    <div class="titre-section">Titre I : De la garde à vue et de la rétention administrative</div>
+    <div class="law-article">
+        <h4>Art 4-1.1</h4>
+        <p>Pour toute infraction ou délit mineur, la durée maximale de la garde à vue est fixée à <strong>30 minutes</strong>.</p>
+    </div>
+
+    <div class="titre-section">Titre II : Des mesures de privation de liberté (Incarcération)</div>
+    <div class="law-article">
+        <h4>Art 4-2.1</h4>
+        <p>La peine de prison (ou incarceration) constitue la sanction finale prononcée à l'encontre d'un condamné. Elle est exécutée au pénitencier de Bolingbroke.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 4-2.2</h4>
+        <p>Pour l'ensemble des délits majeurs et crimes, le cumul des peines d'incarcération ne peut excéder un maximum de <strong>50 minutes</strong>.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 4-2.3</h4>
+        <p>La peine d'incarcération est indépendante du temps passé en Garde à Vue. Elle commence dès l'admission du condamné dans l'enceinte pénitentiaire.</p>
+    </div>
+
+    <div class="livre-title">Livre V : Acteurs de la procédure pénale</div>
+    
+    <div class="titre-section">TITRE I : Procureur Général de l’Etat de San Andreas</div>
+    <div class="law-article">
+        <h4>Art 5-1.1 : Statut et direction</h4>
+        <p>Le Procureur Général est le chef du Département de la Justice (DOJ). Il est chargé de mettre en œuvre l'action publique, de diriger les enquêtes et les poursuites pénales sur le territoire de l'État de San Andreas.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-1.2 : Représentation de l’État</h4>
+        <p>Le Procureur Général est chargé, en tant qu'avocat, de toutes les questions juridiques qui intéressent l'État. Il se présente à la Cour Supérieure et poursuit ou défend toutes les causes auxquelles l'État, ou tout agent de l'État, est partie en sa qualité officielle.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-1.3 : Devoir Constitutionnel de Défense</h4>
+        <p>Si le Procureur Général refuse de défendre la validité d'un acte législatif dans une action, il doit néanmoins faire appel ou demander la révision de tout jugement déterminant que l'acte est invalide, si cela est nécessaire pour préserver la qualité de l'État à défendre la loi et veiller à ce que les lois soient correctement appliquées.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-1.4 : Pouvoir d’Injonction et directives</h4>
+        <p>Le Procureur Général peut émettre des directives et des injonctions dans l'exercice de ses fonctions, lesquelles doivent être suivies par les services de police. Il peut solliciter auprès de la Cour Supérieure des ordonnances (injonctions) pour faire cesser des pratiques illégales ou forcer le respect de la loi.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-1.5 : Recouvrement et frais</h4>
+        <p>Toute personne ne payant pas en temps utile une pénalité imposée par l'État dans une affaire poursuivie par le Procureur Général est tenue de payer, en sus, des intérêts, des honoraires d'avocat raisonnables et les frais de recouvrement.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-1.6 : Actions contre les fraudes</h4>
+        <p>Le Procureur Général engage et poursuit, au nom de l'État, des actions en annulation de tous les transferts de propriété effectués frauduleusement par des débiteurs judiciaires.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-1.7 : Nomination et Durée de mandat</h4>
+        <p>Le Procureur Général est nommé par le Gouverneur. Son mandat est lié à celui du Gouverneur, sauf en cas de démission, d'incapacité ou de destitution.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-1.8 : Procédure de destitution</h4>
+        <p>Le Procureur Général peut être démis de ses fonctions pour faute grave, manquement à ses devoirs constitutionnels ou condamnation pénale.</p>
+        <ul>
+            <li><strong>Initiative :</strong> La procédure est engagée par le Gouverneur ou par une majorité qualifiée de la Législature.</li>
+            <li><strong>Jugement :</strong> La destitution doit être validée par la Cour Supérieure de San Andreas après une audience contradictoire.</li>
+        </ul>
+    </div>
+    <div class="law-article">
+    <h4>Art 5-1.9 : Autorités disciplinaires</h4>
+    <p>Le Procureur Général ou tout procureur adjoint ou de district peut émettre des sanctions à l'encontre des agents de police en cas de manquement au Code de déontologie, d'insubordination, de non-respect des procédures pénales ou de manque de professionnalisme. Ces sanctions doivent être établies sur des éléments fondés et non sur des suspicions.</p>
+    <ul>
+        <li><strong>Pouvoirs de sanction :</strong> Le bureau du Procureur a l'autorité pour avertir, mettre à pied ou licencier tout officier de police.</li>
+        <li><strong>Hiérarchie supérieure :</strong> Le licenciement du Commandant du LSPD ou du Sheriff du LSSD requiert l'approbation du Gouverneur.</li>
+        <li><strong>Cas spécifique :</strong> Le licenciement du directeur du FBI nécessite l'approbation préalable du Département de la Justice.</li>
+    </ul>
+</div>
+
+    <div class="titre-section">TITRE I.I : DE LA MISE SOUS SÉQUESTRE</div>
+    <div class="law-article">
+        <h4>Art 5-2.1 : Nomination d'un séquestre</h4>
+        <p>Le tribunal peut nommer un séquestre sur requête du Procureur Général s'il est établi qu'il existe une probabilité raisonnable que le défendeur ait obtenu des biens par des moyens illégaux et que la mise sous séquestre faciliterait la restitution.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-2.2 : Gestion des biens sous séquestre</h4>
+        <p>(1) Tous les biens sous le contrôle du séquestre sont sous la garde du tribunal. L'État et le Procureur Général ne sont pas responsables des frais ou honoraires du séquestre, sauf disposition contraire par contrat écrit.</p>
+        <p>(2) Nul ne doit entraver l'exercice des fonctions du séquestre sous peine de sanctions.</p>
+        <p>(3) Aucune action en justice (saisie, privilège, exécution) ne peut être intentée contre le séquestre ou les biens concernés sans l'approbation préalable du tribunal après avis au Procureur Général. Toute procédure engagée sans cet accord est nulle.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-2.3 : Rôle du Procureur Général comme séquestre</h4>
+        <p>Le tribunal peut, avec son consentement, nommer le Procureur Général pour servir lui-même de séquestre ou d'avocat du séquestre.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-2.4 : Mesures conservatoires</h4>
+        <p>Si la nomination d'un séquestre n'est pas demandée mais que le caractère illégal de l'obtention des biens est probable, le tribunal rendra toute ordonnance nécessaire pour garantir que le défendeur ne transfère ni ne grève les biens pouvant servir à satisfaire le jugement.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-2.5 : Validité et cumul</h4>
+        <p>Ces dispositions sont cumulatives à toutes les autres lois en vigueur. L'invalidité d'une disposition de cet article n'affecte pas la validité des autres dispositions qui peuvent être mises en œuvre séparément.</p>
+    </div>
+
+    <div class="titre-section">Titre II : Special Agent Bureau (SAB)</div>
+    <div class="law-article">
+        <h4>Art 5-2.1</h4>
+        <p>Le Special Agent est mandaté par le Congrès des Etats-Unis d’Amérique pour assurer la protection intégrale des membres du San Andreas Department of Justice, ainsi que des conjoints respectifs du Président de la Cour Supérieure et du Procureur Général.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-2.2</h4>
+        <p>Le "Protection Program" est un dispositif de sûreté étatique visant à sécuriser les membres du DOJ ainsi que leurs habitations. L'adhésion à ce programme est obligatoire et formalisée par la signature d'un contrat lors de la passation de pouvoir.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-2.3</h4>
+        <p>Le Special Agent est l'autorité unique chargée de l'exécution et du strict respect des protocoles du Protection Program. Nul ne peut entraver son action dans l'exercice de cette mission.</p>
+    </div>
+
+    <div class="titre-section">Titre III : Du Contrat de Protection et des Obligations</div>
+    <div class="law-article">
+        <h4>Art 5-3.1</h4>
+        <p>Le United States Special Agent s'engage à maintenir la plus stricte confidentialité concernant toutes les informations sensibles obtenues dans le cadre du présent Protection Program. Aucune information relative à l’autorité protégée ne peut être divulguée à un tiers sans autorisation préalable.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-3.2</h4>
+        <p>Le United States Special Agent s'engage à fournir des services de protection avec le plus haut niveau de professionnalisme et de compétence, en accordant une priorité absolue à la sécurité et au bien-être de l’autorité.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-3.3</h4>
+        <p>Le United States Special Agent s'engage à exercer ses fonctions avec la discrétion nécessaire afin de minimiser les perturbations dans la vie quotidienne de l’autorité et de son entourage, sans toutefois compromettre l'efficacité du dispositif de sécurité.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-3.4</h4>
+        <p>Le United States Special Agent est tenu de respecter scrupuleusement tous les protocoles de sécurité établis. Il est responsable de la mise en œuvre tactique des mesures de protection rapprochée.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-3.5</h4>
+        <p>Le Special Agent Bureau s'engage à fournir une formation continue à son personnel chargé de la protection, garantissant la maîtrise des meilleures pratiques de sécurité et des techniques d'intervention d'élite.</p>
+    </div>
+
+    <div class="titre-section">Titre IV : Des Obligations de l'Autorité Protégée</div>
+    <div class="law-article">
+        <h4>Art 5-4.1</h4>
+        <p>L’autorité s'engage à collaborer pleinement avec le United States Special Agent et à suivre strictement ses directives en matière de sécurité et de protection personnelle.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-4.2</h4>
+        <p>L'autorité a l'obligation d'informer le United States Special Agent de tous ses déplacements prévus à l'avance, afin de permettre une planification stratégique et tactique de la sécurité.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-4.3</h4>
+        <p>L'autorité respectera l'intégralité des protocoles de sécurité recommandés par le United States Special Agent, incluant la sécurité des lieux, des communications et l'accès aux périmètres sécurisés.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-4.4</h4>
+        <p>L'autorité s'engage à ne divulguer aucune information sensible concernant son "Protection Program" ou les activités opérationnelles du United States Special Agent à des tiers sans autorisation préalable.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-4.5</h4>
+        <p>En cas de menace potentielle ou de situation d'urgence, l'autorité doit coopérer sans réserve avec le United States Special Agent pour garantir sa sécurité et celle de son entourage, conformément aux protocoles d'évacuation.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-4.6</h4>
+        <p>Tout membre du Department of Justice ne peut refuser la protection du Special Agent, et cela, peu importent les circonstances ou les préférences personnelles.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-4.7</h4>
+        <p>Le United States Special Agent est en droit de connaître toute information personnelle et médicale de l'autorité pour son bien et celui de ses fréquentations, afin de prévenir tout risque de compromission.</p>
+    </div>
+
+    <div class="titre-section">Titre V : Dérogations et Rupture de Protection</div>
+    <div class="law-article">
+        <h4>Art 5-5.1</h4>
+        <p>Dans le cadre d'un déplacement personnel sans lien avec ses fonctions au sein du Department Of Justice, l'autorité peut circuler seule. Toutefois, elle s'engage à accepter d'être suivie à distance par le Special Agent si cela est jugé nécessaire par le Bureau.</p>
+        <p><em>Note : Cet article ne s'applique ni au Président de la Cour Supérieur, ni aux Juges.</em></p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-5.2</h4>
+        <p>Une autorité peut demander la fin de son contrat de protection. Cette demande doit impérativement faire l'objet d'une étude devant une Commission Mixte Paritaire de sécurité.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-5.3</h4>
+        <p>Dans le cas où le contrat est suspendu ou rompu, l'autorité concernée perd définitivement la possibilité de solliciter une quelconque protection, qu'elle provienne de services publics ou d’agences de sécurité privées. L'autorité assume alors seule l'intégralité des risques liés à sa fonction.</p>
+    </div>
+
+    <div class="titre-section">Titre VI : Des Polices</div>
+    <div class="law-article">
+        <h4>Art 6-2.1</h4>
+        <p>Les agents des services de police municipaux, étatiques et fédéraux doivent respecter la procédure pénale.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 6-2.2</h4>
+        <p>Le non-respect de la procédure pénale constitue un abus de pouvoir, entraînant la nullité des actes en résultant et exposant le responsable à des poursuites pénales.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 6-2.3</h4>
+        <p>Les agents de police doivent constater les infractions à la loi pénale, rassembler les preuves et rechercher les auteurs de ces infractions.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 6-2.4</h4>
+        <p>Lorsqu'une suspicion raisonnable indique qu'un individu a commis, est en train de commettre, ou pourrait commettre un délit ou un crime, les agents de police ont le droit de procéder au contrôle, à la palpation et à toute vérification nécessaire pour établir les faits. Les officiers de police peuvent également effectuer ces contrôles en cas de situations exceptionnelles, telles qu'un niveau de sécurité accru ou une commission rogatoire émanant du bureau du Procureur.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 6-2.5</h4>
+        <p>Les agents de police peuvent infliger une amende et procéder à une rétention pour les délits mineurs constatés de manière flagrante. Pour les délits majeurs ou les crimes, une mise en accusation est nécessaire. Après paiement de l'amende, le contrevenant peut contester la procédure devant le Procureur Général de San Andreas. Si la contestation est rejetée ou non traitée dans un délai raisonnable, le contrevenant peut directement saisir la Cour supérieure de San Andreas pour annulation.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 6-2.6</h4>
+        <p>Les agents de police peuvent accorder une libération sous caution dans le cadre d'une affaire délictuelle, mais non criminelle. La caution doit représenter 50% de la peine maximale encourue par le prévenu. Les mesures restrictives sont détaillées dans le Titre IV, Chapitre 3 du présent code.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 6-2.7</h4>
+        <ul>
+            <li>Les officiers de police ne sont pas responsables de la sécurité des lieux privés et peuvent y pénétrer sans l'autorisation du propriétaire, sauf en cas de nécessité motivée par une suspicion raisonnable.</li>
+            <li>Si le propriétaire refuse l'entrée aux services de police, ces derniers peuvent demander un mandat de perquisition auprès du bureau du Procureur ou de la Cour Supérieure.</li>
+            <li>En cas de délit ou de crime en cours dans une propriété privée, les services de police peuvent entrer sans mandat si moins de 10 minutes se sont écoulées depuis la constatation de l'infraction. Au-delà de ce délai, un mandat est requis.</li>
+            <li>En cas de danger imminent pour la vie d'une ou plusieurs personnes à l'intérieur d'une propriété privée, les officiers peuvent pénétrer dans cet espace, à condition que les raisons soient solides et justifiables devant un tribunal.</li>
+        </ul>
+    </div>
+    <div class="law-article">
+        <h4>Art 6-2.8</h4>
+        <p>L’entrapment est qualifié de provocation policière, toute action intentionnelle d’un agent des forces de l’ordre consistant à inciter, pousser ou contraindre une personne à commettre une infraction qu’elle n’aurait pas commise sans cette intervention. Toute infraction ainsi provoquée est considérée comme nulle, et les preuves obtenues par ce procédé sont frappées de nullité. Cette pratique constitue une violation des principes d’équité et de loyauté des procédures pénales, et ouvre droit à un moyen de défense pour la personne poursuivie.</p>
+    </div>
+
+    <div class="titre-section">Titre VII : Pouvoir Judiciaire</div>
+    <div class="law-article">
+        <h4>Art 7-3.1</h4>
+        <p>Les juges étatiques de la Cour de San Andreas sont nommés par le Procureur Général de l’État de San Andreas.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 7-3.2</h4>
+        <p>Le juge est un magistrat indépendant et inamovible, qui exerce ses fonctions avec bonne foi et impartialité.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 7-3.4</h4>
+        <p>La Cour de justice est compétente pour décider des demandes effectuées par le bureau du Procureur, notamment pour les accords de plaider-coupable, les demandes de libération sous caution et d'autres mesures légales.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 7-3.5</h4>
+        <p>Le juge a pleine autorité en matière judiciaire. Il applique les sanctions qu'il juge appropriées. La décision d'un juge est finale, sauf en cas d'appel. Dans ce cas, un autre juge sera nommé pour réexaminer l'affaire. Les constatations et décisions du premier jugement ne seront pas considérées.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 7-3.6</h4>
+        <p>Toute personne détenue a le droit de déposer une requête d'Habeas Corpus pour contester la légalité de sa détention. Si le juge estime la détention illégale (absence de charges, erreur d'identité, procédure viciée), il doit ordonner la libération immédiate.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 7-3.7</h4>
+        <p>Les injonctions émises par un magistrat de la Cour Supérieure doivent être respectées et appliquées par tous les services de police.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 7-3.8</h4>
+        <ul>
+            <li>Le juge est le seul décideur de la privation de liberté (Cause Probable).</li>
+            <li><strong>Convocation :</strong> Acte évitant l'incarcération, imposant le "Booking" (empreintes/photos) au suspect.</li>
+            <li><strong>Mandat obligatoire si :</strong> Violence, arme, obstruction, risque de fuite ou danger public.</li>
+        </ul>
+        <p><strong>Distinction entre Mandat d'arrêt et la convocation :</strong><br>
+        L'article prévoit deux vecteurs distincts pour assurer la comparution du suspect devant la juridiction :</p>
+        <ul>
+            <li><strong>Le Mandat d'arrêt :</strong> Engagement de la force publique pour l'appréhension physique du suspect, son entrave et sa mise en cellule.</li>
+            <li><strong>Convocation :</strong> Acte administratif notifié au suspect, lui enjoignant de se présenter à une audience fixe. Cette voie évite l'incarcération immédiate et le recours à la force.</li>
+        </ul>
+        <p><strong>Obligation de Procédure de réservation :</strong><br>
+        L'usage de l'assignation ne dispense pas des mesures d'identification judiciaire :</p>
+        <ul>
+            <li><strong>Le processus de "Booking" :</strong> Le suspect a l'obligation de se présenter aux services de police pour le prélèvement des empreintes digitales et la photographie judiciaire (Mugshot).</li>
+            <li><strong>Sanction de carence :</strong> En l'absence de certification du booking avant l'audience, le magistrat ordonnera l'exécution immédiate de cette procédure lors de la première comparution.</li>
+        </ul>
+        <p><strong>Limitations impératives à la convocation :</strong><br>
+        Le Ministère Public (DOJ) est dans l'obligation de requérir un mandat d'arrêt (et non une convocation) si l'une des sept circonstances suivantes est caractérisée :</p>
+        <ul>
+            <li><strong>Violence :</strong> L'infraction comporte des actes de violence avérés.</li>
+            <li><strong>Armement :</strong> Implication ou usage d'une arme à feu.</li>
+            <li><strong>Obstruction :</strong> Résistance manifestée lors de l'arrestation initiale.</li>
+            <li><strong>Récidive de mandats :</strong> Existence de mandats actifs à l'encontre du défendeur.</li>
+            <li><strong>Risque Procédural :</strong> Mise en péril de l'intégrité de l'enquête ou des preuves.</li>
+            <li><strong>Sécurité Publique :</strong> Probabilité de réitération des faits ou danger imminent pour les biens et les personnes.</li>
+            <li><strong>Risque de Fuite :</strong> Présomption fondée que le suspect ne répondra pas à une convocation libre.</li>
+        </ul>
+        <p><strong>Sanctions du Défaut de comparution :</strong><br>
+        L'inexécution de l'ordre de comparution contenu dans la convocation entraîne les conséquences suivantes :</p>
+        <ul>
+            <li><strong>Délivrance automatique :</strong> Un mandat d'arrêt est émis de plein droit contre le défaillant.</li>
+            <li><strong>Protection du droit :</strong> Si la réception effective de l'assignation n'est pas prouvée, le défaut de comparution ne peut être opposé au suspect dans les procédures ultérieures.</li>
+        </ul>
+    </div>
+    <div class="law-article">
+        <h4>Art 7-3.9 : Comparution initiale (Arraignment)</h4>
+        <p>Dès que l'accusation est déposée, le défendeur doit comparaître devant un juge pour :</p>
+        <ul>
+            <li>Être informé des charges exactes.</li>
+            <li>Être informé de son droit à un avocat.</li>
+            <li>Déposer son plaidoyer (coupable ou non-coupable).</li>
+        </ul>
+        <p>Si le suspect est détenu, cette comparution doit avoir lieu sous 48 heures (hors weekends).</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 7-4.0 : Audience préliminaire</h4>
+        <p>Pour les délits majeurs (Felonies), une audience doit se tenir devant un juge (généralement sous 10 jours après la comparution initiale) pour déterminer s'il existe une cause probable suffisante pour justifier un procès. À défaut, les charges sont abandonnées.</p>
+    </div>
+
+    <div class="titre-section">Titre VIII : Communication des pièces</div>
+    <div class="law-article">
+        <h4>Art 8-4.0</h4>
+        <p>Le Ministère Public (DOJ) doit communiquer à la défense, au moins 15 jours avant toute audience de jugement, l'intégralité des pièces à charge (rapports de police, vidéos, témoignages). Toute preuve non communiquée pourra être déclarée irrecevable.</p>
+    </div>
+
+    <div class="titre-section">Titre IX : Du Barreau de San Andreas</div>
+    <div class="law-article">
+        <h4>Art 9-4.1</h4>
+        <p>La profession d’avocat est régie par le Barreau de San Andreas. Le bâtonnier est élu par ses pairs pour un mandat de trois mois, par un scrutin uninominal à un tour. Le bâtonnier est responsable de l'inscription des avocats au Barreau de San Andreas.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 9-4.2</h4>
+        <p>Les communications entre un avocat et son client sont couvertes par le secret professionnel absolu. Aucune autorité ne peut forcer la divulgation de ces échanges, sauf si cela sert à planifier un futur crime.</p>
+    </div>
+    <div class="law-article">
+        <h4>Art 5-4.3 : Règlement Intérieur National de la Profession d’Avocat</h4>
+        <ul>
+            <li>Les avocats inscrits au Barreau de San Andreas sont soumis au respect impératif du Règlement Intérieur National de la Profession d’Avocat, jointe en lien du présent Code de Procédure Pénale.</li>
+            <li>Cette charte définit les standards d'éthique, les devoirs de probité et les règles de conduite devant les juridictions de l'État.</li>
+            <li>Le non-respect des dispositions du Règlement Intérieur National de la Profession d’Avocat constitue une faute professionnelle grave pouvant entraîner la saisine du Bâtonnier et le prononcé de sanctions disciplinaires par le Barreau.</li>
+        </ul>
+    </div>
+    <div class="law-article">
+        <h4>Article 5-4.4</h4>
+        <p><strong>Alinéa 1 :</strong> Nul ne peut être inscrit au Barreau de San Andreas s'il ne présente des garanties de moralité et d'honorabilité incompatibles avec l'exercice de la profession d'avocat.</p>
+        <p><strong>Alinéa 2 :</strong> L'existence d'un casier judiciaire pour des délits mineurs (Misdemeanors) ne constitue pas un motif de refus automatique, sous réserve que le candidat prouve sa réhabilitation et son intégrité actuelle devant le Bâtonnier.</p>
+        <p><strong>Alinéa 3 :</strong> Par dérogation stricte, l'accès aux fonctions de Procureur ou de substitut du Procureur Général est interdit à tout citoyen ayant fait l'objet d'une condamnation pour un crime majeur (Felony) ou un délit de corruption, afin de préserver la crédibilité de l'action publique.</p>
+        <p><strong>Alinéa 4 :</strong> Toute omission volontaire d'un antécédent judiciaire lors de la candidature est considérée comme un acte de parjure et entraîne une radiation définitive et immédiate du Barreau.</p>
+    </div>
+    <div class="law-article">
+        <h4>Article 5-4.5</h4>
+        <p>En cas de carence ou d’indisponibilité constatée du Bâtonnier de l’Ordre et d'un Juge de la Cour Supérieure, le Procureur Général, garant de la discipline de l'audience et de la probité judiciaire, exerce par intérim l'autorité ordinale. À ce titre, il peut prononcer toute mesure disciplinaire ou suspension d'exercice à l'encontre d'un avocat dont le comportement entrave la manifestation de la vérité ou l'ordre public.</p>
+    </div>
+
+    <div class="footer-note">
+        Code de Procédure Pénale (Version 1 du 27/02/2026)<br>
+        Tous droits réservés - Mister Frexs "Andrew Miller"
+    </div>
+
+    <script>
+        // 1. Bloquer le clic droit (Menu contextuel)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // 2. Bloquer les événements Copier / Couper à la source
+        document.addEventListener('copy', function(e) { e.preventDefault(); });
+        document.addEventListener('cut', function(e) { e.preventDefault(); });
+
+        // 3. Bloquer tous les raccourcis clavier sensibles
+        document.addEventListener('keydown', function(e) {
+            // Bloquer F12 (Outils de développement)
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (Inspecteur et Console Chrome/Edge/Firefox)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+U (Voir le code source)
+            if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+A, Ctrl+C, Ctrl+X, Ctrl+S, Ctrl+P (Sélection, Copie, Sauvegarde, Impression)
+            if (e.ctrlKey && (e.key === 'a' || e.key === 'A' || e.key === 'c' || e.key === 'C' || e.key === 'x' || e.key === 'X' || e.key === 's' || e.key === 'S' || e.key === 'p' || e.key === 'P')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // 4. Le piège : Boucle Anti-Débogage (Gèle le navigateur si la console est forcée)
+        // Même si un utilisateur trouve un moyen d'ouvrir la console depuis le menu du navigateur, 
+        // cette boucle va déclencher une pause infinie dans son outil de triche.
+        setInterval(function() {
+            (function() {
+                return false;
+            }["constructor"]("debugger")());
+        }, 100);
+    </script>
+</body>
+</html>
