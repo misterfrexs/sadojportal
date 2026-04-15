@@ -111,7 +111,7 @@
         <div class="auth-box">
             <img src="https://i.imgur.com/Pf4XkWF.png" alt="Logo Officiel">
             <h2>S.A.D.O.J. PORTAL</h2>
-            <p>Portail d'accès au réseau du Département de la Justice <br> Pour les visiteurs : VISITEUR | VDC1895</p>
+            <p>Portail d'accès au réseau du Département de la Justice <br></p>
             <input type="text" id="login-id" placeholder="Identifiant / Matricule">
             <input type="password" id="login-pass" placeholder="Clé de sécurité">
             <button class="btn" onclick="attemptLogin()">Initialiser la session</button>
@@ -211,7 +211,7 @@
         const ADMIN_ID = "ADMIN";
         const ADMIN_KEY = "MILLER2026";
         const GUEST_ID = "VISITEUR";
-        const GUEST_KEY = "SADOJ2026";
+        const GUEST_KEY = "VDC1895";
 
         let users = JSON.parse(localStorage.getItem('sadoj_db')) || {};
 
