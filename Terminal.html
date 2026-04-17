@@ -645,5 +645,54 @@
             } 
         });
     </script>
+
+    <script>
+    function adaptTerminalToRole() {
+        try {
+            // On récupère l'utilisateur connecté sur le portail principal
+            const user = window.parent.netlifyIdentity.currentUser();
+            if (!user) return;
+
+            // On récupère les rôles (en minuscules pour éviter les bugs)
+            const roles = (user.app_metadata.roles || []).map(r => r.toLowerCase());
+
+            // SI C'EST UN PROCUREUR
+            if (roles.includes('procureur')) {
+                const allElements = document.querySelectorAll('label, p, span, h1, h2, h3, h4, td');
+                
+                allElements.forEach(el => {
+                    // 1. On remplace "Officier en charge" par "Procureur en charge"
+                    if (el.innerText.includes("Officier en charge")) {
+                        el.innerText = el.innerText.replace("Officier en charge", "Procureur en charge");
+                    }
+
+                    // 2. On cache le Matricule (Label + Champ)
+                    if (el.innerText.includes("Matricule")) {
+                        el.style.display = 'none'; // Cache le texte "Matricule"
+                        
+                        // Si le champ de saisie est juste après, on le cache aussi
+                        if (el.nextElementSibling && (el.nextElementSibling.tagName === 'INPUT' || el.nextElementSibling.tagName === 'SPAN')) {
+                            el.nextElementSibling.style.display = 'none';
+                        }
+                        
+                        // Si c'est dans un tableau (td), on peut aussi cacher la cellule d'à côté
+                        if (el.tagName === 'TD' && el.nextElementSibling) {
+                            el.nextElementSibling.style.display = 'none';
+                        }
+                    }
+                });
+            }
+            // SI C'EST UN OFFICIER : On ne touche à rien (comportement par défaut)
+        } catch (e) {
+            console.warn("Liaison avec le portail S.A.D.O.J. en attente...");
+        }
+    }
+
+    // On lance la vérification dès que la page est chargée
+    window.addEventListener('load', () => {
+        // Un petit délai de 500ms pour laisser le temps à Netlify de s'initialiser
+        setTimeout(adaptTerminalToRole, 500);
+    });
+</script>
 </body>
 </html>
