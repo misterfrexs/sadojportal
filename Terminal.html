@@ -725,5 +725,52 @@
     // On lance la fonction dès que le Terminal finit de charger
     window.onload = applyProcureurMode;
 </script>
+
+<script>
+    function applyRPModifiers() {
+        // 1. On récupère le rôle dans l'URL (?role=procureur)
+        const params = new URLSearchParams(window.location.search);
+        const role = params.get('role');
+
+        if (role === 'procureur') {
+            console.log("Mode Procureur détecté. Modification du terminal...");
+            
+            // 2. On scanne tous les éléments de texte
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            while(node = walker.nextNode()) {
+                // Remplacer Officier par Procureur
+                if (node.nodeValue.includes("Officier en charge")) {
+                    node.nodeValue = node.nodeValue.replace("Officier en charge", "Procureur en charge");
+                }
+                // Remplacer les majuscules aussi au cas où
+                if (node.nodeValue.includes("OFFICIER EN CHARGE")) {
+                    node.nodeValue = node.nodeValue.replace("OFFICIER EN CHARGE", "PROCUREUR EN CHARGE");
+                }
+            }
+
+            // 3. On cache le Matricule et sa case
+            // On cherche tous les éléments qui contiennent le mot "Matricule"
+            const allElements = document.querySelectorAll('label, span, td, th, p');
+            allElements.forEach(el => {
+                if (el.innerText.includes("Matricule")) {
+                    el.style.display = 'none'; // Cache le texte
+                    
+                    // Si c'est un label, on cache l'input qui suit
+                    if (el.nextElementSibling) {
+                        el.nextElementSibling.style.display = 'none';
+                    }
+                    // Si c'est dans un tableau, on cache la case d'à côté
+                    if (el.tagName === 'TD' && el.parentElement) {
+                        el.parentElement.style.display = 'none';
+                    }
+                }
+            });
+        }
+    }
+
+    // On s'exécute au chargement
+    window.onload = applyRPModifiers;
+</script>
 </body>
 </html>
