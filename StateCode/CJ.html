@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.A.D.O.J. | Code Juridictionnel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --bg: #0f172a;
+            --panel: rgba(30, 41, 59, 0.7);
+            --border: rgba(59, 130, 246, 0.3);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .header-container { text-align: center; margin-bottom: 50px; }
+        .logo { max-width: 150px; height: auto; margin-bottom: 20px; }
+        
+        .main-title { 
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            letter-spacing: -1px; 
+            color: white;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .subtitle { color: var(--primary); font-weight: 600; letter-spacing: 2px; }
+
+        .section { margin-bottom: 40px; }
+        
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        .law-card {
+            background: var(--panel);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .article-id {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .map-container {
+            text-align: center;
+            margin: 40px 0;
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .map-image {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        ul { padding-left: 20px; margin-top: 5px; margin-bottom: 5px; }
+        li { margin-bottom: 5px; }
+        p { margin-top: 0; margin-bottom: 10px; }
+        strong { color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <img src="./images/sceau_doj.png" alt="Logo DOJ" class="logo">
+        <h1 class="main-title">Code Juridictionnel</h1>
+        <div class="subtitle">STATE OF SAN ANDREAS</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Préambule</div>
+        <div class="map-container">
+            <img src="./images/juridiction.png" alt="Carte des juridictions" class="map-image">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Livre I : Los Santos Police Department</div>
+        <div class="law-card">
+            <span class="article-id">Art 1-1.1 :</span>
+            <p>Le <strong>Los Santos Police Department</strong> a comme juridiction l'ensemble de la ville de Los Santos et ses alentours marins et aériens conformément au préambule du <strong>Code Juridictionnel</strong>, le <strong>Los Santos Police Department</strong> peut avoir accès à la juridiction de <strong>Blaine County</strong> dans ces cas-là :</p>
+            <ul>
+                <li>Dans le cadre d'une course-poursuite ;</li>
+                <li>Dans le cadre d'une opération de police ;</li>
+                <li>Dans le cadre d'une enquête ;</li>
+                <li>Dans le cadre d'une coopération avec un autre service ayant juridiction sur Blaine County ;</li>
+                <li>Sous autorisation du Bureau du Procureur ou du Gouvernement de San Andreas ou de la Cour de San Andreas.</li>
+            </ul>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 1-1.2 :</span>
+            <p>Le <strong>Los Santos Police Department</strong> est dirigé par le <strong>Commandant</strong> qui est nommé par le <strong>Commissaire</strong> qui lui est et nommé par le <strong>Gouverneur de San Andreas</strong>.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 1-1.3 :</span>
+            <p>Le <strong>Los Santos Police Department</strong> est un organisme étatique d'application de la loi. Les agents possèdent les prérogatives de police. En sa qualité d'agent, un agent peut procéder à des arrestations, des perquisitions, des saisies et à des investigations.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Livre II : Blaine County’s Sheriff Office</div>
+        <div class="law-card">
+            <span class="article-id">Art 2-1.1 :</span>
+            <p>Le <strong>Blaine County’s Sheriff Office</strong> a comme juridiction l'ensemble du compté de <strong>Blaine County</strong> et ses alentours marins et aériens conformément au préambule du <strong>Code Juridictionnel</strong>, le <strong>Blaine County’s Sheriff Office</strong> peut avoir accès à la juridiction du compté de <strong>Los Santos</strong> dans ces cas-là :</p>
+            <ul>
+                <li>Dans le cadre d'une course-poursuite ;</li>
+                <li>Dans le cadre d'une opération de police ;</li>
+                <li>Dans le cadre d'une enquête ;</li>
+                <li>Dans le cadre d'une coopération avec un autre service ayant juridiction sur Blaine County ;</li>
+                <li>Sous autorisation du Bureau du Procureur ou du Gouvernement de San Andreas ou de la Cour de San Andreas.</li>
+            </ul>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 2-1.2 :</span>
+            <p>Le <strong>Blaine County’s Sheriff Office</strong> est dirigé par l’<strong>UnderSheriff</strong> qui est nommé par le <strong>Sheriff</strong> qui lui est élu par le peuple. En cas d'incapacité (décès, licenciement, démission) pour le Sheriff d'assumer pleinement son pouvoir, l'UnderSheriff est nommé Sheriff du département par intérim.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 2-1.3 :</span>
+            <p>Le <strong>Blaine County’s Sheriff Office</strong> est un organisme étatique d'application de la loi. Les agents possèdent les prérogatives de police. En sa qualité d'agent, un agent peut procéder à des arrestations, des perquisitions, des saisies et à des investigations.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Livre III : Special Agent Bureau / DOJ</div>
+        <div class="law-card">
+            <span class="article-id">Art 3-1.1 :</span>
+            <p>Les <strong>Agents Spéciaux du DOJ</strong> ont comme juridiction l'ensemble de San Andreas.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 3-1.2 :</span>
+            <p>Les <strong>Agents Spéciaux du DOJ</strong> sont sous la tutelle du <strong>Président de la Cour de San Andreas</strong>, sous la Supervision du <strong>Procureur Général</strong> (Représentation Juridique) et par le <strong>Commanding Office</strong> nommé par le <strong>Chief of SAB</strong> qui lui est nommé par le <strong>Directeur du Special Agent Bureau</strong> à son tour nommé par le <strong>Président de la Cour de San Andreas</strong>.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 3-1.3 :</span>
+            <p>Les <strong>Agents Spéciaux du DOJ</strong> ont une mission spécifique de protection des autorités judiciaires de l'État de San Andreas et de mener des enquêtes et des interventions sur les affaires qui ne peuvent pas être réalisées par l'USSS.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 3-1.4 :</span>
+            <p>Hormis le propriétaire, un agent spécial du DOJ peut, s'il le juge nécessaire, donner ordre de faire circuler, faire évacuer, de faire fouiller, de menotter un individu, sur une propriété privée. Dans le cas où une personnalité placée sous protection se trouverait sur la propriété.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 3-1.5 :</span>
+            <p>Les véhicules des <strong>Agents Spéciaux du DOJ</strong>, utilisés dans le cadre d'opération de protection, sont prioritaires sur les autres véhicules d'urgence.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 3-1.6 :</span>
+            <p>Le bâtiment suivant est sous protection fédérale : <strong>Department Of Justice, Maison du Procureur Général, Procureur Général Adjoint, Maison Président de la Cour, Vice Président de la Cour.</strong> Les personnes habilitées à entrer sans fouille sont les membres du gouvernement, les agents spéciaux du DOJ, juge et procureur.</p>
+            <p>Dans le cadre de leurs missions, les agents spéciaux sont chargés de protéger ce bâtiment, ils peuvent restreindre les entrées : palper et fouiller tout individu n'ayant pas d'accréditation, cette procédure est obligatoire pour toute entrée dans les zones protégées. Toute personne essayant d'entrer dans ces zones par effraction ou non, s'expose à une neutralisation par la force létale si refus d'obtempérer.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 3-1.7 :</span>
+            <p>Les <strong>Agents Spéciaux du DOJ</strong> sont mandatés pour protéger l'entièreté des membres de la justice, le Procureur Général, son adjoint et le Président de la Cour de San Andreas.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Livre IV : San Andreas Medical Services</div>
+        <div class="law-card">
+            <span class="article-id">Art 4-1.1 :</span>
+            <p>Le <strong>San Andreas Medical Service</strong> a comme juridiction l'ensemble de l'Etat de San Andreas et ses alentours marins et aériens.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Livre V : Ordre du Barreau de San Andreas</div>
+        <div class="law-card">
+            <span class="article-id">Art 5-1.1 :</span>
+            <p>L'<strong>Ordre du Barreau de San Andreas</strong> est l'ensemble des personnes actives dans le domaine judiciaire et qui possèdent l'examen du Barreau de San Andreas, sauf pour les avocats appartenant au <strong>Department Of Justice</strong>.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 5-1.2 :</span>
+            <p>Toute personne voulant plaider la cause d'une personne morale ou physique qui n'est pas la sienne, devant la <strong>Cour de San Andreas</strong>, devra prêter serment devant la Cour et posséder l'examen <strong>Barreau de San Andreas</strong>.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 5-1.3 :</span>
+            <p>Le <strong>bâtonnier</strong> est le président de l'ordre du Barreau de San Andreas. Il est en charge de représenter les intérêts de ses membres et de se charger des activités administratives. Élu par ses pairs pour un mandat de trois mois, il est médiateur en cas de conflits et en charge de faire passer l'examen du Barreau.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 5-1.4 :</span>
+            <p>La <strong>commission d'examen et d'éthique</strong> est composée du bâtonnier, des juges de la Cour et du Procureur Général. Elle peut révoquer ou suspendre un diplômé en cas de non-respect de la déontologie ou des lois de San Andreas.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 5-1.5 :</span>
+            <p>Aucun avocat ne peut passer de contrat de protection juridique avec des services publics. Un avocat peut traiter des affaires uniques pour les services publics sous délégation du <strong>Department Of Justice</strong> ou sous autorisation du <strong>Gouvernement</strong>.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 5-1.6 :</span>
+            <p>L'expression <strong>"activité pro bono"</strong> fait référence à des services juridiques fournis de manière volontaire et gratuite. Cette activité est autorisée et encouragée dans l'État de San Andreas.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 5-1.7 :</span>
+            <p>Les activités <strong>pro-bono</strong> peuvent inclure la représentation juridique directe, la consultation, la rédaction de documents, la médiation ou l'arbitrage.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Livre VI : Bureau du Procureur Général</div>
+        <div class="law-card">
+            <span class="article-id">Art 6-1.1 :</span>
+            <p>Le <strong>Bureau du Procureur Général</strong> est l'organe exécutif responsable de l'application de la loi et de la représentation légale du gouvernement. Il enquête sur les affaires pénales et poursuit les crimes devant la Cour.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 6-1.2 :</span>
+            <p>Le <strong>Bureau du Procureur Général</strong> possède un pouvoir de suspension sur les forces de police (fédérales, étatiques, municipales) s'il poursuit pénalement l'agent. La suspension ne peut excéder 72 heures.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 6-1.3 :</span>
+            <p>En cas de poursuites civiles contre un service public, le Bureau est chargé de représenter le service. Il peut aussi assurer la défense d'un agent si celui-ci n'est pas accusé d'un Crime ou d'un délit majeur contre l'État.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 6-1.4 :</span>
+            <p>Le <strong>Bureau du Procureur Général</strong> est responsable des enquêtes et des plaintes. Il apprécie le classement ou l'ouverture d'une affaire selon son devoir discrétionnaire. Aucune plainte ne peut être classée sans son accord.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Livre VII : Internal Revenue Service</div>
+        <div class="law-card">
+            <span class="article-id">Art 7-1.1 :</span>
+            <p>L'<strong>Internal Revenue Service</strong> a comme juridiction l'ensemble de San Andreas ainsi que Cayo Perico. C'est un organisme fédéral de contrôle des finances et de la fiscalité.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 7-1.2 :</span>
+            <p>L'<strong>IRS</strong> est supervisé par les juges de la Cour, les Procureurs et le Gouverneur de l'État.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 7-1.3 :</span>
+            <p>L'<strong>IRS</strong> a toute autorité pour ouvrir des enquêtes financières sur des entreprises, des particuliers, des associations ou des services publics.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 7-1.4 :</span>
+            <p>Les enquêtes peuvent être déclenchées par des signalements, des incohérences fiscales ou des audits. L'IRS dispose de pouvoirs étendus : interrogatoires, réquisitions de documents financiers et perquisitions sous mandat.</p>
+        </div>
+        <div class="law-card">
+            <span class="article-id">Art 7-1.5 :</span>
+            <p>L'<strong>Internal Revenue Service</strong> est représenté juridiquement par la <strong>Cour de Justice</strong>.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        Tous droits réservés - Mister Frexs "Andrew Miller"<br>
+        DEPARTMENT OF JUSTICE - SAN ANDREAS
+    </div>
+
+</body>
+</html>
+    <script>
+        // 1. Bloquer le clic droit (Menu contextuel)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // 2. Bloquer les événements Copier / Couper à la source
+        document.addEventListener('copy', function(e) { e.preventDefault(); });
+        document.addEventListener('cut', function(e) { e.preventDefault(); });
+
+        // 3. Bloquer tous les raccourcis clavier sensibles
+        document.addEventListener('keydown', function(e) {
+            // Bloquer F12 (Outils de développement)
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (Inspecteur et Console Chrome/Edge/Firefox)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+U (Voir le code source)
+            if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquer Ctrl+A, Ctrl+C, Ctrl+X, Ctrl+S, Ctrl+P (Sélection, Copie, Sauvegarde, Impression)
+            if (e.ctrlKey && (e.key === 'a' || e.key === 'A' || e.key === 'c' || e.key === 'C' || e.key === 'x' || e.key === 'X' || e.key === 's' || e.key === 'S' || e.key === 'p' || e.key === 'P')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // 4. Le piège : Boucle Anti-Débogage (Gèle le navigateur si la console est forcée)
+        // Même si un utilisateur trouve un moyen d'ouvrir la console depuis le menu du navigateur, 
+        // cette boucle va déclencher une pause infinie dans son outil de triche.
+        setInterval(function() {
+            (function() {
+                return false;
+            }["constructor"]("debugger")());
+        }, 100);
+    </script>
+</body>
+</html>
