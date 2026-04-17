@@ -34,6 +34,7 @@
         .auth-box img { width: 100px; margin-bottom: 20px; filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.4)); }
         .auth-box input { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border); padding: 14px; border-radius: 12px; color: white; margin-bottom: 15px; outline: none; }
         .btn-login { width: 100%; background: var(--primary); color: white; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        .btn-login:hover { background: var(--primary-hover); transform: translateY(-2px); }
         .btn-citizen { width: 100%; background: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 12px; border-radius: 12px; font-weight: 600; cursor: pointer; margin-top: 15px; }
 
         /* INTERFACE */
@@ -94,16 +95,16 @@
 
                     <div class="nav-label">S.A State Code (Public)</div>
                     <button class="nav-item" onclick="switchTab('tab-cj', this)">⚖️ Code Juridictionnel</button>
-                    <button class="nav-item" onclick="switchTab('tab-const', this)">📜 Constitution</button>
+                    <button class="nav-item" onclick="switchTab('tab-const', this)">📜 Déclaration Constitutionnelle</button>
                     <button class="nav-item" onclick="switchTab('tab-penal', this)">⚖️ Code Pénal</button>
-                    <button class="nav-item" onclick="switchTab('tab-proc-penal', this)">⛓️ Procédure Pénale</button>
+                    <button class="nav-item" onclick="switchTab('tab-proc-penal', this)">⛓️ Code de Procédure Pénale</button>
                     <button class="nav-item" onclick="switchTab('tab-civil', this)">🤝 Code Civil</button>
                     <button class="nav-item" onclick="switchTab('tab-admin', this)">🏢 Code Administratif</button>
                     <button class="nav-item" onclick="switchTab('tab-proc-admin', this)">📋 CPAD</button>
                     <button class="nav-item" onclick="switchTab('tab-travail', this)">💼 Code du Travail</button>
-                    <button class="nav-item" onclick="switchTab('tab-secu', this)">🛡️ Sécurité Intérieure</button>
-                    <button class="nav-item" onclick="switchTab('tab-ruralite', this)">🌲 Code de Ruralité</button>
-                    <button class="nav-item" onclick="switchTab('tab-sanctions', this)">💰 Sanctions & Amendes</button>
+                    <button class="nav-item" onclick="switchTab('tab-secu', this)">🛡️ Code de la Sécurité Intérieure</button>
+                    <button class="nav-item" onclick="switchTab('tab-ruralite', this)">🌲 Code de la Ruralité</button>
+                    <button class="nav-item" onclick="switchTab('tab-sanctions', this)">💰 Sanctions Pénales et Financières</button>
                     <button class="nav-item" onclick="switchTab('tab-niveau', this)">⚠️ Niveaux de Sécurité</button>
                 </nav>
             </div>
@@ -143,6 +144,7 @@
     </div>
 
     <script>
+        // Nettoyage de l'initialisation pour éviter les erreurs JavaScript
         netlifyIdentity.on('init', user => {
             document.getElementById('loading-screen').style.opacity = '0';
             setTimeout(() => document.getElementById('loading-screen').style.display = 'none', 500);
@@ -153,7 +155,7 @@
             const email = document.getElementById('field-email').value;
             const pass = document.getElementById('field-pass').value;
             netlifyIdentity.gotrue.login(email, pass)
-                .then(user => console.log("Success"))
+                .then(user => loginSuccess(user))
                 .catch(err => alert("Accès refusé."));
         }
 
@@ -170,7 +172,11 @@
             document.getElementById('view-main').style.display = 'flex';
             document.getElementById('display-name').textContent = user.user_metadata.full_name || user.email.split('@')[0].toUpperCase();
             
-            const roles = user.app_metadata.roles || [];
+            // On récupère les rôles et on les met tous en minuscules pour éviter les erreurs de frappe
+            const appRoles = user.app_metadata.roles || [];
+            const userRoles = user.user_metadata.roles || [];
+            const roles = [...appRoles, ...userRoles].map(r => r.toLowerCase());
+            
             const roleDisplay = document.getElementById('display-role');
 
             if (roles.includes('procureur') || roles.includes('officier')) {
@@ -182,6 +188,9 @@
                 roleDisplay.style.color = "#94a3b8";
                 document.getElementById('group-secure').style.display = 'none';
             }
+
+            // Affiche la page d'accueil par défaut
+            switchTab('tab-accueil', document.querySelector('.nav-item.active'));
         }
 
         function enterAsCitizen() {
@@ -191,13 +200,17 @@
             document.getElementById('display-role').textContent = "Accès Public";
             document.getElementById('group-secure').style.display = 'none';
             document.getElementById('logout-zone').textContent = "RETOUR ACCUEIL";
+            // Affiche l'accueil par défaut
+            switchTab('tab-accueil', document.querySelector('.nav-item.active'));
         }
 
         function switchTab(id, btn) {
             document.querySelectorAll('.page-content, iframe').forEach(i => i.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            btn.classList.add('active');
+            
+            const target = document.getElementById(id);
+            if(target) target.classList.add('active');
+            if(btn) btn.classList.add('active');
         }
 
         document.addEventListener('contextmenu', e => e.preventDefault());
