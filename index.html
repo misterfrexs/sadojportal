@@ -6,338 +6,225 @@
     <title>S.A.D.O.J. Portal</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
-        /* --- STYLE CENTRALISÉ V2.7 --- */
         :root {
             --primary: #2563eb; 
             --primary-hover: #1d4ed8;
-            --bg-dark: #0f172a; 
-            --panel: rgba(30, 41, 59, 0.9);
+            --bg-dark: #020617; 
+            --panel: rgba(30, 41, 59, 0.7);
             --border: rgba(255, 255, 255, 0.1);
             --text-muted: #94a3b8; 
             --danger: #ef4444; 
-            --success: #22c55e;
-            --warning: #f59e0b;
         }
 
         * { -webkit-user-select: none; user-select: none; box-sizing: border-box; }
-        input, button, select, textarea { -webkit-user-select: auto; user-select: auto; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: var(--bg-dark); color: white; font-family: 'Inter', sans-serif; overflow: hidden; }
 
-        body, html {
-            margin: 0; padding: 0; height: 100%;
-            background-color: var(--bg-dark); font-family: 'Inter', sans-serif;
-            color: white; overflow: hidden;
-        }
+        /* CHARGEMENT */
+        #loading-screen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.5s; }
+        .spinner { width: 40px; height: 40px; border: 3px solid rgba(37, 99, 235, 0.1); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        .bg-gradient {
-            position: fixed; inset: 0;
-            background: radial-gradient(circle at 20% 20%, #1e3a8a 0%, transparent 40%),
-                        radial-gradient(circle at 80% 80%, #1e1b4b 0%, transparent 40%);
-            z-index: -1;
-        }
-
-        .auth-view {
-            position: fixed; inset: 0; display: flex; justify-content: center; align-items: center;
-            background: var(--bg-dark); z-index: 9999; transition: 0.5s;
-        }
-        .hidden { display: none !important; }
-
-        .auth-box {
-            background: var(--panel); backdrop-filter: blur(20px);
-            padding: 40px; border-radius: 24px; border: 1px solid var(--border);
-            text-align: center; width: 100%; max-width: 420px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .auth-box img { width: 90px; margin-bottom: 20px; }
-        .auth-box h2 { margin: 0; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
-        .auth-box p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 30px; }
-
-        input, select {
-            width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border);
-            padding: 14px; border-radius: 10px; color: white; margin-bottom: 15px;
-            font-family: inherit; transition: 0.3s;
-        }
-        input:focus, select:focus { outline: none; border-color: var(--primary); background: rgba(0,0,0,0.5); }
-        select { cursor: pointer; appearance: none; -webkit-appearance: none; }
-        select option { background: var(--bg-dark); color: white; }
-
-        .btn {
-            width: 100%; background: var(--primary); color: white; border: none;
-            padding: 15px; border-radius: 10px; font-weight: 700; cursor: pointer; 
-            transition: 0.3s; margin-bottom: 10px; text-transform: uppercase;
-        }
-        .btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
-        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-muted); cursor: pointer; padding: 12px; border-radius: 10px; width: 100%; font-weight: 600; }
-        .btn-outline:hover { color: white; background: rgba(255,255,255,0.05); }
-
-        #main-interface { display: grid; grid-template-columns: 300px 1fr; height: 100vh; }
+        /* AUTHENTIFICATION */
+        .auth-view { height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1e293b 0%, #020617 100%); }
+        .auth-box { background: var(--panel); backdrop-filter: blur(20px); padding: 40px; border-radius: 24px; border: 1px solid var(--border); width: 100%; max-width: 400px; text-align: center; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+        .auth-box img { width: 100px; margin-bottom: 20px; filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.4)); }
+        .auth-box h2 { font-weight: 800; letter-spacing: -1px; margin: 0; }
+        .auth-box p { color: var(--text-muted); font-size: 0.85rem; margin-top: 5px; margin-bottom: 30px; }
+        .auth-box input { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border); padding: 14px; border-radius: 12px; color: white; margin-bottom: 15px; outline: none; transition: 0.2s; }
+        .auth-box input:focus { border-color: var(--primary); background: rgba(0,0,0,0.5); }
         
-        .sidebar { background: rgba(15, 23, 42, 0.98); border-right: 1px solid var(--border); padding: 25px; display: flex; flex-direction: column; overflow-y: auto; }
+        .btn-login { width: 100%; background: var(--primary); color: white; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        .btn-login:hover { background: var(--primary-hover); transform: translateY(-2px); }
         
-        .menu-label { font-size: 0.7rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin: 25px 0 10px 10px; }
+        .btn-citizen { width: 100%; background: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 12px; border-radius: 12px; font-weight: 600; cursor: pointer; margin-top: 15px; transition: 0.2s; }
+        .btn-citizen:hover { background: rgba(255, 255, 255, 0.05); color: white; border-color: white; }
 
-        .nav-btn {
-            background: transparent; border: none; color: var(--text-muted);
-            padding: 12px 15px; border-radius: 10px; text-align: left;
-            font-weight: 600; cursor: pointer; display: flex; align-items: center; 
-            gap: 12px; margin-bottom: 4px; transition: 0.2s; font-size: 0.9rem;
-        }
-        .nav-btn:hover { background: rgba(255,255,255,0.05); color: white; }
-        .nav-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
-
-        .content-area { position: relative; height: 100vh; overflow: hidden; background: rgba(0,0,0,0.1); }
+        /* INTERFACE PRINCIPALE */
+        #view-main { display: none; height: 100vh; }
         
-        .page-content, iframe { width: 100%; height: 100%; border: none; display: none; }
-        .page-content.active, iframe.active { display: block; }
+        .sidebar { width: 280px; background: #020617; border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 20px; }
+        .user-card { background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 25px; }
+        .user-name { display: block; font-weight: 800; font-size: 0.9rem; color: white; }
+        .user-role { display: block; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; margin-top: 4px; letter-spacing: 1px; }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .nav-group { margin-bottom: 25px; }
+        .nav-label { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-weight: 900; letter-spacing: 1.5px; margin-bottom: 10px; margin-left: 10px; }
+        .nav-item { width: 100%; background: transparent; border: none; color: var(--text-muted); padding: 12px 15px; border-radius: 12px; text-align: left; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 12px; transition: 0.2s; margin-bottom: 4px; }
+        .nav-item:hover { background: rgba(255,255,255,0.05); color: white; }
+        .nav-item.active { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
 
-        /* ADMIN STYLE */
-        .admin-container { padding: 50px; overflow-y: auto; }
-        .card { background: rgba(255,255,255,0.03); padding: 30px; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 30px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { text-align: left; padding: 15px; border-bottom: 1px solid var(--border); }
-        th { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; }
-        .badge-admin { font-size: 0.65rem; padding: 4px 8px; border-radius: 6px; font-weight: 800; color: white; }
+        .content-container { flex-grow: 1; background: #0f172a; position: relative; }
+        iframe { width: 100%; height: 100%; border: none; display: none; }
+        iframe.visible { display: block; }
+
+        .btn-logout { margin-top: auto; color: var(--danger); font-size: 0.8rem; font-weight: 800; text-align: center; padding: 15px; cursor: pointer; border-top: 1px solid var(--border); opacity: 0.6; transition: 0.3s; }
+        .btn-logout:hover { opacity: 1; }
     </style>
 </head>
 <body>
 
-    <div class="bg-gradient"></div>
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <p style="margin-top: 15px; font-size: 0.7rem; letter-spacing: 3px; font-weight: 800;">SECURE LINK...</p>
+    </div>
 
     <div id="view-login" class="auth-view">
         <div class="auth-box">
-            <img src="https://i.imgur.com/Pf4XkWF.png" alt="Logo Officiel">
+            <img src="https://i.imgur.com/Pf4XkWF.png" alt="SADOJ Logo">
             <h2>S.A.D.O.J. PORTAL</h2>
             <p>Portail d'accès au réseau du Département de la Justice</p>
-            <input type="text" id="login-id" placeholder="Identifiant">
-            <input type="password" id="login-pass" placeholder="Mot de passe">
-            <button class="btn" onclick="attemptLogin()">Initialiser la session</button>
+            <input type="email" id="field-email" placeholder="Email de l'agent">
+            <input type="password" id="field-pass" placeholder="Clé d'accès">
+            <button class="btn-login" onclick="handleAuth()">INITIALISER LA SESSION</button>
+            <button class="btn-citizen" onclick="enterAsCitizen()">ACCÈS CITOYEN (PUBLIC)</button>
         </div>
     </div>
-    <div id="main-interface" class="hidden">
-        <nav class="sidebar">
-            <div style="text-align:center; margin-bottom: 20px;">
-                <img src="https://i.imgur.com/Pf4XkWF.png" width="60">
-                <div id="user-tag" style="font-size: 0.75rem; color: var(--success); font-weight: 800; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px;">Session Active</div>
+
+    <div id="view-main">
+        <div class="sidebar">
+            <div class="user-card">
+                <span id="display-name" class="user-name">Agent</span>
+                <span id="display-role" class="user-role">Vérification...</span>
             </div>
 
-            <div class="menu-label">Services</div>
-            <button class="nav-btn active" onclick="showPage('page-accueil', this)">🏠 Accueil</button>
-            <button class="nav-btn" onclick="showPage('terminal-frame', this)">💻 Terminal de Procédure</button>
-            <button id="nav-admin" class="nav-btn hidden" style="color: var(--warning);" onclick="showPage('page-admin', this)">⚙️ Administration</button>
-
-            <div class="menu-label">S.A State Code</div>
-            <button class="nav-btn" onclick="showPage('sanctions', this)">📋 Sanctions Pénales et Financières</button>
-            <button class="nav-btn" onclick="showPage('constitution', this)">📜 Déclaration Constitutionnelle</button>
-            <button class="nav-btn" onclick="showPage('penal', this)">⚖️ Code Pénal</button>
-            <button class="nav-btn" onclick="showPage('proc-penal', this)">⛓️ Code de Procédure Pénale</button>
-            <button class="nav-btn" onclick="showPage('civil', this)">🤝 Code Civil</button>
-            <button class="nav-btn" onclick="showPage('admin', this)">🏢 Code Administratif</button>
-            <button class="nav-btn" onclick="showPage('proc-admin', this)">📋 CPAD</button>
-            <button class="nav-btn" onclick="showPage('travail', this)">💼 Code du Travail</button>
-            <button class="nav-btn" onclick="showPage('secu', this)">🛡️ Code de la Sécurité Intérieure</button>
-            <button class="nav-btn" onclick="showPage('ruralite', this)">🌲 Code de Ruralité</button>
-            <button class="nav-btn" onclick="showPage('niveau', this)">⚠️ Niveaux de Sécurité</button>
-            <button class="nav-btn" onclick="showPage('code-juridictionnel', this)">⚖️ Code Juridictionnel</button>
-
-            <button class="btn-outline" style="margin-top:auto" onclick="location.reload()">Déconnexion sécurisée</button>
-        </nav>
-
-        <main class="content-area">
-            <div id="page-accueil" class="page-content active" style="padding: 60px;">
-                <h1 style="font-size: 3rem; font-weight: 800; letter-spacing: -2px; margin-bottom: 10px;">Système Opérationnel</h1>
-                <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px;">Bienvenue sur le réseau du Département de la Justice. Toutes vos actions sont tracées et soumises à la déontologie fédérale.</p>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px;">
-                    <div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; border: 1px solid var(--border);">
-                        <span style="font-size: 0.7rem; text-transform: uppercase; color: var(--primary); font-weight: 800;">Statut Serveur</span>
-                        <div style="font-size: 1.5rem; font-weight: 800; margin-top: 5px;">SÉCURISÉ</div>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; border: 1px solid var(--border);">
-                        <span style="font-size: 0.7rem; text-transform: uppercase; color: var(--success); font-weight: 800;">Base de données</span>
-                        <div style="font-size: 1.5rem; font-weight: 800; margin-top: 5px;">À JOUR</div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="page-admin" class="page-content admin-container">
-                <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 30px;">Gestion des Accréditations</h1>
-                <div class="card">
-                    <h3 style="margin-top:0">Créer un nouvel accès</h3>
-                    <div style="display:flex; gap:15px; align-items: center;">
-                        <input type="text" id="new-id" placeholder="Identifiant" style="margin:0; flex: 1;">
-                        <input type="text" id="new-pass" placeholder="Clé de sécurité" style="margin:0; flex: 1;">
-                        <select id="new-role" style="margin:0; flex: 1;">
-                            <option value="agent">Officier de police</option>
-                            <option value="prosecutor">Procureur</option>
-                        </select>
-                        <button class="btn" style="width:150px; margin:0" onclick="addUser()">Créer</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3 style="margin-top:0">Base de données des accès</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Identifiant</th>
-                                <th>Mot de passe</th>
-                                <th>Rôle</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="user-list-body"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <iframe id="terminal-frame" src="Terminal.html"></iframe>
-            <iframe id="sanctions" src="./StateCode/Sanctions.html"></iframe>
-            <iframe id="constitution" src="./StateCode/DeclarationConstitutionnelle.html"></iframe>
-            <iframe id="penal" src="./StateCode/CP.html"></iframe>
-            <iframe id="proc-penal" src="./StateCode/CPP.html"></iframe>
-            <iframe id="civil" src="./StateCode/CC.html"></iframe>
-            <iframe id="admin" src="./StateCode/CA.html"></iframe>
-            <iframe id="proc-admin" src="./StateCode/CPAD.html"></iframe>
-            <iframe id="travail" src="./StateCode/CDT.html"></iframe>
-            <iframe id="secu" src="./StateCode/CSI.html"></iframe>
-            <iframe id="ruralite" src="./StateCode/CDR.html"></iframe>
-            <iframe id="niveau" src="./StateCode/NS.html"></iframe>
-            <iframe id="code-juridictionnel" src="./StateCode/CJ.html"></iframe>
-        </main>
+            <nav class="nav-group">
+    <div class="nav-label">S.A State Code (Public)</div>
+    <button class="nav-item" onclick="switchTab('tab-cj', this)">⚖️ Code Juridictionnel</button>
+    <button class="nav-item" onclick="switchTab('tab-const', this)">📜 Constitution</button>
+    <button class="nav-item" onclick="switchTab('tab-penal', this)">⚖️ Code Pénal</button>
+    <button class="nav-item" onclick="switchTab('tab-proc-penal', this)">⛓️ Procédure Pénale</button>
+    <button class="nav-item" onclick="switchTab('tab-civil', this)">🤝 Code Civil</button>
+    <button class="nav-item" onclick="switchTab('tab-admin', this)">🏢 Code Administratif</button>
+    <button class="nav-item" onclick="switchTab('tab-proc-admin', this)">📋 CPAD</button>
+    <button class="nav-item" onclick="switchTab('tab-travail', this)">💼 Code du Travail</button>
+    <button class="nav-item" onclick="switchTab('tab-secu', this)">🛡️ Sécurité Intérieure</button>
+    <button class="nav-item" onclick="switchTab('tab-ruralite', this)">🌲 Code de Ruralité</button>
+    <button class="nav-item" onclick="switchTab('tab-sanctions', this)">💰 Sanctions & Amendes</button>
+    <button class="nav-item" onclick="switchTab('tab-niveau', this)">⚠️ Niveaux de Sécurité</button>
+    
+    <div id="group-police" style="display:none;">
+        <div class="nav-label">Opérations</div>
+        <button class="nav-item" onclick="switchTab('tab-mdt', this)">🚓 Terminal MDT</button>
     </div>
 
+    <div id="group-procureur" style="display:none;">
+        <div class="nav-label">Justice</div>
+        <button class="nav-item" onclick="switchTab('tab-justice', this)">📂 Dossiers d'Instruction</button>
+    </div>
+</nav>
+
+            <div id="logout-zone" class="btn-logout" onclick="logoutSession()">DÉCONNEXION DU SYSTÈME</div>
+        </div>
+
+        <div class="content-container">
+    <iframe id="tab-cj" src="./StateCode/CJ.html"></iframe>
+    <iframe id="tab-const" src="./StateCode/DeclarationConstitutionnelle.html"></iframe>
+    <iframe id="tab-penal" src="./StateCode/CP.html"></iframe>
+    <iframe id="tab-proc-penal" src="./StateCode/CPP.html"></iframe>
+    <iframe id="tab-civil" src="./StateCode/CC.html"></iframe>
+    <iframe id="tab-admin" src="./StateCode/CA.html"></iframe>
+    <iframe id="tab-proc-admin" src="./StateCode/CPAD.html"></iframe>
+    <iframe id="tab-travail" src="./StateCode/CDT.html"></iframe>
+    <iframe id="tab-secu" src="./StateCode/CSI.html"></iframe>
+    <iframe id="tab-ruralite" src="./StateCode/CDR.html"></iframe>
+    <iframe id="tab-sanctions" src="./StateCode/Sanctions.html"></iframe>
+    <iframe id="tab-niveau" src="./StateCode/NS.html"></iframe>
+    
+    <iframe id="tab-mdt" src="./Terminal.html"></iframe>
+</div>
+
     <script>
-        // --- CONFIGURATION DES ACCÈS MAÎTRES ---
-        const ADMIN_ID = "ADMIN";
-        const ADMIN_KEY = "MILLER2026";
-        const GUEST_ID = "VISITEUR";
-        const GUEST_KEY = "VDC1895";
+        // --- LOGIQUE NETLIFY IDENTITY ---
 
-        let users = JSON.parse(localStorage.getItem('sadoj_db')) || {};
+        netlifyIdentity.on('init', user => {
+            document.getElementById('loading-screen').style.opacity = '0';
+            setTimeout(() => document.getElementById('loading-screen').style.display = 'none', 500);
+            if (user) loginSuccess(user);
+        });
 
-        function switchView(id) {
-            document.querySelectorAll('.auth-view').forEach(v => v.classList.add('hidden'));
-            document.getElementById(id).classList.remove('hidden');
+        function handleAuth() {
+            const email = document.getElementById('field-email').value;
+            const pass = document.getElementById('field-pass').value;
+            if (!email || !pass) return alert("Veuillez remplir les protocoles de sécurité.");
+
+            netlifyIdentity.gotrue.login(email, pass)
+                .then(user => console.log("Login OK"))
+                .catch(err => alert("Accès refusé par le serveur central S.A.D.O.J."));
         }
 
-        function attemptLogin() {
-            const id = document.getElementById('login-id').value.trim();
-            const key = document.getElementById('login-pass').value.trim();
+        netlifyIdentity.on('login', user => loginSuccess(user));
+        netlifyIdentity.on('logout', () => window.location.reload());
 
-            if (id === ADMIN_ID && key === ADMIN_KEY) {
-                startSession(id, "admin");
-            } else if (id === GUEST_ID && key === GUEST_KEY) {
-                startSession(id, "visitor");
-            } else if (users[id]) {
-                // Compatibilité avec les anciens comptes
-                if (typeof users[id] === "string" && users[id] === key) {
-                    startSession(id, "agent");
-                } 
-                // Nouveau système avec rôles
-                else if (typeof users[id] === "object" && users[id].pass === key) {
-                    startSession(id, users[id].role);
-                } else {
-                    alert("ALERTE : Clé de sécurité invalide.");
-                }
+        function logoutSession() {
+            if(netlifyIdentity.currentUser()) {
+                netlifyIdentity.logout();
             } else {
-                alert("ALERTE : Identifiant inconnu dans la base de données.");
+                window.location.reload();
             }
         }
 
-        function startSession(username, role) {
-            document.getElementById('view-login').classList.add('hidden');
-            document.getElementById('main-interface').classList.remove('hidden');
-            
-            // Étiquette sous le sceau
-            let roleDisplay = role === 'admin' ? "ADMINISTRATEUR" : (role === 'prosecutor' ? "PROCUREUR" : (role === 'visitor' ? "VISITEUR" : "AGENT"));
-            document.getElementById('user-tag').innerText = roleDisplay + " : " + username;
-            
-            const terminal = document.getElementById('terminal-frame');
+        // --- GESTION DES ACCÈS ---
 
-            if (role === "admin") {
-                document.getElementById('nav-admin').classList.remove('hidden');
-                terminal.src = "Terminal.html?role=admin";
-                refreshUserTable();
+        function loginSuccess(user) {
+            document.getElementById('view-login').style.display = 'none';
+            document.getElementById('view-main').style.display = 'flex';
+
+            document.getElementById('display-name').textContent = user.user_metadata.full_name || user.email.split('@')[0].toUpperCase();
+            
+            const roles = user.app_metadata.roles || [];
+            const roleDisplay = document.getElementById('display-role');
+
+            if (roles.includes('procureur')) {
+                roleDisplay.textContent = "Procureur de l'État";
+                roleDisplay.style.color = "#ef4444";
+                document.getElementById('group-procureur').style.display = 'block';
+                document.getElementById('group-police').style.display = 'block';
+            } else if (roles.includes('officier')) {
+                roleDisplay.textContent = "Officier Assermenté";
+                roleDisplay.style.color = "#2563eb";
+                document.getElementById('group-police').style.display = 'block';
             } else {
-                document.getElementById('nav-admin').classList.add('hidden');
-                terminal.src = "Terminal.html?role=" + role;
+                roleDisplay.textContent = "Agent de l'État";
+                roleDisplay.style.color = "#94a3b8";
             }
+            
+            switchTab('tab-codes', document.querySelector('.nav-item'));
         }
 
-        function showPage(id, btn) {
-            document.querySelectorAll('.page-content, iframe').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            
-            const target = document.getElementById(id);
-            if(target) target.classList.add('active');
+        // --- ACCÈS PUBLIC (CITOYEN) ---
+
+        function enterAsCitizen() {
+            document.getElementById('view-login').style.display = 'none';
+            document.getElementById('view-main').style.display = 'flex';
+
+            document.getElementById('display-name').textContent = "Citoyen de San Andreas";
+            const roleDisplay = document.getElementById('display-role');
+            roleDisplay.textContent = "Accès Public (Lecture seule)";
+            roleDisplay.style.color = "#94a3b8";
+
+            // On s'assure que tout le reste est bien caché
+            document.getElementById('group-police').style.display = 'none';
+            document.getElementById('group-procureur').style.display = 'none';
+            document.getElementById('logout-zone').textContent = "RETOURS À L'ACCUEIL";
+
+            switchTab('tab-codes', document.querySelector('.nav-item'));
+        }
+
+        // --- NAVIGATION ---
+
+        function switchTab(id, btn) {
+            document.querySelectorAll('iframe').forEach(i => i.classList.remove('visible'));
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('visible');
             btn.classList.add('active');
         }
 
-        // --- FONCTIONS ADMINISTRATEUR ---
-        function refreshUserTable() {
-            const body = document.getElementById('user-list-body');
-            body.innerHTML = `<tr>
-                <td><strong>${ADMIN_ID}</strong></td>
-                <td>********</td>
-                <td><span class="badge-admin" style="background: var(--danger);">ADMINISTRATEUR</span></td>
-                <td>-</td>
-            </tr>`;
-            
-            for (let id in users) {
-                // Gestion de la compatibilité pour l'affichage
-                let pass = typeof users[id] === "string" ? users[id] : users[id].pass;
-                let role = typeof users[id] === "string" ? "agent" : users[id].role;
-                
-                let badge = "";
-                if (role === "prosecutor") badge = `<span class="badge-admin" style="background: var(--warning); color: black;">PROCUREUR</span>`;
-                else badge = `<span class="badge-admin" style="background: var(--primary);">AGENT</span>`;
-
-                body.innerHTML += `<tr>
-                    <td>${id}</td>
-                    <td>${pass}</td>
-                    <td>${badge}</td>
-                    <td><button onclick="deleteUser('${id}')" style="color:var(--danger); background:none; border:none; cursor:pointer; font-weight:800;">RÉVOQUER</button></td>
-                </tr>`;
-            }
-        }
-
-        function addUser() {
-            const id = document.getElementById('new-id').value.trim();
-            const pass = document.getElementById('new-pass').value.trim();
-            const role = document.getElementById('new-role').value;
-
-            if(!id || !pass) return;
-            if(id === ADMIN_ID || id === GUEST_ID) { alert("Cet identifiant est réservé au système."); return; }
-            
-            // Enregistrement de l'objet contenant le mot de passe ET le rôle
-            users[id] = { pass: pass, role: role };
-            localStorage.setItem('sadoj_db', JSON.stringify(users));
-            
-            document.getElementById('new-id').value = ""; 
-            document.getElementById('new-pass').value = "";
-            refreshUserTable();
-            alert("Accès enregistré avec succès.");
-        }
-
-        function deleteUser(id) {
-            if(confirm("Confirmer la révocation de l'accès pour " + id + " ?")) {
-                delete users[id];
-                localStorage.setItem('sadoj_db', JSON.stringify(users));
-                refreshUserTable();
-            }
-        }
-
-        // --- PROTOCOLE DE SÉCURITÉ ---
+        // --- SÉCURITÉ ---
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', e => {
-            if (e.key === 'F12' || (e.ctrlKey && (e.key === 'u' || e.shiftKey && (e.key === 'I' || e.key === 'C')))) {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && (e.key === 'c' || e.key === 's' || e.key === 'p')) {
-                e.preventDefault();
-            }
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) e.preventDefault();
         });
     </script>
 </body>
