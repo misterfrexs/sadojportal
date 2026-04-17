@@ -82,7 +82,7 @@
         <div class="auth-box">
             <img src="https://i.imgur.com/Pf4XkWF.png" alt="SADOJ Logo">
             <h2>S.A.D.O.J. PORTAL</h2>
-            <p>Accès restreint & Archives publiques</p>
+            <p>Accès avec accréditation et accès citoyen</p>
             <input type="email" id="field-email" placeholder="Email de l'agent">
             <input type="password" id="field-pass" placeholder="Mot de passe">
             <button class="btn-login" onclick="handleAuth()">INITIALISER LA SESSION</button>
@@ -107,7 +107,6 @@
                     </div>
 
                     <div class="nav-label">S.A State Code (Public)</div>
-                    <button class="nav-item" onclick="switchTab('tab-cj', this)">⚖️ Code Juridictionnel</button>
                     <button class="nav-item" onclick="switchTab('tab-const', this)">📜 Déclaration Constitutionnelle</button>
                     <button class="nav-item" onclick="switchTab('tab-penal', this)">⚖️ Code Pénal</button>
                     <button class="nav-item" onclick="switchTab('tab-proc-penal', this)">⛓️ Code de Procédure Pénale</button>
@@ -119,6 +118,7 @@
                     <button class="nav-item" onclick="switchTab('tab-ruralite', this)">🌲 Code de la Ruralité</button>
                     <button class="nav-item" onclick="switchTab('tab-sanctions', this)">💰 Sanctions Pénales et Financières</button>
                     <button class="nav-item" onclick="switchTab('tab-niveau', this)">⚠️ Niveaux de Sécurité</button>
+                    <button class="nav-item" onclick="switchTab('tab-cj', this)">⚖️ Code Juridictionnel</button>
                 </nav>
             </div>
             <div id="logout-zone" class="btn-logout" onclick="logoutSession()">DÉCONNEXION</div>
@@ -223,7 +223,7 @@
             document.getElementById('display-name').textContent = "Citoyen";
             document.getElementById('display-role').textContent = "Accès Public";
             document.getElementById('group-secure').style.display = 'none';
-            document.getElementById('logout-zone').textContent = "RETOUR ACCUEIL";
+            document.getElementById('logout-zone').textContent = "RETOUR À L'ACCUEIL";
             // Affiche l'accueil par défaut
             switchTab('tab-accueil', document.querySelector('.nav-item.active'));
         }
