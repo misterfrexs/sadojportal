@@ -577,7 +577,7 @@
     
     const urlParams = new URLSearchParams(window.location.search);
     const role = urlParams.get('role');
-    const sigTitle = role === 'procureur' ? "Authorized Attorney" : "Officier en charge";
+    const sigTitle = role === 'procureur' ? "Authorized Attorney" : "Authorized Officer";
     const officierId = document.getElementById('officier-id').value || "";
     const displayId = role === 'procureur' ? "" : "Badge #" + officierId;
 
