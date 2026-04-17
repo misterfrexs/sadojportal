@@ -573,68 +573,78 @@
         }
 
         function genererCasierPDF() {
-            if(dossier.length === 0) { alert("Dossier vide."); return; }
-            
-            const officierN = document.getElementById('officier-nom').value || "N/A";
-            const officierId = document.getElementById('officier-id').value || ""; // Peut être vide pour le procureur
-            const nomS = document.getElementById('suspect-nom').value || "N/A";
-            const preS = document.getElementById('suspect-prenom').value || "N/A";
-            const idS = document.getElementById('suspect-id').value || "N/A";
-            const aT = document.getElementById('total-amende').innerText;
-            const tT = document.getElementById('total-temps').innerText;
-            const date = new Date().toLocaleDateString('fr-FR');
-            const authCode = "SAD0J-" + Math.random().toString(36).substr(2, 7).toUpperCase();
-            
-            const coopSelect = document.getElementById('cooperation-level');
-            const coopText = coopSelect.options[coopSelect.selectedIndex].text;
+    if(dossier.length === 0) { alert("Dossier vide."); return; }
+    
+    // --- DÉTECTION DU RÔLE POUR LE PDF ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const role = urlParams.get('role');
+    
+    // On définit le titre et la visibilité du matricule
+    const sigTitle = role === 'procureur' ? "Authorized Attorney" : "Officier en charge";
+    const officierId = document.getElementById('officier-id').value || "";
+    // Si c'est un procureur, on n'affiche pas le matricule sur le PDF
+    const displayId = role === 'procureur' ? "" : officierId;
+    // -------------------------------------
 
-            let bA = 0, bT = 0, perp = false;
-            dossier.forEach(i => { 
-                bA += i.amende; 
-                if (i.temps === 9999 || i.temps === "Perpétuité") perp = true; 
-                else bT += i.temps; 
-            });
+    const officierN = document.getElementById('officier-nom').value || "N/A";
+    const nomS = document.getElementById('suspect-nom').value || "N/A";
+    const preS = document.getElementById('suspect-prenom').value || "N/A";
+    const idS = document.getElementById('suspect-id').value || "N/A";
+    const aT = document.getElementById('total-amende').innerText;
+    const tT = document.getElementById('total-temps').innerText;
+    const date = new Date().toLocaleDateString('fr-FR');
+    const authCode = "SAD0J-" + Math.random().toString(36).substr(2, 7).toUpperCase();
+    
+    const coopSelect = document.getElementById('cooperation-level');
+    const coopText = coopSelect.options[coopSelect.selectedIndex].text;
 
-            const win = window.open('', '_blank');
-            win.document.write(`
-                <html>
-                <head>
-                    <title>Dossier ${authCode}</title>
-                    <style>
-                        body { font-family: 'Courier New', monospace; padding: 50px; } 
-                        .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 80px; color: rgba(0,0,0,0.05); font-weight: bold; pointer-events: none; } 
-                        .gov-header { text-align: center; border-bottom: 4px solid #000; padding-bottom: 10px; margin-bottom: 30px; } 
-                        .doc-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; } 
-                        .doc-table th, .doc-table td { padding: 8px; border: 1px solid #000; font-size: 13px; } 
-                        .title-bar { background: #000; color: #fff; padding: 5px 10px; font-weight: bold; margin-bottom: 10px; }
-                        .sig-line { margin-top: 60px; border-top: 1px solid #000; width: 300px; text-align: center; float: right; }
-                    </style>
-                </head>
-                <body onload="window.print();"> 
-                    <div class="watermark">CONFIDENTIEL</div> 
-                    <div class="gov-header"><p>STATE OF SAN ANDREAS - DOJ</p><h1>OFFICIAL CRIMINAL RECORD</h1></div> 
-                    <div style="display:flex; justify-content:space-between; margin-bottom:20px;"><span>DOSSIER: ${authCode}</span><span>DATE: ${date}</span></div> 
-                    <div class="title-bar">SECTION I - SUJET</div> 
-                    <table class="doc-table"><tr><th>NOM</th><th>PRÉNOM</th><th>ID</th></tr><tr><td>${nomS.toUpperCase()}</td><td>${preS}</td><td>${idS}</td></tr></table> 
-                    <div class="title-bar">SECTION II - INCULPATIONS</div> 
-                    <table class="doc-table"><tr><th>NATURE</th><th>AMENDE</th><th>PEINE</th></tr>
-                        ${dossier.map(i => `<tr><td>${i.nom}</td><td>${i.amende}$</td><td>${i.temps === 9999 ? "PERPÉTUITÉ" : i.temps + "m"}</td></tr>`).join('')}
-                    </table> 
-                    <div class="title-bar">SECTION III - VERDICT</div> 
-                    <table class="doc-table">
-                        <tr><td>Base: ${bA.toLocaleString()}$ / ${perp ? 'PERP' : bT + 'm'}</td><td>Modif: ${coopText}</td></tr>
-                        <tr><td><strong>TOTAL: ${aT}</strong></td><td><strong>PEINE: ${tT}</strong></td></tr>
-                    </table> 
-                    <div class="sig-line">
-                        <span style="font-family: 'Brush Script MT', cursive; font-size: 26px;">${officierN}</span><br>
-                        <span style="font-size: 11px; font-family: Arial;">${officierId}</span><br>
-                        <strong>${signatureTitle}</strong>
-                    </div>
-                </body>
-                </html>
-            `);
-            win.document.close();
-        }
+    let bA = 0, bT = 0, perp = false;
+    dossier.forEach(i => { 
+        bA += i.amende; 
+        if (i.temps === 9999 || i.temps === "Perpétuité") perp = true; 
+        else bT += i.temps; 
+    });
+
+    const win = window.open('', '_blank');
+    win.document.write(`
+        <html>
+        <head>
+            <title>Dossier ${authCode}</title>
+            <style>
+                body { font-family: 'Courier New', monospace; padding: 50px; } 
+                .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 80px; color: rgba(0,0,0,0.05); font-weight: bold; pointer-events: none; } 
+                .gov-header { text-align: center; border-bottom: 4px solid #000; padding-bottom: 10px; margin-bottom: 30px; } 
+                .doc-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; } 
+                .doc-table th, .doc-table td { padding: 8px; border: 1px solid #000; font-size: 13px; } 
+                .title-bar { background: #000; color: #fff; padding: 5px 10px; font-weight: bold; margin-bottom: 10px; }
+                .sig-line { margin-top: 60px; border-top: 1px solid #000; width: 300px; text-align: center; float: right; }
+            </style>
+        </head>
+        <body onload="window.print();"> 
+            <div class="watermark">CONFIDENTIEL</div> 
+            <div class="gov-header"><p>STATE OF SAN ANDREAS - DOJ</p><h1>OFFICIAL CRIMINAL RECORD</h1></div> 
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px;"><span>DOSSIER: ${authCode}</span><span>DATE: ${date}</span></div> 
+            <div class="title-bar">SECTION I - SUJET</div> 
+            <table class="doc-table"><tr><th>NOM</th><th>PRÉNOM</th><th>ID</th></tr><tr><td>${nomS.toUpperCase()}</td><td>${preS}</td><td>${idS}</td></tr></table> 
+            <div class="title-bar">SECTION II - INCULPATIONS</div> 
+            <table class="doc-table"><tr><th>NATURE</th><th>AMENDE</th><th>PEINE</th></tr>
+                ${dossier.map(i => `<tr><td>${i.nom}</td><td>${i.amende}$</td><td>${i.temps === 9999 ? "PERPÉTUITÉ" : i.temps + "m"}</td></tr>`).join('')}
+            </table> 
+            <div class="title-bar">SECTION III - VERDICT</div> 
+            <table class="doc-table">
+                <tr><td>Base: ${bA.toLocaleString()}$ / ${perp ? 'PERP' : bT + 'm'}</td><td>Modif: ${coopText}</td></tr>
+                <tr><td><strong>TOTAL: ${aT}</strong></td><td><strong>PEINE: ${tT}</strong></td></tr>
+            </table> 
+            <div class="sig-line">
+                <span style="font-family: 'Brush Script MT', cursive; font-size: 26px;">${officierN}</span><br>
+                <span style="font-size: 11px; font-family: Arial;">${displayId}</span><br>
+                <strong style="text-transform: uppercase;">${sigTitle}</strong>
+            </div>
+        </body>
+        </html>
+    `);
+    win.document.close();
+}
 
         // --- PROTOCOLE DE SÉCURITÉ ---
         document.addEventListener('contextmenu', e => e.preventDefault());
