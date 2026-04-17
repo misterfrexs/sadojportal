@@ -55,7 +55,20 @@
         .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
         .stat-card { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; border: 1px solid var(--border); }
 
-        .btn-logout { margin-top: auto; color: var(--danger); font-size: 0.8rem; font-weight: 800; text-align: center; padding: 15px; cursor: pointer; border-top: 1px solid var(--border); }
+        .btn-logout {
+            margin-top: auto;
+            color: var(--danger);
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-align: center;
+            padding: 15px;
+            cursor: pointer; /* Indispensable pour le clic */
+            border-top: 1px solid var(--border);
+            opacity: 0.8;
+            transition: 0.3s;
+            pointer-events: auto !important; /* Force la détection de la souris */
+            z-index: 100; /* S'assure qu'il n'est pas recouvert par un élément invisible */
+        }
     </style>
 </head>
 <body>
@@ -163,9 +176,20 @@
         netlifyIdentity.on('logout', () => window.location.reload());
 
         function logoutSession() {
-            if(netlifyIdentity.currentUser()) netlifyIdentity.logout();
-            else window.location.reload();
-        }
+    console.log("Déconnexion en cours...");
+    
+    // 1. Si un utilisateur Netlify est connecté, on le déconnecte proprement
+    if (netlifyIdentity.currentUser()) {
+        netlifyIdentity.logout();
+    } 
+
+    // 2. On force le rechargement immédiat de la page
+    // Cela réinitialise l'affichage (cache le portail, affiche le login)
+    setTimeout(() => {
+        // On recharge la page sans les paramètres d'URL (?role=...)
+        window.location.href = window.location.origin + window.location.pathname;
+    }, 100); 
+}
 
         function loginSuccess(user) {
             document.getElementById('view-login').style.display = 'none';
