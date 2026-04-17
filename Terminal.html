@@ -575,16 +575,11 @@
         function genererCasierPDF() {
     if(dossier.length === 0) { alert("Dossier vide."); return; }
     
-    // --- DÉTECTION DU RÔLE POUR LE PDF ---
     const urlParams = new URLSearchParams(window.location.search);
     const role = urlParams.get('role');
-    
-    // On définit le titre et la visibilité du matricule
-    const sigTitle = role === 'procureur' ? "Authorized Attorney" : "Authorized Officer";
+    const sigTitle = role === 'procureur' ? "Authorized Attorney" : "Officier en charge";
     const officierId = document.getElementById('officier-id').value || "";
-    // Si c'est un procureur, on n'affiche pas le matricule sur le PDF
-    const displayId = role === 'procureur' ? "" : officierId;
-    // -------------------------------------
+    const displayId = role === 'procureur' ? "" : "Badge #" + officierId;
 
     const officierN = document.getElementById('officier-nom').value || "N/A";
     const nomS = document.getElementById('suspect-nom').value || "N/A";
@@ -609,36 +604,120 @@
     win.document.write(`
         <html>
         <head>
-            <title>Dossier ${authCode}</title>
+            <title>Criminal Record - ${nomS}</title>
             <style>
-                body { font-family: 'Courier New', monospace; padding: 50px; } 
-                .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 80px; color: rgba(0,0,0,0.05); font-weight: bold; pointer-events: none; } 
-                .gov-header { text-align: center; border-bottom: 4px solid #000; padding-bottom: 10px; margin-bottom: 30px; } 
-                .doc-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; } 
-                .doc-table th, .doc-table td { padding: 8px; border: 1px solid #000; font-size: 13px; } 
-                .title-bar { background: #000; color: #fff; padding: 5px 10px; font-weight: bold; margin-bottom: 10px; }
-                .sig-line { margin-top: 60px; border-top: 1px solid #000; width: 300px; text-align: center; float: right; }
+                @import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39&family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+                
+                body { font-family: 'Roboto', sans-serif; padding: 40px; color: #1a1a1a; line-height: 1.4; }
+                .page-border { border: 2px solid #000; padding: 20px; min-height: 90vh; position: relative; }
+                
+                /* HEADER */
+                .gov-header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 25px; position: relative; }
+                .gov-header img { width: 80px; position: absolute; left: 0; top: 0; }
+                .gov-header p { margin: 0; font-weight: 700; font-size: 14px; letter-spacing: 2px; }
+                .gov-header h1 { margin: 5px 0; font-family: 'Playfair Display', serif; font-size: 28px; text-transform: uppercase; }
+                
+                .meta-info { display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+
+                /* SECTIONS */
+                .section-title { background: #1e293b; color: #fff; padding: 6px 12px; font-size: 13px; font-weight: 700; text-transform: uppercase; margin-top: 20px; letter-spacing: 1px; }
+                
+                .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 10px 0; border: 1px solid #000; }
+                .info-item { padding: 10px; border-right: 1px solid #eee; }
+                .info-item:last-child { border-right: none; }
+                .label { display: block; font-size: 10px; color: #666; text-transform: uppercase; font-weight: 700; }
+                .value { display: block; font-size: 14px; font-weight: 700; margin-top: 2px; }
+
+                /* TABLE */
+                .doc-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+                .doc-table th { background: #f1f5f9; text-align: left; padding: 10px; font-size: 11px; border: 1px solid #000; }
+                .doc-table td { padding: 10px; border: 1px solid #000; font-size: 12px; }
+                
+                .verdict-box { margin-top: 20px; border: 2px solid #000; display: flex; }
+                .verdict-item { flex: 1; padding: 15px; text-align: center; border-right: 1px solid #000; }
+                .verdict-item:last-child { border-right: none; background: #f8fafc; }
+                .total-val { font-size: 18px; font-weight: 800; color: #000; }
+
+                /* SIGNATURE & AUTH */
+                .footer { margin-top: 50px; display: flex; justify-content: space-between; align-items: flex-end; }
+                .barcode { font-family: 'Libre Barcode 39', cursive; font-size: 40px; }
+                .sig-block { text-align: center; width: 250px; }
+                .sig-line { border-top: 1px solid #000; padding-top: 5px; margin-top: 10px; }
+                .sig-name { font-family: 'Brush Script MT', cursive; font-size: 24px; }
+
+                .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 100px; color: rgba(0,0,0,0.03); font-weight: 900; pointer-events: none; z-index: -1; white-space: nowrap; }
             </style>
         </head>
         <body onload="window.print();"> 
-            <div class="watermark">CONFIDENTIEL</div> 
-            <div class="gov-header"><p>STATE OF SAN ANDREAS - DOJ</p><h1>OFFICIAL CRIMINAL RECORD</h1></div> 
-            <div style="display:flex; justify-content:space-between; margin-bottom:20px;"><span>DOSSIER: ${authCode}</span><span>DATE: ${date}</span></div> 
-            <div class="title-bar">SECTION I - SUJET</div> 
-            <table class="doc-table"><tr><th>NOM</th><th>PRÉNOM</th><th>ID</th></tr><tr><td>${nomS.toUpperCase()}</td><td>${preS}</td><td>${idS}</td></tr></table> 
-            <div class="title-bar">SECTION II - CHEFS D'INCULPATIONS</div> 
-            <table class="doc-table"><tr><th>NATURE</th><th>AMENDE</th><th>PEINE</th></tr>
-                ${dossier.map(i => `<tr><td>${i.nom}</td><td>${i.amende}$</td><td>${i.temps === 9999 ? "PERPÉTUITÉ" : i.temps + "m"}</td></tr>`).join('')}
-            </table> 
-            <div class="title-bar">SECTION III - VERDICT</div> 
-            <table class="doc-table">
-                <tr><td>Base: ${bA.toLocaleString()}$ / ${perp ? 'PERP' : bT + 'm'}</td><td>Modif: ${coopText}</td></tr>
-                <tr><td><strong>TOTAL: ${aT}</strong></td><td><strong>PEINE: ${tT}</strong></td></tr>
-            </table> 
-            <div class="sig-line">
-                <span style="font-family: 'Brush Script MT', cursive; font-size: 26px;">${officierN}</span><br>
-                <span style="font-size: 11px; font-family: Arial;">${displayId}</span><br>
-                <strong style="text-transform: uppercase;">${sigTitle}</strong>
+            <div class="page-border">
+                <div class="watermark">STATE OF SAN ANDREAS</div> 
+                
+                <div class="gov-header">
+                    <img src="https://i.imgur.com/Pf4XkWF.png" alt="Seal">
+                    <p>DEPARTMENT OF JUSTICE • STATE OF SAN ANDREAS</p>
+                    <h1>Official Criminal History Record</h1>
+                </div> 
+
+                <div class="meta-info">
+                    <span>DOCUMENT ID: ${authCode}</span>
+                    <span>ISSUED ON: ${date}</span>
+                </div> 
+
+                <div class="section-title">Section I - Personal Identification</div> 
+                <div class="info-grid">
+                    <div class="info-item"><span class="label">Last Name</span><span class="value">${nomS.toUpperCase()}</span></div>
+                    <div class="info-item"><span class="label">First Name</span><span class="value">${preS}</span></div>
+                    <div class="info-item"><span class="label">SSN / ID</span><span class="value">#${idS}</span></div>
+                </div>
+
+                <div class="section-title">Section II - Criminal Offenses & Charges</div> 
+                <table class="doc-table">
+                    <thead>
+                        <tr>
+                            <th>STATUTE / OFFENSE DESCRIPTION</th>
+                            <th>PENALTY</th>
+                            <th>MANDATORY SENTENCE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${dossier.map(i => `
+                            <tr>
+                                <td>${i.nom}</td>
+                                <td>${i.amende.toLocaleString()}$</td>
+                                <td>${i.temps === 9999 ? "LIFE IMPRISONMENT" : i.temps + " Months"}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table> 
+
+                <div class="section-title">Section III - Final Disposition & Verdict</div> 
+                <div class="verdict-box">
+                    <div class="verdict-item">
+                        <span class="label">Cooperation Level</span>
+                        <span class="value">${coopText}</span>
+                    </div>
+                    <div class="verdict-item">
+                        <span class="label">Total Fine Accrued</span>
+                        <span class="total-val">${aT}</span>
+                    </div>
+                    <div class="verdict-item">
+                        <span class="label">Total Sentence Served</span>
+                        <span class="total-val">${tT}</span>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <div>
+                        <div class="barcode">${authCode}</div>
+                        <span style="font-size: 8px; font-weight: bold;">SECURITY VERIFICATION SYSTEM • SAN ANDREAS DOJ</span>
+                    </div>
+                    <div class="sig-block">
+                        <span class="sig-name">${officierN}</span>
+                        <div class="sig-line"></div>
+                        <span style="font-size: 11px; font-weight: bold; text-transform: uppercase; color: #333;">${sigTitle}</span><br>
+                        <span style="font-size: 10px; color: #666;">${displayId}</span>
+                    </div>
+                </div>
             </div>
         </body>
         </html>
