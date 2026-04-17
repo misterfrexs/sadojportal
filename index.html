@@ -205,27 +205,26 @@
         }
 
         function switchTab(id, btn) {
-    const target = document.getElementById(id);
-    if (!target) return;
+            const target = document.getElementById(id);
+            if (!target) return;
 
-    // --- NOUVEAU : On envoie le rôle au Terminal quand on l'ouvre ---
-    if (id === 'tab-terminal') {
-        const user = netlifyIdentity.currentUser();
-        if (user) {
-            const roles = [...(user.app_metadata.roles || []), ...(user.user_metadata.roles || [])].map(r => r.toLowerCase());
-            const roleParam = roles.includes('procureur') ? 'procureur' : 'officier';
-            // On recharge l'iframe avec le paramètre de rôle
-            target.src = "Terminal.html?role=" + roleParam;
+            // --- TRANSMISSION DU RÔLE AU TERMINAL ---
+            if (id === 'tab-terminal') {
+                const user = netlifyIdentity.currentUser();
+                if (user) {
+                    const roles = user.app_metadata.roles || [];
+                    // On envoie le rôle dans l'adresse du Terminal
+                    const roleParam = roles.includes('procureur') ? 'procureur' : 'officier';
+                    target.src = "Terminal.html?role=" + roleParam;
+                }
+            }
+            // ---------------------------------------
+
+            document.querySelectorAll('.page-content, iframe').forEach(i => i.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+            target.classList.add('active');
+            btn.classList.add('active');
         }
-    }
-    // ---------------------------------------------------------------
-
-    document.querySelectorAll('.page-content, iframe').forEach(i => i.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-    
-    target.classList.add('active');
-    btn.classList.add('active');
-}
 
         document.addEventListener('contextmenu', e => e.preventDefault());
     </script>

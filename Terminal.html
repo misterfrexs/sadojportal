@@ -694,5 +694,36 @@
         setTimeout(adaptTerminalToRole, 500);
     });
 </script>
+<script>
+    function applyProcureurMode() {
+        // On vérifie si l'adresse contient "?role=procureur"
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('role') === 'procureur') {
+            
+            // 1. Remplacer "OFFICIER EN CHARGE" par "PROCUREUR EN CHARGE"
+            // On cherche partout dans la page
+            const elements = document.querySelectorAll('h1, h2, h3, h4, label, span, p, td');
+            elements.forEach(el => {
+                if (el.innerText.toUpperCase().includes("OFFICIER EN CHARGE")) {
+                    el.innerText = el.innerText.replace(/OFFICIER EN CHARGE/i, "PROCUREUR EN CHARGE");
+                }
+                
+                // 2. Cacher le "Matricule"
+                if (el.innerText.includes("Matricule")) {
+                    el.style.display = 'none'; // Cache le texte "Matricule"
+                    
+                    // Cache aussi la case de saisie juste après
+                    if (el.nextElementSibling) {
+                        el.nextElementSibling.style.display = 'none';
+                    }
+                }
+            });
+            console.log("Terminal : Mode Procureur activé (Texte modifié + Matricule masqué)");
+        }
+    }
+
+    // On lance la fonction dès que le Terminal finit de charger
+    window.onload = applyProcureurMode;
+</script>
 </body>
 </html>
