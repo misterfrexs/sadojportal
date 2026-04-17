@@ -580,7 +580,7 @@
     const role = urlParams.get('role');
     
     // On définit le titre et la visibilité du matricule
-    const sigTitle = role === 'procureur' ? "Authorized Attorney" : "Officier en charge";
+    const sigTitle = role === 'procureur' ? "Authorized Attorney" : "Authorized Officer";
     const officierId = document.getElementById('officier-id').value || "";
     // Si c'est un procureur, on n'affiche pas le matricule sur le PDF
     const displayId = role === 'procureur' ? "" : officierId;
@@ -626,7 +626,7 @@
             <div style="display:flex; justify-content:space-between; margin-bottom:20px;"><span>DOSSIER: ${authCode}</span><span>DATE: ${date}</span></div> 
             <div class="title-bar">SECTION I - SUJET</div> 
             <table class="doc-table"><tr><th>NOM</th><th>PRÉNOM</th><th>ID</th></tr><tr><td>${nomS.toUpperCase()}</td><td>${preS}</td><td>${idS}</td></tr></table> 
-            <div class="title-bar">SECTION II - INCULPATIONS</div> 
+            <div class="title-bar">SECTION II - CHEFS D'INCULPATIONS</div> 
             <table class="doc-table"><tr><th>NATURE</th><th>AMENDE</th><th>PEINE</th></tr>
                 ${dossier.map(i => `<tr><td>${i.nom}</td><td>${i.amende}$</td><td>${i.temps === 9999 ? "PERPÉTUITÉ" : i.temps + "m"}</td></tr>`).join('')}
             </table> 
