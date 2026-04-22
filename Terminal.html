@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+      <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -56,10 +57,9 @@
             <input type="text" id="nom" placeholder="NOM">
             <input type="text" id="procureur" placeholder="Nom et Prénom du Procureur">
             <select id="modifier" class="modifier-select" onchange="updateReport()">
-                <option value="1.0">Coopération : Standard (100%)</option>
-                <option value="0.75">Coopération : Excellente (-25%)</option>
-                <option value="1.25">Coopération : Nulle (+25%)</option>
-                <option value="1.50">État : Récidive (+50%)</option>
+                <option value="1.0">Standard</option>
+                <option value="0.75">Très coopératif</option>
+                <option value="1.25">Non coopératif</option>
             </select>
         </div>
 
@@ -320,7 +320,10 @@
             // Mapping des variables pour ton template
             const nomS = document.getElementById('nom').value.trim() || "INCONNU";
             const preS = document.getElementById('prenom').value.trim() || "Inconnu";
-            const procureurN = document.getElementById('Nom et Prénom du Procureur').value.trim() || "Procureur";
+            
+            // CORRECTION ICI : ID "procureur" au lieu de "Nom et Prénom du Procureur"
+            const procureurN = document.getElementById('procureur').value.trim() || "Procureur";
+            
             const aT = document.getElementById('total-fine').innerText;
             const tT = document.getElementById('total-time').innerText;
             const authCode = "DOJ-" + Math.floor(100000 + Math.random() * 900000);
@@ -472,4 +475,4 @@
         filterInfractions();
     </script>
 </body>
-</html>
+</html> 
