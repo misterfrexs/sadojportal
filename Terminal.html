@@ -1,5 +1,4 @@
-
-      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -41,25 +40,25 @@
 <body>
 
     <div class="left-panel">
-        <h2 style="margin:0 0 10px 0; font-size:1.1rem; letter-spacing: 1px;">📂 TERMINAL : OFFICIAL CRIMINAL RECORD</h2>
+        <h2 style="margin:0 0 10px 0; font-size:1.1rem; letter-spacing: 1px;">📂 TERMINAL JUDICIAIRE</h2>
         <input type="text" id="searchInput" placeholder="Chercher un délit, crime ou article..." onkeyup="filterInfractions()">
         <div id="list" class="infractions-list"></div>
     </div>
 
     <div class="right-panel">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-            <h2 style="margin:0; font-size:1.1rem;">📑 PROCÉDURE PÉNALE</h2>
+            <h2 style="margin:0; font-size:1.1rem;">📑 OFFICIAL CRIMINAL RECORD</h2>
             <span style="font-size:0.6rem; background:rgba(34, 197, 94, 0.2); color:#22c55e; padding:3px 8px; border-radius:10px; font-weight:800;">FLUX DISCORD ACTIF</span>
         </div>
         
         <div class="civil-info">
-            <input type="text" id="prenom" placeholder="Prénom">
-            <input type="text" id="nom" placeholder="NOM">
+            <input type="text" id="prenom" placeholder="Prénom de l'individu">
+            <input type="text" id="nom" placeholder="Nom de l'individu">
             <input type="text" id="procureur" placeholder="Prénom et Nom du Procureur">
             <select id="modifier" class="modifier-select" onchange="updateReport()">
                 <option value="1.0">Standard</option>
-                <option value="0.75">Très coopératif</option>
-                <option value="1.25">Non coopératif</option>
+                <option value="0.75">Coopératif</option>
+                <option value="1.25">Non ccopératif</option>
             </select>
         </div>
 
@@ -88,14 +87,13 @@
 
         // --- BASE DE DONNÉES OFFICIELLE COMPLÈTE ---
         const bdd = {
-            // ================== CATÉGORIE 1 : INFRACTIONS (LV1) ==================
             "c1_1": { nom: "911 Raccroché", cat: "LV1", amende: 500, temps: 0, art: "CP-Art 2-1.7", type: "fixe" },
             "c1_2": { nom: "Dissimulation du visage", cat: "LV1", amende: 500, temps: 5, art: "CP-Art 3-1.1", type: "fixe" },
             "c1_3": { nom: "Attroupement illégal", cat: "LV1", amende: 500, temps: 10, art: "CP-Art 3-1.2", type: "fixe" },
-            "c1_4": { nom: "Ivresse sur la voie publique", cat: "LV1", amende: 1000, temps: 15, art: "CP-Art 3-1.4", type: "fixe", note: "Cellule de dégrisement" },
-            "c1_5": { nom: "Mendicité", cat: "LV1", amende: 80, temps: 0, art: "CP-Art 3-1.5", type: "fixe", note: "Rappel à la loi" },
+            "c1_4": { nom: "Ivresse sur la voie publique", cat: "LV1", amende: 1000, temps: 15, art: "CP-Art 3-1.4", type: "fixe" },
+            "c1_5": { nom: "Mendicité", cat: "LV1", amende: 80, temps: 0, art: "CP-Art 3-1.5", type: "fixe" },
             "c1_6": { nom: "Dégradation de la nature", cat: "LV1", amende: 500, temps: 5, art: "CP-Art 4-1.3", type: "fixe" },
-            "c1_7": { nom: "Stationnement illégal ou gênant", cat: "LV1", amende: 500, temps: 5, art: "CP-Art 3-2.0", type: "fixe", note: "Mise en fourrière" },
+            "c1_7": { nom: "Stationnement illégal ou gênant", cat: "LV1", amende: 500, temps: 5, art: "CP-Art 3-2.0", type: "fixe" },
             "c1_8": { 
                 nom: "Non-respect d'un feu rouge", cat: "LV1", art: "CP-Art 3-1.8", type: "code",
                 options: [
@@ -151,7 +149,6 @@
             "c1_16": { nom: "Port, transport ou détention d'armes (Catégorie D1)", cat: "LV1", amende: 1800, temps: 10, art: "CRA-Art 2-1.9", type: "fixe" },
             "c1_17": { nom: "Utilisation d'une arme sans autorisation (Catégorie D1)", cat: "LV1", amende: 2000, temps: 15, art: "CRA-Art 2-1.2", type: "fixe" },
 
-            // ================== CATÉGORIE 2 : DÉLITS MINEURS (LV2) ==================
             "c2_m_1": { nom: "Port, transport ou détention d'arme (Catégorie A2)", cat: "LV2", amende: 1500, temps: 10, art: "CRA-Art 2-1.10", type: "fixe" },
             "c2_m_2": { nom: "Port, transport ou détention d'arme (Catégorie B2)", cat: "LV2", amende: 2200, temps: 20, art: "CRA-Art 2-1.11", type: "fixe" },
             "c2_m_3": { nom: "Non-respect procédure de cession/destruction", cat: "LV2", amende: 1450, temps: 15, art: "CRA-Art 3-1.3", type: "fixe" },
@@ -188,13 +185,12 @@
             "c2_m_28": { nom: "Escroquerie", cat: "LV2", amende: 1480, temps: 5, art: "CP-Art 6-2.3", type: "fixe" },
             "c2_m_29": { nom: "Dégradation de biens (tiers)", cat: "LV2", amende: 2000, temps: 10, art: "CP-Art 6-2.4", type: "fixe" },
             "c2_m_30": { nom: "Incendie volontaire", cat: "LV2", amende: 1500, temps: 10, art: "CP-Art 6-2.5", type: "fixe" },
-            "c2_m_31": { nom: "Détention d'alcool prohibé (revente)", cat: "LV2", amende: 200, temps: 15, art: "CP-Art 7-2.4", type: "fixe", note: "Amende par unité" },
+            "c2_m_31": { nom: "Détention d'alcool prohibé (revente)", cat: "LV2", amende: 200, temps: 15, art: "CP-Art 7-2.4", type: "fixe" },
             "c2_m_32": { nom: "Association de malfaiteurs", cat: "LV2", amende: 1300, temps: 20, art: "CP-Art 8-1.1", type: "fixe" },
             "c2_m_33": { nom: "Détention de substances illicites", cat: "LV2", amende: 800, temps: 10, art: "CP-Art 7-2.1", type: "fixe" },
             "c2_m_34": { nom: "La sous-location illicite", cat: "LV2", amende: 1500, temps: 15, art: "CP-Art 6-3.1", type: "fixe" },
 
-            // ================== CATÉGORIE 2 : DÉLITS MAJEURS (LV3) ==================
-            "c2_maj_1": { nom: "La sous-location illicite", cat: "LV3", amende: 2500, temps: 20, art: "CP-Art 6-3.1", type: "fixe", note: "Peine d'incarcération" },
+            "c2_maj_1": { nom: "La sous-location illicite", cat: "LV3", amende: 2500, temps: 20, art: "CP-Art 6-3.1", type: "fixe" },
             "c2_maj_2": { nom: "Port, transport ou détention d'arme (Catégorie B1)", cat: "LV3", amende: 2800, temps: 25, art: "CRA-Art 2-1.12", type: "fixe" },
             "c2_maj_3": { nom: "Port, transport ou détention d'arme (Catégorie C)", cat: "LV3", amende: 2400, temps: 15, art: "CRA-Art 2-1.14", type: "fixe" },
             "c2_maj_4": { nom: "Détention ou entreposage d’armes/munitions hors cadre", cat: "LV3", amende: 3000, temps: 30, art: "CRA-Art 3-1.13", type: "fixe" },
@@ -202,41 +198,40 @@
                 nom: "Usage inapproprié ou abusif d’une arme de service", cat: "LV3", art: "CRA-Art 4-1.10", type: "code",
                 options: [
                     { label: "Base", amende: 2500, temps: 25 },
-                    { label: "Si blessure ou décès (x2)", amende: 5000, temps: 35 }
+                    { label: "Si blessure ou décès", amende: 5000, temps: 35 }
                 ]
             },
             "c2_maj_6": { nom: "Abus de pouvoir", cat: "LV3", amende: 11200, temps: 30, art: "CP-Art 2-1.1", type: "fixe" },
-            "c2_maj_7": { nom: "Tentative de corruption / Corruption", cat: "LV3", amende: 10000, temps: 35, art: "CP-Art 2-1.2", type: "fixe", note: "Prévenir agence fédérale" },
+            "c2_maj_7": { nom: "Tentative de corruption / Corruption", cat: "LV3", amende: 10000, temps: 35, art: "CP-Art 2-1.2", type: "fixe" },
             "c2_maj_8": { nom: "Obstruction à la justice", cat: "LV3", amende: 7500, temps: 30, art: "CP-Art 2-1.8", type: "fixe" },
             "c2_maj_9": { nom: "Outrage à la justice", cat: "LV3", amende: 15000, temps: 40, art: "CP-Art 2-1-9", type: "fixe" },
             "c2_maj_10": { nom: "Faux et usage de faux", cat: "LV3", amende: 8000, temps: 20, art: "CP-Art 2-1.10", type: "fixe" },
             "c2_maj_11": { nom: "Agression majeure", cat: "LV3", amende: 3500, temps: 20, art: "CP-Art 5-1.2", type: "fixe" },
             "c2_maj_12": { nom: "Homicide involontaire", cat: "LV3", amende: 10000, temps: 25, art: "CP-Art 5-2.4", type: "fixe" },
-            "c2_maj_13": { nom: "Agression sexuelle", cat: "LV3", amende: 5000, temps: 999, art: "CP-Art 5-3.1", type: "fixe", note: "Perpétuité - Prévenir Washington D.C" },
+            "c2_maj_13": { nom: "Agression sexuelle", cat: "LV3", amende: 5000, temps: 999, art: "CP-Art 5-3.1", type: "fixe" },
             "c2_maj_14": { nom: "Prostitution", cat: "LV3", amende: 8000, temps: 25, art: "CP-Art 5-3.4", type: "fixe" },
             "c2_maj_15": { nom: "Recel", cat: "LV3", amende: 10000, temps: 30, art: "CP-Art 6-1.2", type: "fixe" },
-            "c2_maj_16": { nom: "Braquage Fleeca Bank", cat: "LV3", amende: 12000, temps: 45, art: "CP-Art 6-1.3", type: "fixe", note: "Saisie des gains et armes" },
-            "c2_maj_17": { nom: "Braquage de Bijouterie", cat: "LV3", amende: 18000, temps: 60, art: "CP-Art 6-1.3", type: "fixe", note: "Saisie des gains et armes" },
-            "c2_maj_18": { nom: "Braquage de Supérette", cat: "LV3", amende: 2580, temps: 20, art: "CP-Art 6-1.3", type: "fixe", note: "Saisie des gains et armes" },
-            "c2_maj_19": { nom: "Braquage Pacific Standard", cat: "LV3", amende: 20000, temps: 60, art: "CP-Art 6-1.3", type: "fixe", note: "Saisie des gains et armes" },
+            "c2_maj_16": { nom: "Braquage Fleeca Bank", cat: "LV3", amende: 12000, temps: 45, art: "CP-Art 6-1.3", type: "fixe" },
+            "c2_maj_17": { nom: "Braquage de Bijouterie", cat: "LV3", amende: 18000, temps: 60, art: "CP-Art 6-1.3", type: "fixe" },
+            "c2_maj_18": { nom: "Braquage de Supérette", cat: "LV3", amende: 2580, temps: 20, art: "CP-Art 6-1.3", type: "fixe" },
+            "c2_maj_19": { nom: "Braquage Pacific Standard", cat: "LV3", amende: 20000, temps: 60, art: "CP-Art 6-1.3", type: "fixe" },
             "c2_maj_20": { nom: "Extorsion", cat: "LV3", amende: 12500, temps: 20, art: "CP-Art 6-2.1", type: "fixe" },
-            "c2_maj_21": { nom: "Exhibition d'armes", cat: "LV3", amende: 10000, temps: 20, art: "CP-Art 7-1.1", type: "fixe", note: "Saisie de l'arme" },
-            "c2_maj_22": { nom: "Possession d'une arme illégalement modifiée", cat: "LV3", amende: 10000, temps: 15, art: "CP-Art 7-1.4", type: "fixe", note: "Saisie de l'arme" },
-            "c2_maj_23": { nom: "Possession d'un fusil de précision à lunette", cat: "LV3", amende: 20000, temps: 20, art: "CP-Art 7-1.6", type: "fixe", note: "Saisie de l'arme" },
+            "c2_maj_21": { nom: "Exhibition d'armes", cat: "LV3", amende: 10000, temps: 20, art: "CP-Art 7-1.1", type: "fixe" },
+            "c2_maj_22": { nom: "Possession d'une arme illégalement modifiée", cat: "LV3", amende: 10000, temps: 15, art: "CP-Art 7-1.4", type: "fixe" },
+            "c2_maj_23": { nom: "Possession d'un fusil de précision à lunette", cat: "LV3", amende: 20000, temps: 20, art: "CP-Art 7-1.6", type: "fixe" },
             "c2_maj_24": { nom: "Détention de substances illicites (revente)", cat: "LV3", amende: 1080, temps: 15, art: "CP-Art 7-2.2", type: "fixe" },
-            "c2_maj_25": { nom: "Entrave au droit de succession", cat: "LV3", amende: 0, temps: 0, art: "CP-Art 6-2.6", type: "fixe", note: "Cour de Justice / Amende 100% de la somme" },
+            "c2_maj_25": { nom: "Entrave au droit de succession", cat: "LV3", amende: 0, temps: 0, art: "CP-Art 6-2.6", type: "fixe" },
             "c2_maj_26": { nom: "Intrusion dans une institution publique", cat: "LV3", amende: 25000, temps: 30, art: "CP-Art 2-2.6", type: "fixe" },
 
-            // ================== CATÉGORIE 3 : CRIMES FÉDÉRAUX (LV4) ==================
             "c3_1": { nom: "Séquestration", cat: "LV4", amende: 30000, temps: 20, art: "CP-Art 5-1.4", type: "fixe" },
             "c3_2": { 
                 nom: "Prise d’otage", cat: "LV4", art: "CP-Art 5-1.5", type: "code",
                 options: [
                     { label: "Base", amende: 20000, temps: 15 },
-                    { label: "Victime agent d'autorité publique", amende: 22000, temps: 25 },
+                    { label: "Victime agent d'autorité", amende: 22000, temps: 25 },
                     { label: "Usage d'armes/explosifs", amende: 23000, temps: 35 },
                     { label: ">2h ou >3 victimes", amende: 24000, temps: 30 },
-                    { label: "Bâtiment public ou lieu officiel", amende: 25000, temps: 25 },
+                    { label: "Bâtiment public", amende: 25000, temps: 25 },
                     { label: "Organisation en bande", amende: 26000, temps: 35 }
                 ]
             },
@@ -244,18 +239,18 @@
             "c3_4": { nom: "Exhibition", cat: "LV4", amende: 7500, temps: 25, art: "CP-Art 5-3.5", type: "fixe" },
             "c3_5": { nom: "Tentative d'homicide", cat: "LV4", amende: 15000, temps: 30, art: "CP-Art 5-2.3", type: "fixe" },
             "c3_6": { nom: "Meurtre avec préméditation", cat: "LV4", amende: 45000, temps: 40, art: "CP-Art 5-2.4", type: "fixe" },
-            "c3_7": { nom: "Viol", cat: "LV4", amende: 50000, temps: 999, art: "CP-Art 5-3.2", type: "fixe", note: "Perpétuité - Prévenir Washington D.C" },
-            "c3_8": { nom: "Proxénétisme", cat: "LV4", amende: 25000, temps: 25, art: "CP-Art 5-3.3", type: "fixe", note: "Prévenir agence fédérale" },
-            "c3_9": { nom: "Port, transport ou détention d'arme (Catégorie A1)", cat: "LV4", amende: 32000, temps: 45, art: "CRA Art 2-1.13", type: "fixe", note: "Prévenir agence fédérale" },
-            "c3_10": { nom: "Direction d'un groupement de trafic d'armes", cat: "LV4", amende: 60000, temps: 40, art: "CRA Art 3-1.10", type: "fixe", note: "Prévenir agence fédérale" },
-            "c3_11": { nom: "Fabrication d'arme illégale ou vente", cat: "LV4", amende: 58976, temps: 40, art: "CRA Art 3-1.11", type: "fixe", note: "Prévenir agence fédérale" },
-            "c3_12": { nom: "Trafic d'armes (>19 unités)", cat: "LV4", amende: 75760, temps: 40, art: "CRA Art 3-1.12", type: "fixe", note: "Prévenir agence fédérale" },
+            "c3_7": { nom: "Viol", cat: "LV4", amende: 50000, temps: 999, art: "CP-Art 5-3.2", type: "fixe" },
+            "c3_8": { nom: "Proxénétisme", cat: "LV4", amende: 25000, temps: 25, art: "CP-Art 5-3.3", type: "fixe" },
+            "c3_9": { nom: "Port, transport ou détention d'arme (Catégorie A1)", cat: "LV4", amende: 32000, temps: 45, art: "CRA Art 2-1.13", type: "fixe" },
+            "c3_10": { nom: "Direction d'un groupement de trafic d'armes", cat: "LV4", amende: 60000, temps: 40, art: "CRA Art 3-1.10", type: "fixe" },
+            "c3_11": { nom: "Fabrication d'arme illégale ou vente", cat: "LV4", amende: 58976, temps: 40, art: "CRA Art 3-1.11", type: "fixe" },
+            "c3_12": { nom: "Trafic d'armes (>19 unités)", cat: "LV4", amende: 75760, temps: 40, art: "CRA Art 3-1.12", type: "fixe" },
             "c3_13": { nom: "Utilisation d'arme contre un agent de l'État", cat: "LV4", amende: 38900, temps: 35, art: "CP-Art 7-1.9", type: "fixe" },
-            "c3_14": { nom: "Trafic de stupéfiants", cat: "LV4", amende: 0, temps: 30, art: "CP-Art 7-2.3", type: "fixe", note: "Amende Variable (Weed 30/u, Meth 100/u, Coca 130/u)" },
-            "c3_15": { nom: "Blanchiment d'argent", cat: "LV4", amende: 15000, temps: 30, art: "CP-Art 8-1.2", type: "fixe", note: "Prévenir agence fédérale" },
-            "c3_16": { nom: "Sédition", cat: "LV4", amende: 80000, temps: 35, art: "CP-Art 8-1.3", type: "fixe", note: "Prévenir agence fédérale" },
-            "c3_17": { nom: "Violation de surveillance électronique", cat: "LV4", amende: 0, temps: 0, art: "CP-Art 8-2.1", type: "fixe", note: "Sur décision Cour de Justice" },
-            "c3_18": { nom: "Fraude fiscale", cat: "LV4", amende: 0, temps: 30, art: "CP-Art 8-2.2", type: "fixe", note: "Montant dérobé + 5% pénalité. Si > 1M, temps: 00:50." },
+            "c3_14": { nom: "Trafic de stupéfiants", cat: "LV4", amende: 10000, temps: 30, art: "CP-Art 7-2.3", type: "fixe" },
+            "c3_15": { nom: "Blanchiment d'argent", cat: "LV4", amende: 15000, temps: 30, art: "CP-Art 8-1.2", type: "fixe" },
+            "c3_16": { nom: "Sédition", cat: "LV4", amende: 80000, temps: 35, art: "CP-Art 8-1.3", type: "fixe" },
+            "c3_17": { nom: "Violation de surveillance électronique", cat: "LV4", amende: 0, temps: 0, art: "CP-Art 8-2.1", type: "fixe" },
+            "c3_18": { nom: "Fraude fiscale", cat: "LV4", amende: 15000, temps: 30, art: "CP-Art 8-2.2", type: "fixe" },
             "c3_19": { 
                 nom: "Trafic d’organes", cat: "LV4", art: "CP-Art 8-2.3", type: "code",
                 options: [
@@ -266,12 +261,12 @@
                     { label: "Moyens violents / Coercition", amende: 33890, temps: 60 }
                 ]
             },
-            "c3_20": { nom: "Terrorisme", cat: "LV4", amende: 400000, temps: 999, art: "CP-Art 8-1.4", type: "fixe", note: "Perpétuité - Prévenir Washington D.C" },
-            "c3_21": { nom: "Traite Humaine", cat: "LV4", amende: 320700, temps: 999, art: "CP-Art 8-1.5", type: "fixe", note: "Perpétuité - Prévenir agence fédérale" },
-            "c3_22": { nom: "Évasion", cat: "LV4", amende: 100000, temps: 50, art: "CP-Art 8-1.6", type: "fixe", note: "Prévenir agence fédérale" },
-            "c3_23": { nom: "Conspiration", cat: "LV4", amende: 479000, temps: 999, art: "CP-Art 8-1.7", type: "fixe", note: "Perpétuité - Prévenir agence fédérale" },
-            "c3_24": { nom: "Viol de la Constitution", cat: "LV4", amende: 500000, temps: 999, art: "CP-Art 8-1.8", type: "fixe", note: "Perpétuité - Prévenir agence fédérale" },
-            "c3_25": { nom: "Haute trahison", cat: "LV4", amende: 500000, temps: 999, art: "CP-Art 8-1.9", type: "fixe", note: "Perpétuité - Prévenir agence fédérale" }
+            "c3_20": { nom: "Terrorisme", cat: "LV4", amende: 400000, temps: 999, art: "CP-Art 8-1.4", type: "fixe" },
+            "c3_21": { nom: "Traite Humaine", cat: "LV4", amende: 320700, temps: 999, art: "CP-Art 8-1.5", type: "fixe" },
+            "c3_22": { nom: "Évasion", cat: "LV4", amende: 100000, temps: 50, art: "CP-Art 8-1.6", type: "fixe" },
+            "c3_23": { nom: "Conspiration", cat: "LV4", amende: 479000, temps: 999, art: "CP-Art 8-1.7", type: "fixe" },
+            "c3_24": { nom: "Viol de la Constitution", cat: "LV4", amende: 500000, temps: 999, art: "CP-Art 8-1.8", type: "fixe" },
+            "c3_25": { nom: "Haute trahison", cat: "LV4", amende: 500000, temps: 999, art: "CP-Art 8-1.9", type: "fixe" }
         };
 
         let selectedInfractions = [];
@@ -283,10 +278,39 @@
             Object.values(bdd).filter(item => item.nom.toLowerCase().includes(search) || item.art.toLowerCase().includes(search)).forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'infraction-item';
-                div.onclick = () => { selectedInfractions.push(item); updateReport(); };
+                
+                // CORRECTION : On appelle la fonction addInfraction au clic
+                div.onclick = () => addInfraction(item);
+                
                 div.innerHTML = `<div class="inf-cat">${item.cat} - ${item.art}</div><div class="inf-name">${item.nom}</div>`;
                 listDiv.appendChild(div);
             });
+        }
+
+        // CORRECTION : Réintégration de la fonction qui gère les choix multiples
+        function addInfraction(item) {
+            if (item.type === "code") {
+                let msg = item.options.map((o, i) => `${i+1}. ${o.label} (${o.amende}$, ${o.temps} UP)`).join('\n');
+                let choix = prompt(`SÉLECTIONNEZ LE TYPE POUR : ${item.nom}\nEntrez le numéro correspondant :\n\n${msg}`);
+                
+                if (!choix) return; // Si on annule
+                
+                let opt = item.options[parseInt(choix)-1];
+                if (opt) {
+                    selectedInfractions.push({ 
+                        nom: `${item.nom} (${opt.label})`, 
+                        art: item.art, 
+                        amende: opt.amende, 
+                        temps: opt.temps 
+                    });
+                } else {
+                    alert("Numéro invalide.");
+                    return;
+                }
+            } else {
+                selectedInfractions.push(item);
+            }
+            updateReport();
         }
 
         function updateReport() {
@@ -317,13 +341,9 @@
         }
 
         async function traiterDossier() {
-            // Mapping des variables pour ton template
             const nomS = document.getElementById('nom').value.trim() || "INCONNU";
             const preS = document.getElementById('prenom').value.trim() || "Inconnu";
-            
-            // CORRECTION ICI : ID "procureur" au lieu de "Nom et Prénom du Procureur"
             const procureurN = document.getElementById('procureur').value.trim() || "Procureur";
-            
             const aT = document.getElementById('total-fine').innerText;
             const tT = document.getElementById('total-time').innerText;
             const authCode = "DOJ-" + Math.floor(100000 + Math.random() * 900000);
@@ -356,7 +376,7 @@
                 await fetch(DISCORD_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
             } catch (e) { console.error("Discord Error"); }
 
-            // 2. GENERATION DU PDF (Ton template)
+            // 2. GENERATION DU PDF
             const win = window.open("", "_blank");
             win.document.write(`
                 <html>
@@ -475,4 +495,4 @@
         filterInfractions();
     </script>
 </body>
-</html> 
+</html>
