@@ -330,6 +330,22 @@
     target.style.display = 'block';
 }
 
+    async function consulterCasier() {
+    const nomRecherche = document.getElementById('searchNom').value.toUpperCase();
+    
+    let { data: casiers, error } = await supabase
+      .from('casiers')
+      .select('*')
+      .eq('nom', nomRecherche);
+
+    if (casiers.length > 0) {
+        // Le site affiche automatiquement le tableau des crimes trouvé dans la base
+        afficherResultat(casiers[0]);
+    } else {
+        alert("Aucun dossier trouvé à ce nom.");
+    }
+}
+
         document.addEventListener('contextmenu', e => e.preventDefault());
     </script>
 </body>
