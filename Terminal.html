@@ -52,9 +52,9 @@
         </div>
         
         <div class="civil-info">
-            <input type="text" id="prenom" placeholder="Prénom Citoyen">
+            <input type="text" id="prenom" placeholder="Prénom">
             <input type="text" id="nom" placeholder="NOM">
-            <input type="text" id="matricule" placeholder="Matricule Agent">
+            <input type="text" id="procureur" placeholder="Nom et Prénom du Procureur">
             <select id="modifier" class="modifier-select" onchange="updateReport()">
                 <option value="1.0">Coopération : Standard (100%)</option>
                 <option value="0.75">Coopération : Excellente (-25%)</option>
@@ -320,14 +320,14 @@
             // Mapping des variables pour ton template
             const nomS = document.getElementById('nom').value.trim() || "INCONNU";
             const preS = document.getElementById('prenom').value.trim() || "Inconnu";
-            const procureurN = document.getElementById('matricule').value.trim() || "Procureur";
+            const procureurN = document.getElementById('Nom et Prénom du Procureur').value.trim() || "Procureur";
             const aT = document.getElementById('total-fine').innerText;
             const tT = document.getElementById('total-time').innerText;
             const authCode = "DOJ-" + Math.floor(100000 + Math.random() * 900000);
             const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
             const idS = Math.floor(1000 + Math.random() * 9000);
             const coopText = document.getElementById('modifier').options[document.getElementById('modifier').selectedIndex].text;
-            const sigTitle = "Authorized Judicial Officer";
+            const sigTitle = "Authorized Attorney";
             const displayId = "Credential ID: " + (Math.random().toString(36).substring(2, 10).toUpperCase());
 
             if (selectedInfractions.length === 0) return alert("Ajoutez des infractions !");

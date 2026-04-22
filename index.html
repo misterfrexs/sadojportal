@@ -50,9 +50,15 @@
         .nav-item:hover { background: rgba(255,255,255,0.05); color: white; }
         .nav-item.active { background: var(--primary); color: white; }
 
-        .content-container { flex-grow: 1; background: #0f172a; position: relative; }
+        .content-container { flex-grow: 1; background: #0f172a; position: relative; overflow-y: auto; }
         .page-content, iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: none; }
         .page-content.active, iframe.active { display: block; }
+
+        /* STYLE ACCUEIL INTÉGRÉ */
+        .welcome-screen { padding: 60px; position: relative; display: none; }
+        .welcome-screen.active { display: block; }
+        .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
+        .stat-card { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; border: 1px solid var(--border); }
 
         .btn-logout {
             margin-top: auto;
@@ -80,7 +86,7 @@
         <div class="auth-box">
             <img src="https://i.imgur.com/Pf4XkWF.png" alt="SADOJ Logo">
             <h2>S.A.D.O.J. PORTAL</h2>
-            <p>Accès Restreint - Département de la Justice</p>
+            <p>Accès avec accréditation et accès citoyen - S.A Département de la Justice</p>
             <input type="email" id="field-email" placeholder="Identifiant (Email)">
             <input type="password" id="field-pass" placeholder="Mot de passe">
             <button class="btn-login" onclick="handleAuth()">INITIALISER LA SESSION</button>
@@ -97,41 +103,48 @@
 
             <div class="nav-scroll">
                 <nav>
-                    <div class="nav-label">Général</div>
-                    <button class="nav-item active" onclick="switchTab('tab-accueil', this)">🏠 Accueil & Casier</button>
+                    <div class="nav-label">Services</div>
+                    <button class="nav-item active" onclick="switchTab('tab-accueil', this)">🏠 Accueil</button>
                     
                     <div id="group-secure" style="display:none;">
-                        <div class="nav-label">Outils Justice</div>
                         <button class="nav-item" onclick="switchTab('tab-terminal', this)">🖥️ Terminal de Procédure</button>
-                        <button id="btn-casiervierge" class="nav-item" onclick="switchTab('tab-casiervierge', this)" style="display:none;">📄 Générateur Casier Vierge</button>
                     </div>
 
-                    <div class="nav-label">S.A State Code (Lois)</div>
-                    <button class="nav-item" onclick="switchTab('tab-const', this)">📜 Constitution</button>
+                    <div class="nav-label">S.A State Code (Public)</div>
+                    <button class="nav-item" onclick="switchTab('tab-const', this)">📜 Déclaration Constitutionnelle</button>
+                    <button class="nav-item" onclick="switchTab('tab-sanctions', this)">⚖️ Sanctions Pénales et Financières</button>
                     <button class="nav-item" onclick="switchTab('tab-penal', this)">⚖️ Code Pénal</button>
-                    <button class="nav-item" onclick="switchTab('tab-proc-penal', this)">⛓️ Procédure Pénale</button>
+                    <button class="nav-item" onclick="switchTab('tab-proc-penal', this)">⛓️ Code de Procédure Pénale</button>
                     <button class="nav-item" onclick="switchTab('tab-civil', this)">🤝 Code Civil</button>
                     <button class="nav-item" onclick="switchTab('tab-admin', this)">🏢 Code Administratif</button>
-                    <button class="nav-item" onclick="switchTab('tab-proc-admin', this)">📋 Procédure Admin (CPAD)</button>
+                    <button class="nav-item" onclick="switchTab('tab-proc-admin', this)">📋 CPAD</button>
                     <button class="nav-item" onclick="switchTab('tab-travail', this)">💼 Code du Travail</button>
-                    <button class="nav-item" onclick="switchTab('tab-secu', this)">🛡️ Sécurité Intérieure</button>
+                    <button class="nav-item" onclick="switchTab('tab-secu', this)">🛡️ Code de la Sécurité Intérieure</button>
                     <button class="nav-item" onclick="switchTab('tab-ruralite', this)">🌲 Code de la Ruralité</button>
                     <button class="nav-item" onclick="switchTab('tab-cj', this)">⚖️ Code Juridictionnel</button>
-                    
-                    <div class="nav-label">Annexes</div>
-                    <button class="nav-item" onclick="switchTab('tab-sanctions', this)">💰 Barème des Sanctions</button>
-                    <button class="nav-item" onclick="switchTab('tab-niveau', this)">⚠️ Niveaux de Sécurité</button>
+                    <button class="nav-item" onclick="switchTab('tab-niveau', this)">📕 Niveau de Sécurité</button>
                 </nav>
             </div>
-            <div id="logout-zone" class="btn-logout" onclick="logoutSession()">DÉCONNEXION DU RÉSEAU</div>
+            <div id="logout-zone" class="btn-logout" onclick="logoutSession()">DÉCONNEXION</div>
         </div>
 
         <div class="content-container">
-            <iframe id="tab-accueil" src="Accueil.html" class="active"></iframe>
+            <div id="tab-accueil" class="page-content active welcome-screen">
+                <h1 style="font-size: 3rem; font-weight: 800; letter-spacing: -2px; margin: 0;">Système Opérationnel</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px;">Bienvenue sur le réseau du Département de la Justice. Toutes vos actions sont tracées.</p>
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <span style="font-size: 0.7rem; text-transform: uppercase; color: var(--primary); font-weight: 800;">Statut</span>
+                        <div style="font-size: 1.5rem; font-weight: 800; margin-top: 5px; color: var(--success);">SÉCURISÉ</div>
+                    </div>
+                    <div class="stat-card">
+                        <span style="font-size: 0.7rem; text-transform: uppercase; color: var(--success); font-weight: 800;">Base de données</span>
+                        <div style="font-size: 1.5rem; font-weight: 800; margin-top: 5px; color: var(--success);">À JOUR</div>
+                    </div>
+                </div>
+            </div>
 
             <iframe id="tab-terminal" src="Terminal.html"></iframe>
-            <iframe id="tab-casiervierge" src="CasierVierge.html"></iframe>
-
             <iframe id="tab-const" src="./StateCode/DeclarationConstitutionnelle.html"></iframe>
             <iframe id="tab-penal" src="./StateCode/CP.html"></iframe>
             <iframe id="tab-proc-penal" src="./StateCode/CPP.html"></iframe>
@@ -191,20 +204,18 @@
             
             const roleDisplay = document.getElementById('display-role');
             const secureGroup = document.getElementById('group-secure');
-            const btnVierge = document.getElementById('btn-casiervierge');
 
             if (roles.includes('procureur')) {
                 roleDisplay.textContent = "Procureur";
                 roleDisplay.style.color = "var(--danger)";
                 secureGroup.style.display = 'block';
-                btnVierge.style.display = 'flex'; // Visible pour Procureur
             } else if (roles.includes('officier')) {
                 roleDisplay.textContent = "Officier";
                 roleDisplay.style.color = "var(--primary)";
                 secureGroup.style.display = 'block';
-                btnVierge.style.display = 'none'; // Caché pour Officier
             } else {
                 roleDisplay.textContent = "Agent de l'État";
+                roleDisplay.style.color = "var(--text-muted)";
                 secureGroup.style.display = 'none';
             }
 
@@ -216,6 +227,7 @@
             document.getElementById('view-main').style.display = 'flex';
             document.getElementById('display-name').textContent = "Visiteur";
             document.getElementById('display-role').textContent = "Accès Citoyen";
+            document.getElementById('display-role').style.color = "var(--text-muted)";
             document.getElementById('group-secure').style.display = 'none';
             document.getElementById('logout-zone').textContent = "RETOUR À L'ACCUEIL";
             switchTab('tab-accueil', document.querySelector('.nav-item.active'));
