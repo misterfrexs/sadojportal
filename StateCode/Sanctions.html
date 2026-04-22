@@ -135,28 +135,38 @@
                 <tr>
                     <th>Article</th>
                     <th>Nom</th>
-                    <th>Temps (GAV /UP)</th>
+                    <th>Type</th>
+                    <th>Temps (GAV / UP)</th>
                     <th>Amende</th>
                     <th>Informations / Saisies</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td class="art-cell">CP-Art 2-1.7</td><td class="name-cell">911 Raccroché</td><td class="time-cell">00:00</td><td class="price-cell">500$</td><td class="info-text">n/a</td></tr>
-                <tr><td class="art-cell">CP-Art 3-1.1</td><td class="name-cell">Dissimulation du visage</td><td class="time-cell">00:05</td><td class="price-cell">500$</td><td class="info-text">n/a</td></tr>
-                <tr><td class="art-cell">CP-Art 3-1.2</td><td class="name-cell">Attroupement illégal</td><td class="time-cell">00:10</td><td class="price-cell">500$</td><td class="info-text">n/a</td></tr>
-                <tr><td class="art-cell">CP-Art 3-1.4</td><td class="name-cell">Ivresse sur la voie publique</td><td class="time-cell">00:15</td><td class="price-cell">1 000$</td><td class="info-text">Cellule de dégrisement obligatoire.</td></tr>
-                <tr><td class="art-cell">CP-Art 3-1.5</td><td class="name-cell">Mendicité</td><td class="time-cell">00:00</td><td class="price-cell">80$</td><td class="info-text">Rappel à la loi uniquement.</td></tr>
-                <tr><td class="art-cell">CP-Art 4-1.3</td><td class="name-cell">Dégradation de la nature</td><td class="time-cell">00:05</td><td class="price-cell">500$</td><td class="info-text">n/a</td></tr>
-                <tr><td class="art-cell">CP-Art 3-2.0</td><td class="name-cell">Stationnement illégal ou gênant</td><td class="time-cell">00:05</td><td class="price-cell">500$</td><td class="info-text">Mise en fourrière immédiate.</td></tr>
-                <tr><td class="art-cell">CP-Art 3-1.8</td><td class="name-cell">Non-respect d'un feu rouge</td><td class="time-cell">00:00</td><td class="price-cell">250$</td><td class="info-text">Si accident corporel : 500$ / 00:10. Si matériel : 1 000$ / 00:15.</td></tr>
-                <tr><td class="art-cell">CP-Art 3-1.7</td><td class="name-cell">Excès de vitesse < 60km/h</td><td class="time-cell">00:10</td><td class="price-cell">500$</td><td class="info-text">Rappel à la loi.</td></tr>
-                <tr><td class="art-cell">CP-Art 3-1.7</td><td class="name-cell">Excès de vitesse > 140km/h</td><td class="time-cell">00:10</td><td class="price-cell">1 500$</td><td class="info-text">Suspension du permis (3 jours).</td></tr>
-                <tr><td class="art-cell">CP-Art 3-1.9</td><td class="name-cell">Non-respect d'un stop</td><td class="time-cell">00:00</td><td class="price-cell">250$</td><td class="info-text">n/a</td></tr>
-                <tr><td class="art-cell">CP-Art 2-2.1</td><td class="name-cell">Conduite sans permis</td><td class="time-cell">00:00</td><td class="price-cell">1 200$</td><td class="info-text">Récidive : 2 000$ / 00:20 + Retrait définitif.</td></tr>
-                <tr><td class="art-cell">CP-Art 2-2.2</td><td class="name-cell">Conduite en état d'ivresse</td><td class="time-cell">00:20</td><td class="price-cell">1 200$</td><td class="info-text">Taux > 0,15% : 2 500$ / 00:20.</td></tr>
-                <tr><td class="art-cell">CP-Art 2-2.3</td><td class="name-cell">Emprise de stupéfiants</td><td class="time-cell">00:25</td><td class="price-cell">1 800$</td><td class="info-text">Refus du test : 2 300$ / 00:30.</td></tr>
-                <tr><td class="art-cell">CP-Art 5-4.2</td><td class="name-cell">Injure</td><td class="time-cell">00:05</td><td class="price-cell">250$</td><td class="info-text">Outrage à agent possible en cumul.</td></tr>
-                <tr><td class="art-cell">CRA-Art 2-1.9</td><td class="name-cell">Port/détention arme Cat D1</td><td class="time-cell">00:10</td><td class="price-cell">1 800$</td><td class="info-text">Saisie immédiate de l'arme.</td></tr>
+                <tr><td class="art-cell">CP-Art 2-1.7</td><td class="name-cell">911 Raccroché</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:00</td><td class="price-cell">500$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.1</td><td class="name-cell">Dissimulation du visage</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:05</td><td class="price-cell">500$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.2</td><td class="name-cell">Attroupement illégal</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:10</td><td class="price-cell">500$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.3</td><td class="name-cell">Bruit / Tapage nocturne</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:05</td><td class="price-cell">500$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.4</td><td class="name-cell">Ivresse sur la voie publique</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:15</td><td class="price-cell">1 000$</td><td class="info-text">Cellule de dégrisement obligatoire.</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.5</td><td class="name-cell">Mendicité</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:00</td><td class="price-cell">80$</td><td class="info-text">Rappel à la loi.</td></tr>
+                <tr><td class="art-cell">CP-Art 4-1.3</td><td class="name-cell">Dégradation de la nature</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:05</td><td class="price-cell">500$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 3-2.0</td><td class="name-cell">Stationnement illégal ou gênant</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:05</td><td class="price-cell">500$</td><td class="info-text">Mise en fourrière.</td></tr>
+                <tr><td class="art-cell">CP-Art 3-2.1</td><td class="name-cell">Obstruction à la circulation</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:00</td><td class="price-cell">500$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.8</td><td class="name-cell">Non-respect d'un feu rouge</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:00</td><td class="price-cell">250$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.8</td><td class="name-cell">Accident impliquant un feu rouge (avec blessures)</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:10</td><td class="price-cell">500$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.8</td><td class="name-cell">Accident impliquant un feu rouge (matériel)</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:15</td><td class="price-cell">1 000$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.10</td><td class="name-cell">Circulation en sens interdit</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:00</td><td class="price-cell">250$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.11</td><td class="name-cell">Franchissement d'une ligne continue</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:00</td><td class="price-cell">250$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.12</td><td class="name-cell">Utilisation abusive du klaxon</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:00</td><td class="price-cell">150$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.13</td><td class="name-cell">Défaut de port du casque ou de la ceinture de sécurité</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:00</td><td class="price-cell">200$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.14</td><td class="name-cell">Usage du téléphone au volant</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:00</td><td class="price-cell">500$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.7</td><td class="name-cell">Excès de vitesse inférieur à 60 km/h</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:10</td><td class="price-cell">500$</td><td class="info-text">Rappel à la loi.</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.7</td><td class="name-cell">Excès de vitesse supérieur à 140 km/h</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:10</td><td class="price-cell">1 500$</td><td class="info-text">Suspension de permis (3 jours).</td></tr>
+                <tr><td class="art-cell">CP-Art 3-1.9</td><td class="name-cell">Non-respect d'un panneau stop</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:00</td><td class="price-cell">250$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CP-Art 2-2.1</td><td class="name-cell">Conduite sans permis</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:00</td><td class="price-cell">1 200$</td><td class="info-text">Récidive : 2 000 $ - 00:20 UP + retrait de permis.</td></tr>
+                <tr><td class="art-cell">CP-Art 2-2.2</td><td class="name-cell">Conduite en état d'ivresse</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:20</td><td class="price-cell">1 200$</td><td class="info-text">Taux supérieur à 0,15 % : 2 500 $ - 00:20 UP.</td></tr>
+                <tr><td class="art-cell">CP-Art 2-2.3</td><td class="name-cell">Conduite sous l'emprise de stupéfiants</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:25</td><td class="price-cell">1 800$</td><td class="info-text">Refus du test : 2 300 $ - 00:30 UP.</td></tr>
+                <tr><td class="art-cell">CP-Art 5-4.2</td><td class="name-cell">Injure</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:05</td><td class="price-cell">250$</td><td class="info-text">n/a</td></tr>
+                <tr><td class="art-cell">CRA-Art 2-1.9</td><td class="name-cell">Port ou détention d'une arme de catégorie D1</td><td><span class="badge b-inf">Infraction</span></td><td class="time-cell">00:10</td><td class="price-cell">1 800$</td><td class="info-text">n/a</td></tr>
             </tbody>
         </table>
     </div>
