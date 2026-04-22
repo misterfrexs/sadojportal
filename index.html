@@ -32,58 +32,56 @@
         .auth-view { height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1e293b 0%, #020617 100%); }
         .auth-box { background: var(--panel); backdrop-filter: blur(20px); padding: 40px; border-radius: 24px; border: 1px solid var(--border); width: 100%; max-width: 400px; text-align: center; }
         .auth-box img { width: 100px; margin-bottom: 20px; filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.4)); }
+        .auth-box h2 { font-weight: 800; letter-spacing: -1px; margin-bottom: 5px; }
+        .auth-box p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 25px; }
         .auth-box input { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--border); padding: 14px; border-radius: 12px; color: white; margin-bottom: 15px; outline: none; }
         .btn-login { width: 100%; background: var(--primary); color: white; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
         .btn-login:hover { background: var(--primary-hover); transform: translateY(-2px); }
         .btn-citizen { width: 100%; background: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 12px; border-radius: 12px; font-weight: 600; cursor: pointer; margin-top: 15px; }
 
-        /* INTERFACE */
-        #view-main { display: none; height: 100vh; }
-        .sidebar { width: 300px; background: #020617; border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 20px; }
+        /* INTERFACE PRINCIPALE */
+        #view-main { display: none; height: 100vh; display: flex; }
+        .sidebar { width: 300px; background: #020617; border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 20px; flex-shrink: 0; }
         .user-card { background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 20px; }
+        
         .nav-scroll { flex-grow: 1; overflow-y: auto; padding-right: 5px; }
         .nav-label { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-weight: 900; letter-spacing: 1.5px; margin: 20px 0 10px 10px; }
         .nav-item { width: 100%; background: transparent; border: none; color: var(--text-muted); padding: 10px 15px; border-radius: 10px; text-align: left; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 12px; margin-bottom: 2px; transition: 0.2s; }
-        .nav-item:hover, .nav-item.active { background: var(--primary); color: white; }
+        .nav-item:hover { background: rgba(255,255,255,0.05); color: white; }
+        .nav-item.active { background: var(--primary); color: white; }
 
-        .content-container { flex-grow: 1; background: #0f172a; position: relative; overflow-y: auto; }
-        .page-content, iframe { width: 100%; height: 100%; border: none; display: none; }
+        .content-container { flex-grow: 1; background: #0f172a; position: relative; }
+        .page-content, iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: none; }
         .page-content.active, iframe.active { display: block; }
-
-        /* STYLE ACCUEIL */
-        .welcome-screen { padding: 60px; }
-        .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
-        .stat-card { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; border: 1px solid var(--border); }
 
         .btn-logout {
             margin-top: auto;
             color: var(--danger);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 800;
             text-align: center;
             padding: 15px;
-            cursor: pointer; /* Indispensable pour le clic */
+            cursor: pointer;
             border-top: 1px solid var(--border);
-            opacity: 0.8;
+            opacity: 0.7;
             transition: 0.3s;
-            pointer-events: auto !important; /* Force la détection de la souris */
-            z-index: 100; /* S'assure qu'il n'est pas recouvert par un élément invisible */
         }
+        .btn-logout:hover { opacity: 1; background: rgba(239, 68, 68, 0.1); }
     </style>
 </head>
 <body>
 
     <div id="loading-screen">
         <div class="spinner"></div>
-        <p style="margin-top: 15px; font-size: 0.7rem; letter-spacing: 3px; font-weight: 800;">CONNEXION SÉCURISÉE...</p>
+        <p style="margin-top: 15px; font-size: 0.7rem; letter-spacing: 3px; font-weight: 800;">VÉRIFICATION DES ACCRÉDITATIONS...</p>
     </div>
 
     <div id="view-login" class="auth-view">
         <div class="auth-box">
             <img src="https://i.imgur.com/Pf4XkWF.png" alt="SADOJ Logo">
             <h2>S.A.D.O.J. PORTAL</h2>
-            <p>Accès avec accréditation et accès citoyen</p>
-            <input type="email" id="field-email" placeholder="Email de l'agent">
+            <p>Accès Restreint - Département de la Justice</p>
+            <input type="email" id="field-email" placeholder="Identifiant (Email)">
             <input type="password" id="field-pass" placeholder="Mot de passe">
             <button class="btn-login" onclick="handleAuth()">INITIALISER LA SESSION</button>
             <button class="btn-citizen" onclick="enterAsCitizen()">ACCÈS CITOYEN (PUBLIC)</button>
@@ -93,55 +91,47 @@
     <div id="view-main">
         <div class="sidebar">
             <div class="user-card">
-                <span id="display-name" style="display:block; font-weight:800; font-size:0.9rem;">Agent</span>
-                <span id="display-role" style="display:block; font-size:0.7rem; font-weight:900; text-transform:uppercase; margin-top:4px;">Vérification...</span>
+                <span id="display-name" style="display:block; font-weight:800; font-size:0.9rem;">Utilisateur</span>
+                <span id="display-role" style="display:block; font-size:0.7rem; font-weight:900; text-transform:uppercase; margin-top:4px; color: var(--text-muted);">Vérification...</span>
             </div>
 
             <div class="nav-scroll">
                 <nav>
-                    <div class="nav-label">Services</div>
-                    <button class="nav-item active" onclick="switchTab('tab-accueil', this)">🏠 Accueil</button>
+                    <div class="nav-label">Général</div>
+                    <button class="nav-item active" onclick="switchTab('tab-accueil', this)">🏠 Accueil & Casier</button>
                     
                     <div id="group-secure" style="display:none;">
+                        <div class="nav-label">Outils Justice</div>
                         <button class="nav-item" onclick="switchTab('tab-terminal', this)">🖥️ Terminal de Procédure</button>
+                        <button id="btn-casiervierge" class="nav-item" onclick="switchTab('tab-casiervierge', this)" style="display:none;">📄 Générateur Casier Vierge</button>
                     </div>
 
-                    <div class="nav-label">S.A State Code (Public)</div>
-                    <button class="nav-item" onclick="switchTab('tab-const', this)">📜 Déclaration Constitutionnelle</button>
+                    <div class="nav-label">S.A State Code (Lois)</div>
+                    <button class="nav-item" onclick="switchTab('tab-const', this)">📜 Constitution</button>
                     <button class="nav-item" onclick="switchTab('tab-penal', this)">⚖️ Code Pénal</button>
-                    <button class="nav-item" onclick="switchTab('tab-proc-penal', this)">⛓️ Code de Procédure Pénale</button>
+                    <button class="nav-item" onclick="switchTab('tab-proc-penal', this)">⛓️ Procédure Pénale</button>
                     <button class="nav-item" onclick="switchTab('tab-civil', this)">🤝 Code Civil</button>
                     <button class="nav-item" onclick="switchTab('tab-admin', this)">🏢 Code Administratif</button>
-                    <button class="nav-item" onclick="switchTab('tab-proc-admin', this)">📋 CPAD</button>
+                    <button class="nav-item" onclick="switchTab('tab-proc-admin', this)">📋 Procédure Admin (CPAD)</button>
                     <button class="nav-item" onclick="switchTab('tab-travail', this)">💼 Code du Travail</button>
-                    <button class="nav-item" onclick="switchTab('tab-secu', this)">🛡️ Code de la Sécurité Intérieure</button>
+                    <button class="nav-item" onclick="switchTab('tab-secu', this)">🛡️ Sécurité Intérieure</button>
                     <button class="nav-item" onclick="switchTab('tab-ruralite', this)">🌲 Code de la Ruralité</button>
-                    <button class="nav-item" onclick="switchTab('tab-sanctions', this)">💰 Sanctions Pénales et Financières</button>
-                    <button class="nav-item" onclick="switchTab('tab-niveau', this)">⚠️ Niveaux de Sécurité</button>
                     <button class="nav-item" onclick="switchTab('tab-cj', this)">⚖️ Code Juridictionnel</button>
+                    
+                    <div class="nav-label">Annexes</div>
+                    <button class="nav-item" onclick="switchTab('tab-sanctions', this)">💰 Barème des Sanctions</button>
+                    <button class="nav-item" onclick="switchTab('tab-niveau', this)">⚠️ Niveaux de Sécurité</button>
                 </nav>
             </div>
-            <div id="logout-zone" class="btn-logout" onclick="logoutSession()">DÉCONNEXION</div>
+            <div id="logout-zone" class="btn-logout" onclick="logoutSession()">DÉCONNEXION DU RÉSEAU</div>
         </div>
 
         <div class="content-container">
-            <div id="tab-accueil" class="page-content active welcome-screen">
-                <h1 style="font-size: 3rem; font-weight: 800; letter-spacing: -2px; margin: 0;">Système Opérationnel</h1>
-                <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px;">Bienvenue sur le réseau du Département de la Justice. Toutes vos actions sont tracées.</p>
-                <div class="stat-grid">
-                    <div class="stat-card">
-                        <span style="font-size: 0.7rem; text-transform: uppercase; color: var(--primary); font-weight: 800;">Statut</span>
-                        <div style="font-size: 1.5rem; font-weight: 800; margin-top: 5px;">SÉCURISÉ</div>
-                    </div>
-                    <div class="stat-card">
-                        <span style="font-size: 0.7rem; text-transform: uppercase; color: var(--success); font-weight: 800;">Base de données</span>
-                        <div style="font-size: 1.5rem; font-weight: 800; margin-top: 5px;">À JOUR</div>
-                    </div>
-                </div>
-            </div>
+            <iframe id="tab-accueil" src="Accueil.html" class="active"></iframe>
 
             <iframe id="tab-terminal" src="Terminal.html"></iframe>
-            <iframe id="tab-cj" src="./StateCode/CJ.html"></iframe>
+            <iframe id="tab-casiervierge" src="CasierVierge.html"></iframe>
+
             <iframe id="tab-const" src="./StateCode/DeclarationConstitutionnelle.html"></iframe>
             <iframe id="tab-penal" src="./StateCode/CP.html"></iframe>
             <iframe id="tab-proc-penal" src="./StateCode/CPP.html"></iframe>
@@ -151,114 +141,109 @@
             <iframe id="tab-travail" src="./StateCode/CDT.html"></iframe>
             <iframe id="tab-secu" src="./StateCode/CSI.html"></iframe>
             <iframe id="tab-ruralite" src="./StateCode/CDR.html"></iframe>
+            <iframe id="tab-cj" src="./StateCode/CJ.html"></iframe>
             <iframe id="tab-sanctions" src="./StateCode/Sanctions.html"></iframe>
             <iframe id="tab-niveau" src="./StateCode/NS.html"></iframe>
         </div>
     </div>
 
     <script>
-        // Nettoyage de l'initialisation pour éviter les erreurs JavaScript
+        // --- INITIALISATION ---
         netlifyIdentity.on('init', user => {
-            document.getElementById('loading-screen').style.opacity = '0';
-            setTimeout(() => document.getElementById('loading-screen').style.display = 'none', 500);
+            const loader = document.getElementById('loading-screen');
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.display = 'none', 500);
             if (user) loginSuccess(user);
         });
 
+        // --- AUTHENTIFICATION ---
         function handleAuth() {
             const email = document.getElementById('field-email').value;
             const pass = document.getElementById('field-pass').value;
             netlifyIdentity.gotrue.login(email, pass)
                 .then(user => loginSuccess(user))
-                .catch(err => alert("Accès refusé."));
+                .catch(err => alert("Accès refusé : Identifiants incorrects."));
         }
 
         netlifyIdentity.on('login', user => loginSuccess(user));
         netlifyIdentity.on('logout', () => window.location.reload());
 
         function logoutSession() {
-    console.log("Déconnexion en cours...");
-    
-    // 1. Si un utilisateur Netlify est connecté, on le déconnecte proprement
-    if (netlifyIdentity.currentUser()) {
-        netlifyIdentity.logout();
-    } 
-
-    // 2. On force le rechargement immédiat de la page
-    // Cela réinitialise l'affichage (cache le portail, affiche le login)
-    setTimeout(() => {
-        // On recharge la page sans les paramètres d'URL (?role=...)
-        window.location.href = window.location.origin + window.location.pathname;
-    }, 100); 
-}
+            if (netlifyIdentity.currentUser()) {
+                netlifyIdentity.logout();
+            } else {
+                window.location.reload();
+            }
+        }
 
         function loginSuccess(user) {
             document.getElementById('view-login').style.display = 'none';
             document.getElementById('view-main').style.display = 'flex';
-            document.getElementById('display-name').textContent = user.user_metadata.full_name || user.email.split('@')[0].toUpperCase();
             
-            // On récupère les rôles et on les met tous en minuscules pour éviter les erreurs de frappe
+            // Affichage Nom
+            const name = user.user_metadata.full_name || user.email.split('@')[0].toUpperCase();
+            document.getElementById('display-name').textContent = name;
+            
+            // Gestion des Rôles
             const appRoles = user.app_metadata.roles || [];
             const userRoles = user.user_metadata.roles || [];
             const roles = [...appRoles, ...userRoles].map(r => r.toLowerCase());
             
             const roleDisplay = document.getElementById('display-role');
+            const secureGroup = document.getElementById('group-secure');
+            const btnVierge = document.getElementById('btn-casiervierge');
 
-            if (roles.includes('procureur') || roles.includes('officier')) {
-                roleDisplay.textContent = roles.includes('procureur') ? "Procureur" : "Officier";
-                roleDisplay.style.color = roles.includes('procureur') ? "#ef4444" : "#2563eb";
-                document.getElementById('group-secure').style.display = 'block';
+            if (roles.includes('procureur')) {
+                roleDisplay.textContent = "Procureur";
+                roleDisplay.style.color = "var(--danger)";
+                secureGroup.style.display = 'block';
+                btnVierge.style.display = 'flex'; // Visible pour Procureur
+            } else if (roles.includes('officier')) {
+                roleDisplay.textContent = "Officier";
+                roleDisplay.style.color = "var(--primary)";
+                secureGroup.style.display = 'block';
+                btnVierge.style.display = 'none'; // Caché pour Officier
             } else {
                 roleDisplay.textContent = "Agent de l'État";
-                roleDisplay.style.color = "#94a3b8";
-                document.getElementById('group-secure').style.display = 'none';
+                secureGroup.style.display = 'none';
             }
 
-            // Affiche la page d'accueil par défaut
             switchTab('tab-accueil', document.querySelector('.nav-item.active'));
         }
 
         function enterAsCitizen() {
             document.getElementById('view-login').style.display = 'none';
             document.getElementById('view-main').style.display = 'flex';
-            document.getElementById('display-name').textContent = "Citoyen";
-            document.getElementById('display-role').textContent = "Accès Public";
+            document.getElementById('display-name').textContent = "Visiteur";
+            document.getElementById('display-role').textContent = "Accès Citoyen";
             document.getElementById('group-secure').style.display = 'none';
             document.getElementById('logout-zone').textContent = "RETOUR À L'ACCUEIL";
-            // Affiche l'accueil par défaut
             switchTab('tab-accueil', document.querySelector('.nav-item.active'));
         }
 
+        // --- NAVIGATION ---
         function switchTab(id, btn) {
-    const target = document.getElementById(id);
-    if (!target) return;
+            const target = document.getElementById(id);
+            if (!target) return;
 
-    // --- FORCE LA MISE À JOUR DU RÔLE POUR LE TERMINAL ---
-    if (id === 'tab-terminal') {
-        const user = netlifyIdentity.currentUser();
-        let roleParam = 'officier'; // Par défaut
-        
-        if (user) {
-            // On récupère tous les rôles possibles et on met en minuscule
-            const roles = [
-                ...(user.app_metadata.roles || []), 
-                ...(user.user_metadata.roles || [])
-            ].map(r => r.toLowerCase());
-            
-            if (roles.includes('procureur')) {
-                roleParam = 'procureur';
+            // Logique rôle Terminal
+            if (id === 'tab-terminal') {
+                const user = netlifyIdentity.currentUser();
+                let roleParam = 'officier';
+                if (user) {
+                    const roles = [...(user.app_metadata.roles || []), ...(user.user_metadata.roles || [])].map(r => r.toLowerCase());
+                    if (roles.includes('procureur')) roleParam = 'procureur';
+                }
+                target.src = "Terminal.html?role=" + roleParam;
             }
-        }
-        // On change l'adresse du terminal pour envoyer le rôle
-        target.src = "Terminal.html?role=" + roleParam;
-    }
 
-    // Gestion de l'affichage des onglets
-    document.querySelectorAll('.page-content, iframe').forEach(i => i.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-    
-    target.classList.add('active');
-    if(btn) btn.classList.add('active');
-}
+            // Affichage
+            document.querySelectorAll('iframe, .page-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+            
+            target.classList.add('active');
+            if(btn) btn.classList.add('active');
+        }
 
         document.addEventListener('contextmenu', e => e.preventDefault());
     </script>
