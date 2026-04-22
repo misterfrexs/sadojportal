@@ -3,42 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.A.D.O.J. | Terminal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>S.A.D.O.J. | Terminal Fédéral</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2563eb; --bg-dark: #0f172a; --panel: #1e293b;
             --border: rgba(255, 255, 255, 0.1); --text-muted: #94a3b8;
-            /* Couleurs par niveaux */
-            --lv1: #64748b; --lv2: #eab308; --lv3: #f97316; --lv4: #ef4444;
             --success: #22c55e; --warning: #f59e0b; --danger: #ef4444;
         }
         body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: white; margin: 0; padding: 20px; display: flex; gap: 20px; height: 100vh; overflow: hidden; }
         
-        .left-panel { flex: 1.2; display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 20px; overflow: hidden; }
+        .left-panel { flex: 1.1; display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 20px; overflow: hidden; }
         #searchInput { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: #0f172a; color: white; outline: none; margin-bottom: 20px; }
-        
         .infractions-list { flex: 1; overflow-y: auto; padding-right: 5px; }
-        .infraction-item { 
-            background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); border-radius: 8px; 
-            padding: 12px; margin-bottom: 8px; cursor: pointer; transition: 0.2s;
-        }
+        .infraction-item { background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 8px; cursor: pointer; transition: 0.2s; }
         .infraction-item:hover { border-color: var(--primary); background: rgba(37, 99, 235, 0.1); }
-        .inf-cat { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; }
-        .inf-name { font-weight: 600; font-size: 0.95rem; }
-        .inf-details { font-size: 0.8rem; color: var(--text-muted); margin-top: 5px; }
+        .inf-cat { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; color: var(--text-muted); }
 
-        .right-panel { flex: 0.8; display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
-        .civil-info { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .civil-info input { padding: 10px; border-radius: 6px; border: 1px solid var(--border); background: #0f172a; color: white; font-size: 0.85rem; }
-
-        .report-area { flex: 1; background: #0f172a; border-radius: 8px; padding: 15px; font-family: 'Fira Code', monospace; font-size: 0.85rem; overflow-y: auto; border: 1px solid var(--border); }
+        .right-panel { flex: 0.9; display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+        .civil-info { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+        .civil-info input, .modifier-select { padding: 10px; border-radius: 6px; border: 1px solid var(--border); background: #0f172a; color: white; font-size: 0.85rem; outline: none; }
+        
+        .report-area { flex: 1; background: #0f172a; border-radius: 8px; padding: 15px; font-family: 'Fira Code', monospace; font-size: 0.8rem; overflow-y: auto; border: 1px solid var(--border); line-height: 1.5; }
         .summary-total { margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--border); }
         
         .btn-group { display: flex; gap: 10px; margin-top: 20px; }
-        button { flex: 1; padding: 12px; border-radius: 8px; border: none; cursor: pointer; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; }
-        .btn-save { background: var(--primary); color: white; }
+        button { flex: 1; padding: 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: 800; text-transform: uppercase; font-size: 0.75rem; transition: 0.2s; }
+        .btn-discord { background: #5865F2; color: white; }
+        .btn-discord:hover { background: #4752c4; transform: translateY(-2px); }
         .btn-reset { background: #334155; color: white; }
 
         ::-webkit-scrollbar { width: 6px; }
@@ -48,25 +40,31 @@
 <body>
 
     <div class="left-panel">
-        <div class="search-header">
-            <h2 style="margin:0 0 10px 0; font-size:1.1rem;">📂 REGISTRE DES LOIS</h2>
-            <input type="text" id="searchInput" placeholder="Chercher un délit, crime ou article (ex: Vol, CP-Art...)" onkeyup="filterInfractions()">
-        </div>
+        <h2 style="margin:0 0 10px 0; font-size:1.1rem; letter-spacing: 1px;">📂 CODES ET LOIS FÉDÉRALES</h2>
+        <input type="text" id="searchInput" placeholder="Chercher un délit, crime ou article..." onkeyup="filterInfractions()">
         <div id="list" class="infractions-list"></div>
     </div>
 
     <div class="right-panel">
-        <h2 style="margin:0 0 15px 0; font-size:1.1rem;" id="role-title">📑 PROCÉDURE : OFFICIER</h2>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h2 style="margin:0; font-size:1.1rem;">📑 PROCÉDURE PÉNALE</h2>
+            <span style="font-size:0.6rem; background:rgba(34, 197, 94, 0.2); color:#22c55e; padding:3px 8px; border-radius:10px; font-weight:800;">FLUX DISCORD ACTIF</span>
+        </div>
         
         <div class="civil-info">
-            <input type="text" id="prenom" placeholder="Prénom">
+            <input type="text" id="prenom" placeholder="Prénom Citoyen">
             <input type="text" id="nom" placeholder="NOM">
-            <input type="date" id="naissance">
             <input type="text" id="matricule" placeholder="Matricule Agent">
+            <select id="modifier" class="modifier-select" onchange="updateReport()">
+                <option value="1.0">Coopération : Standard (100%)</option>
+                <option value="0.75">Coopération : Excellente (-25%)</option>
+                <option value="1.25">Coopération : Nulle (+25%)</option>
+                <option value="1.50">État : Récidive (+50%)</option>
+            </select>
         </div>
 
         <div class="report-area" id="recap-sanctions">
-            <div style="color:var(--text-muted); text-align:center; margin-top:50px;">Aucune infraction sélectionnée.</div>
+            <div style="color:var(--text-muted); text-align:center; margin-top:50px;">Aucun chef d'accusation sélectionné.</div>
         </div>
 
         <div class="summary-total">
@@ -80,16 +78,15 @@
 
         <div class="btn-group">
             <button class="btn-reset" onclick="resetTerminal()">Effacer</button>
-            <button class="btn-save" onclick="enregistrerDossier()">💾 Sauvegarder</button>
+            <button class="btn-discord" onclick="traiterDossier()">📡 GÉNÉRER & PUBLIER</button>
         </div>
     </div>
 
     <script>
-const _supabase = supabase.createClient(
-    'https://vctidkoxzszmjmxvclsk.supabase.co', 
-    'sb_publishable_EfA-yfIqB4_dWtDxpz6CyA_sYrhD2tA'
-);
-       // --- BASE DE DONNÉES OFFICIELLE COMPLÈTE ---
+        // --- CONFIGURATION DISCORD ---
+        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1496586267062833243/5QGWVyLQFwAf-O9yOw-T1if1u2g56vKMKQbc6kzsJ6tl91l0C9_PNjOcKzyt--Ab6ELc";
+
+        // --- BASE DE DONNÉES OFFICIELLE COMPLÈTE ---
         const bdd = {
             // ================== CATÉGORIE 1 : INFRACTIONS (LV1) ==================
             "c1_1": { nom: "911 Raccroché", cat: "LV1", amende: 500, temps: 0, art: "CP-Art 2-1.7", type: "fixe" },
@@ -279,126 +276,197 @@ const _supabase = supabase.createClient(
 
         let selectedInfractions = [];
 
-        // RÔLE
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('role') === 'procureur') {
-            document.getElementById('role-title').innerText = "⚖️ PROCÉDURE : PROCUREUR";
-        }
-
-        // FONCTION DE RECHERCHE CORRIGÉE
         function filterInfractions() {
             const search = document.getElementById('searchInput').value.toLowerCase();
             const listDiv = document.getElementById('list');
             listDiv.innerHTML = "";
-
-            // On transforme l'objet BDD en tableau pour filtrer
-            Object.values(bdd).filter(item => 
-                item.nom.toLowerCase().includes(search) || 
-                item.art.toLowerCase().includes(search)
-            ).forEach(item => {
+            Object.values(bdd).filter(item => item.nom.toLowerCase().includes(search) || item.art.toLowerCase().includes(search)).forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'infraction-item';
-                div.onclick = () => addInfraction(item);
-                div.innerHTML = `
-                    <div class="inf-cat" style="color:var(--${item.cat.toLowerCase()})">${item.cat} - ${item.art}</div>
-                    <div class="inf-name">${item.nom}</div>
-                    <div class="inf-details">${item.type === 'fixe' ? item.amende + '$' : 'Prix Variable'} | ${item.temps === 999 ? 'Perpétuité' : (item.temps || 0) + ' UP'}</div>
-                `;
+                div.onclick = () => { selectedInfractions.push(item); updateReport(); };
+                div.innerHTML = `<div class="inf-cat">${item.cat} - ${item.art}</div><div class="inf-name">${item.nom}</div>`;
                 listDiv.appendChild(div);
             });
         }
 
-        // GESTION DES OPTIONS (EXCÈS DE VITESSE, FEU ROUGE, ETC.)
-        function addInfraction(item) {
-            if (item.type === "code" && item.options) {
-                let message = `Choisissez le type pour : ${item.nom}\n\n`;
-                item.options.forEach((opt, index) => {
-                    message += `${index + 1}. ${opt.label} (${opt.amende}$, ${opt.temps} UP)\n`;
-                });
-                
-                let choix = prompt(message);
-                let index = parseInt(choix) - 1;
-                
-                if (item.options[index]) {
-                    const subItem = {
-                        nom: `${item.nom} (${item.options[index].label})`,
-                        art: item.art,
-                        amende: item.options[index].amende,
-                        temps: item.options[index].temps
-                    };
-                    selectedInfractions.push(subItem);
-                } else {
-                    return; // Annulation
-                }
-            } else {
-                selectedInfractions.push(item);
-            }
-            updateReport();
-        }
-
         function updateReport() {
             const recapDiv = document.getElementById('recap-sanctions');
+            const modifier = parseFloat(document.getElementById('modifier').value);
             let totalFine = 0, totalTime = 0, isPerp = false;
 
             if (selectedInfractions.length === 0) {
-                recapDiv.innerHTML = '<div style="color:var(--text-muted); text-align:center; margin-top:50px;">Aucune infraction sélectionnée.</div>';
+                recapDiv.innerHTML = '<div style="color:var(--text-muted); text-align:center; margin-top:50px;">Aucun chef d\'accusation.</div>';
                 document.getElementById('total-fine').innerText = "0$";
                 document.getElementById('total-time').innerText = "00:00 UP";
                 return;
             }
 
-            let html = '<div style="margin-bottom:10px; border-bottom:1px solid var(--border); padding-bottom:5px;">LISTE DES CHEFS :</div>';
-            selectedInfractions.forEach((inf, index) => {
-                html += `<div style="margin-bottom:5px; display:flex; justify-content:space-between;">
-                            <span>• ${inf.nom}</span>
-                            <span style="color:var(--danger); cursor:pointer;" onclick="removeInfraction(${index})">✕</span>
-                         </div>`;
+            let text = "";
+            selectedInfractions.forEach(inf => {
+                text += `• ${inf.art} - ${inf.nom} (${inf.amende}$)\n`;
                 totalFine += inf.amende;
-                if (inf.temps === 999) isPerp = true;
-                else totalTime += inf.temps;
+                if (inf.temps === 999) isPerp = true; else totalTime += inf.temps;
             });
 
-            recapDiv.innerHTML = html;
+            totalFine = Math.floor(totalFine * modifier);
+            if(!isPerp) totalTime = Math.floor(totalTime * modifier);
+
+            recapDiv.innerText = text;
             document.getElementById('total-fine').innerText = totalFine.toLocaleString() + "$";
             document.getElementById('total-time').innerText = isPerp ? "PERPÉTUITÉ" : (totalTime < 10 ? "00:0" : "00:") + totalTime + " UP";
         }
 
-        function removeInfraction(index) {
-            selectedInfractions.splice(index, 1);
-            updateReport();
+        async function traiterDossier() {
+            // Mapping des variables pour ton template
+            const nomS = document.getElementById('nom').value.trim() || "INCONNU";
+            const preS = document.getElementById('prenom').value.trim() || "Inconnu";
+            const procureurN = document.getElementById('matricule').value.trim() || "Procureur";
+            const aT = document.getElementById('total-fine').innerText;
+            const tT = document.getElementById('total-time').innerText;
+            const authCode = "DOJ-" + Math.floor(100000 + Math.random() * 900000);
+            const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            const idS = Math.floor(1000 + Math.random() * 9000);
+            const coopText = document.getElementById('modifier').options[document.getElementById('modifier').selectedIndex].text;
+            const sigTitle = "Authorized Judicial Officer";
+            const displayId = "Credential ID: " + (Math.random().toString(36).substring(2, 10).toUpperCase());
+
+            if (selectedInfractions.length === 0) return alert("Ajoutez des infractions !");
+
+            // 1. DISCORD
+            const payload = {
+                embeds: [{
+                    title: "⚖️ OFFICIAL CRIMINAL RECORD PUBLISHED",
+                    color: 2303786,
+                    fields: [
+                        { name: "👤 Identité", value: `**${preS} ${nomS.toUpperCase()}** (#${idS})`, inline: true },
+                        { name: "👮 Procureur", value: procureurN, inline: true },
+                        { name: "🤝 Statut", value: coopText, inline: false },
+                        { name: "💰 Montant total de l'amende", value: `**${aT}**`, inline: true },
+                        { name: "⏳ Durée totale de la peine", value: `**${tT}**`, inline: true }
+                    ],
+                    footer: { text: `Référence: ${authCode} | S.A Department Of Justice` },
+                    timestamp: new Date()
+                }]
+            };
+
+            try {
+                await fetch(DISCORD_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+            } catch (e) { console.error("Discord Error"); }
+
+            // 2. GENERATION DU PDF (Ton template)
+            const win = window.open("", "_blank");
+            win.document.write(`
+                <html>
+                <head>
+                    <title>Official Criminal Record - ${nomS} ${preS}</title>
+                    <style>
+                        @import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39&family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+                        body { font-family: 'Roboto', sans-serif; padding: 40px; color: #1a1a1a; line-height: 1.4; background: #fff; }
+                        .page-border { border: 2px solid #000; padding: 20px; min-height: 94vh; position: relative; }
+                        .gov-header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 25px; position: relative; }
+                        .gov-header img { width: 80px; position: absolute; left: 0; top: 0; }
+                        .gov-header p { margin: 0; font-weight: 700; font-size: 14px; letter-spacing: 2px; }
+                        .gov-header h1 { margin: 5px 0; font-family: 'Playfair Display', serif; font-size: 28px; text-transform: uppercase; }
+                        .meta-info { display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+                        .section-title { background: #1e293b; color: #fff; padding: 6px 12px; font-size: 13px; font-weight: 700; text-transform: uppercase; margin-top: 20px; letter-spacing: 1px; }
+                        .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 10px 0; border: 1px solid #000; }
+                        .info-item { padding: 10px; border-right: 1px solid #eee; }
+                        .info-item:last-child { border-right: none; }
+                        .label { display: block; font-size: 10px; color: #666; text-transform: uppercase; font-weight: 700; }
+                        .value { display: block; font-size: 14px; font-weight: 700; margin-top: 2px; }
+                        .doc-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+                        .doc-table th { background: #f1f5f9; text-align: left; padding: 10px; font-size: 11px; border: 1px solid #000; }
+                        .doc-table td { padding: 10px; border: 1px solid #000; font-size: 12px; }
+                        .verdict-box { margin-top: 20px; border: 2px solid #000; display: flex; }
+                        .verdict-item { flex: 1; padding: 15px; text-align: center; border-right: 1px solid #000; }
+                        .verdict-item:last-child { border-right: none; background: #f8fafc; }
+                        .total-val { font-size: 18px; font-weight: 800; color: #000; }
+                        .footer { margin-top: 50px; display: flex; justify-content: space-between; align-items: flex-end; }
+                        .barcode { font-family: 'Libre Barcode 39', cursive; font-size: 40px; }
+                        .sig-block { text-align: center; width: 250px; }
+                        .sig-line { border-top: 1px solid #000; padding-top: 5px; margin-top: 10px; }
+                        .sig-name { font-family: 'Brush Script MT', cursive; font-size: 24px; color: #2563eb; }
+                        .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 100px; color: rgba(0,0,0,0.03); font-weight: 900; pointer-events: none; z-index: -1; white-space: nowrap; }
+                        @media print { body { padding: 0; } .page-border { min-height: 98vh; } }
+                    </style>
+                </head>
+                <body onload="window.print();"> 
+                    <div class="page-border">
+                        <div class="watermark">STATE OF SAN ANDREAS</div> 
+                        <div class="gov-header">
+                            <img src="https://i.imgur.com/Pf4XkWF.png" alt="Seal">
+                            <p>DEPARTMENT OF JUSTICE • STATE OF SAN ANDREAS</p>
+                            <h1>Official Criminal History Record</h1>
+                        </div> 
+                        <div class="meta-info">
+                            <span>Référence: ${authCode}</span>
+                            <span>Publié le: ${date}</span>
+                        </div> 
+                        <div class="section-title">Section I - Identification personnelle</div> 
+                        <div class="info-grid">
+                            <div class="info-item"><span class="label">Nom de famille</span><span class="value">${nomS.toUpperCase()}</span></div>
+                            <div class="info-item"><span class="label">Prénom</span><span class="value">${preS}</span></div>
+                            <div class="info-item"><span class="label">Numéro d'identité</span><span class="value">#${idS}</span></div>
+                        </div>
+                        <div class="section-title">Section II - Infractions pénales et chefs d'accusation</div> 
+                        <table class="doc-table">
+                            <thead>
+                                <tr>
+                                    <th>ARTICLE DE LOI / DESCRIPTION DE L'INFRACTION</th>
+                                    <th>PÉNALITÉ</th>
+                                    <th>PEINE OBLIGATOIRE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${selectedInfractions.map(i => `
+                                    <tr>
+                                        <td>${i.art} - ${i.nom}</td>
+                                        <td>${i.amende.toLocaleString()}$</td>
+                                        <td>${i.temps === 999 ? "LIFE IMPRISONMENT" : i.temps + " UP"}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table> 
+                        <div class="section-title">Section III - Décision finale et verdict</div> 
+                        <div class="verdict-box">
+                            <div class="verdict-item">
+                                <span class="label">Niveau de coopération</span>
+                                <span class="value">${coopText}</span>
+                            </div>
+                            <div class="verdict-item">
+                                <span class="label">Amende totale due</span>
+                                <span class="total-val">${aT}</span>
+                            </div>
+                            <div class="verdict-item">
+                                <span class="label">Durée totale de la peine purgée</span>
+                                <span class="total-val">${tT}</span>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <div>
+                                <div class="barcode">${authCode}</div>
+                                <span style="font-size: 8px; font-weight: bold;">SECURITY VERIFICATION SYSTEM • SAN ANDREAS DEPARTMENT OF JUSTICE</span>
+                            </div>
+                            <div class="sig-block">
+                                <span class="sig-name">${procureurN}</span>
+                                <div class="sig-line"></div>
+                                <span style="font-size: 11px; font-weight: bold; text-transform: uppercase; color: #333;">${sigTitle}</span><br>
+                                <span style="font-size: 10px; color: #666;">${displayId}</span>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `);
+            win.document.close();
+            resetTerminal();
         }
 
         function resetTerminal() {
             selectedInfractions = [];
-            document.getElementById('prenom').value = "";
             document.getElementById('nom').value = "";
+            document.getElementById('prenom').value = "";
             updateReport();
-        }
-
-        async function enregistrerDossier() {
-            const nom = document.getElementById('nom').value.trim().toUpperCase();
-            const prenom = document.getElementById('prenom').value.trim();
-            const naissance = document.getElementById('naissance').value;
-            const recapText = selectedInfractions.map(i => `${i.art} - ${i.nom}`).join('\n');
-            const fine = document.getElementById('total-fine').innerText;
-            const time = document.getElementById('total-time').innerText;
-
-            if (!nom || !prenom || selectedInfractions.length === 0) {
-                return alert("Veuillez remplir le nom et ajouter une infraction.");
-            }
-
-            const { error } = await _supabase.from('casiers').insert([{
-                nom, prenom, naissance,
-                condamnations: `BILAN :\n${recapText}\n\nTOTAL : ${fine} / ${time}`,
-                statut: "Chargé",
-                created_at: new Date()
-            }]);
-
-            if (error) alert("Erreur : " + error.message);
-            else {
-                alert("✅ Dossier enregistré !");
-                resetTerminal();
-            }
         }
 
         filterInfractions();
