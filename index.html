@@ -140,63 +140,6 @@
                     </div>
                 </div>
 
-                <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 30px; margin-top: 40px; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); max-width: 700px; margin-left: auto; margin-right: auto;">
-        
-        <div style="text-align: center; margin-bottom: 25px;">
-            <h2 style="font-size: 1.5rem; text-transform: uppercase; margin: 0; color: white; font-weight: 800;">Extrait de Casier Judiciaire</h2>
-            <p style="color: #94a3b8; font-size: 0.85rem; margin-top: 5px;">Formulaire officiel de demande à destination des citoyens.</p>
-        </div>
-
-        <form name="demande_casier" method="POST" data-netlify="true" style="display: flex; flex-direction: column; gap: 15px;">
-            
-            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 200px;">
-                    <label style="display: block; font-size: 0.75rem; font-weight: 800; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase;">Prénom</label>
-                    <input type="text" name="prenom" required placeholder="Ex: John" style="width: 100%; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 15px; border-radius: 8px; color: white; font-family: 'Inter', sans-serif; outline: none;">
-                </div>
-                <div style="flex: 1; min-width: 200px;">
-                    <label style="display: block; font-size: 0.75rem; font-weight: 800; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase;">Nom</label>
-                    <input type="text" name="nom" required placeholder="Ex: Doe" style="width: 100%; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 15px; border-radius: 8px; color: white; font-family: 'Inter', sans-serif; outline: none;">
-                </div>
-            </div>
-
-            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 200px;">
-                    <label style="display: block; font-size: 0.75rem; font-weight: 800; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase;">Date de Naissance</label>
-                    <input type="date" name="naissance" required style="width: 100%; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 15px; border-radius: 8px; color: white; font-family: 'Inter', sans-serif; outline: none; color-scheme: dark;">
-                </div>
-                <div style="flex: 1; min-width: 200px;">
-                    <label style="display: block; font-size: 0.75rem; font-weight: 800; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase;">Numéro de Téléphone</label>
-                    <input type="tel" name="telephone" required placeholder="Ex: 555-0192" style="width: 100%; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 15px; border-radius: 8px; color: white; font-family: 'Inter', sans-serif; outline: none;">
-                </div>
-            </div>
-
-            <div>
-                <label style="display: block; font-size: 0.75rem; font-weight: 800; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase;">Motif de la demande</label>
-                <select name="motif" required style="width: 100%; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 15px; border-radius: 8px; color: white; font-family: 'Inter', sans-serif; outline: none; cursor: pointer;">
-                    <option value="" disabled selected>Sélectionnez la raison...</option>
-                    <option value="Emploi Public (LSPD, EMS, Gouvernement)">Emploi Public (LSPD, EMS, Gouvernement)</option>
-                    <option value="Emploi Privé">Emploi Privé (Entreprise, Commerce)</option>
-                    <option value="Permis de Port d'Arme (PPA)">Demande de Permis de Port d'Arme (PPA)</option>
-                    <option value="Procédure Judiciaire / Avocat">Procédure Judiciaire / Avocat</option>
-                    <option value="Autre">Autre</option>
-                </select>
-            </div>
-
-            <div>
-                <label style="display: block; font-size: 0.75rem; font-weight: 800; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase;">Informations complémentaires (Optionnel)</label>
-                <textarea name="details" rows="3" placeholder="Précisez ici si nécessaire (ex: Nom de l'entreprise)..." style="width: 100%; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 15px; border-radius: 8px; color: white; font-family: 'Inter', sans-serif; outline: none; resize: vertical;"></textarea>
-            </div>
-
-            <button type="submit" style="width: 100%; background: #2563eb; color: white; border: none; padding: 15px; border-radius: 8px; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; margin-top: 10px; transition: background 0.3s;" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">
-                Soumettre la demande au greffe
-            </button>
-            
-            <div style="font-size: 0.65rem; color: #94a3b8; text-align: center; margin-top: 10px; line-height: 1.4;">
-                En soumettant cette demande, j'atteste sur l'honneur l'exactitude des informations fournies. Toute fausse déclaration au Département de la Justice est passible de poursuites pénales.
-            </div>
-        </form>
-    </div>
             </div>
 
             <iframe id="tab-terminal" src="Terminal.html"></iframe>
@@ -212,7 +155,8 @@
             <iframe id="tab-ruralite" src="./StateCode/CDR.html"></iframe>
             <iframe id="tab-sanctions" src="./StateCode/Sanctions.html"></iframe>
             <iframe id="tab-niveau" src="./StateCode/NS.html"></iframe>
-            <iframe id="tab-casiervierge" src="CasierVierge.html" style="display:none; width:100%; height:100%; border:none;"></iframe>
+            <iframe id="tab-casiervierge" src="CasierVierge.html"></iframe>
+            <iframe id="tab-accueil" src="Accueil.html" style="width:100%; height:100%; border:none;"></iframe>
         </div>
     </div>
 
