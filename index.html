@@ -119,6 +119,7 @@
                     <button class="nav-item" onclick="switchTab('tab-sanctions', this)">💰 Sanctions Pénales et Financières</button>
                     <button class="nav-item" onclick="switchTab('tab-niveau', this)">⚠️ Niveaux de Sécurité</button>
                     <button class="nav-item" onclick="switchTab('tab-cj', this)">⚖️ Code Juridictionnel</button>
+                    <button class="nav-item" onclick="switchTab('tab-casiervierge', this)">📄 Casier Vierge</button>
                 </nav>
             </div>
             <div id="logout-zone" class="btn-logout" onclick="logoutSession()">DÉCONNEXION</div>
@@ -196,12 +197,6 @@
             </div>
         </form>
     </div>
-    ```
-
-### Le fonctionnement reste magique ✨
-Tu n'as rien à configurer côté serveur. Dès que tu feras ton `git push` et que ton portail sera en ligne, Netlify va repérer le formulaire grâce à l'attribut `data-netlify="true"`.
-
-À chaque fois qu'un citoyen validera ce formulaire sur ta page d'accueil, tu recevras un petit dossier bien rangé dans l'onglet **"Forms"** de ton interface Netlify.
             </div>
 
             <iframe id="tab-terminal" src="Terminal.html"></iframe>
@@ -217,6 +212,7 @@ Tu n'as rien à configurer côté serveur. Dès que tu feras ton `git push` et q
             <iframe id="tab-ruralite" src="./StateCode/CDR.html"></iframe>
             <iframe id="tab-sanctions" src="./StateCode/Sanctions.html"></iframe>
             <iframe id="tab-niveau" src="./StateCode/NS.html"></iframe>
+            <iframe id="tab-casiervierge" src="CasierVierge.html" style="display:none; width:100%; height:100%; border:none;"></iframe>
         </div>
     </div>
 
@@ -296,13 +292,23 @@ Tu n'as rien à configurer côté serveur. Dès que tu feras ton `git push` et q
     const target = document.getElementById(id);
     if (!target) return;
 
-    // --- FORCE LA MISE À JOUR DU RÔLE POUR LE TERMINAL ---
+    // 1. CACHER TOUS LES IFRAMES ET RETIRER LA CLASSE ACTIVE DES BOUTONS
+    document.querySelectorAll('iframe').forEach(iframe => {
+        iframe.style.display = 'none';
+    });
+    document.querySelectorAll('.nav-item').forEach(nav => {
+        nav.classList.remove('active');
+    });
+
+    // 2. ACTIVER LE BOUTON CLIQUÉ
+    if (btn) btn.classList.add('active');
+
+    // 3. LOGIQUE SPÉCIFIQUE : TERMINAL (Vérification Rôle)
     if (id === 'tab-terminal') {
-        const user = netlifyIdentity.currentUser();
+        const user = typeof netlifyIdentity !== 'undefined' ? netlifyIdentity.currentUser() : null;
         let roleParam = 'officier'; // Par défaut
         
         if (user) {
-            // On récupère tous les rôles possibles et on met en minuscule
             const roles = [
                 ...(user.app_metadata.roles || []), 
                 ...(user.user_metadata.roles || [])
@@ -312,9 +318,17 @@ Tu n'as rien à configurer côté serveur. Dès que tu feras ton `git push` et q
                 roleParam = 'procureur';
             }
         }
-        // On change l'adresse du terminal pour envoyer le rôle
         target.src = "Terminal.html?role=" + roleParam;
     }
+
+    // 4. LOGIQUE SPÉCIFIQUE : CASIER VIERGE
+    if (id === 'tab-casiervierge') {
+        target.src = "CasierVierge.html";
+    }
+
+    // 5. AFFICHER L'ONGLET SÉLECTIONNÉ
+    target.style.display = 'block';
+}
 
     // Gestion de l'affichage des onglets
     document.querySelectorAll('.page-content, iframe').forEach(i => i.classList.remove('active'));
