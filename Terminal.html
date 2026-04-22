@@ -260,35 +260,6 @@
     </div>
 
     <script>
-
-        const supabase = supabase.createClient('https://pvmkykxqkoeywugcbnjj.supabase.co', 'sb_publishable_EfA-yfIqB4_dWtDxpz6CyA_sYrhD2tA');
-
-async function enregistrerDossier() {
-    const nom = document.getElementById('nom_citoyen').value.toUpperCase();
-    const prenom = document.getElementById('prenom_citoyen').value;
-    const naissance = document.getElementById('date_naissance').value;
-    
-    // On récupère les infractions sélectionnées dans le calculateur du terminal
-    const condamnations = finalData.infractions; 
-
-    const { data, error } = await supabase
-      .from('casiers')
-      .insert([
-        { 
-            nom: nom, 
-            prenom: prenom, 
-            naissance: naissance, 
-            condamnations: condamnations,
-            statut: condamnations.length > 0 ? "Chargé" : "Vierge"
-        }
-      ]);
-
-    if (error) {
-        alert("Erreur lors de l'enregistrement : " + error.message);
-    } else {
-        alert("Dossier enregistré avec succès dans la base de données !");
-    }
-}
         // --- BASE DE DONNÉES OFFICIELLE COMPLÈTE ---
         const bdd = {
             // ================== CATÉGORIE 1 : INFRACTIONS (LV1) ==================
