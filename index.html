@@ -138,7 +138,8 @@
                         <div style="font-size: 1.5rem; font-weight: 800; margin-top: 5px;">À JOUR</div>
                     </div>
                 </div>
-                            
+            </div>
+
             <iframe id="tab-terminal" src="Terminal.html"></iframe>
             <iframe id="tab-cj" src="./StateCode/CJ.html"></iframe>
             <iframe id="tab-const" src="./StateCode/DeclarationConstitutionnelle.html"></iframe>
@@ -152,8 +153,6 @@
             <iframe id="tab-ruralite" src="./StateCode/CDR.html"></iframe>
             <iframe id="tab-sanctions" src="./StateCode/Sanctions.html"></iframe>
             <iframe id="tab-niveau" src="./StateCode/NS.html"></iframe>
-            <iframe id="tab-casiervierge" src="CasierVierge.html"></iframe>
-            <iframe id="tab-accueil" src="Accueil.html" style="width:100%; height:100%; border:none;"></iframe>
         </div>
     </div>
 
@@ -233,23 +232,13 @@
     const target = document.getElementById(id);
     if (!target) return;
 
-    // 1. CACHER TOUS LES IFRAMES ET RETIRER LA CLASSE ACTIVE DES BOUTONS
-    document.querySelectorAll('iframe').forEach(iframe => {
-        iframe.style.display = 'none';
-    });
-    document.querySelectorAll('.nav-item').forEach(nav => {
-        nav.classList.remove('active');
-    });
-
-    // 2. ACTIVER LE BOUTON CLIQUÉ
-    if (btn) btn.classList.add('active');
-
-    // 3. LOGIQUE SPÉCIFIQUE : TERMINAL (Vérification Rôle)
+    // --- FORCE LA MISE À JOUR DU RÔLE POUR LE TERMINAL ---
     if (id === 'tab-terminal') {
-        const user = typeof netlifyIdentity !== 'undefined' ? netlifyIdentity.currentUser() : null;
+        const user = netlifyIdentity.currentUser();
         let roleParam = 'officier'; // Par défaut
         
         if (user) {
+            // On récupère tous les rôles possibles et on met en minuscule
             const roles = [
                 ...(user.app_metadata.roles || []), 
                 ...(user.user_metadata.roles || [])
@@ -259,32 +248,16 @@
                 roleParam = 'procureur';
             }
         }
+        // On change l'adresse du terminal pour envoyer le rôle
         target.src = "Terminal.html?role=" + roleParam;
     }
 
-    // 4. LOGIQUE SPÉCIFIQUE : CASIER VIERGE
-    if (id === 'tab-casiervierge') {
-        target.src = "CasierVierge.html";
-    }
-
-    // 5. AFFICHER L'ONGLET SÉLECTIONNÉ
-    target.style.display = 'block';
-}
-
-    async function consulterCasier() {
-    const nomRecherche = document.getElementById('searchNom').value.toUpperCase();
+    // Gestion de l'affichage des onglets
+    document.querySelectorAll('.page-content, iframe').forEach(i => i.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
     
-    let { data: casiers, error } = await supabase
-      .from('casiers')
-      .select('*')
-      .eq('nom', nomRecherche);
-
-    if (casiers.length > 0) {
-        // Le site affiche automatiquement le tableau des crimes trouvé dans la base
-        afficherResultat(casiers[0]);
-    } else {
-        alert("Aucun dossier trouvé à ce nom.");
-    }
+    target.classList.add('active');
+    if(btn) btn.classList.add('active');
 }
 
         document.addEventListener('contextmenu', e => e.preventDefault());
