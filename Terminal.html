@@ -261,207 +261,190 @@
     <script>
         // --- BASE DE DONNÉES OFFICIELLE COMPLÈTE ---
         const bdd = {
-            // ================== CATÉGORIE 1 : INFRACTIONS ==================
-            "911_raccroche": { nom: "911 Raccroché", cat: "LV1", amende: 500, temps: 0, art: "Art 2-1.7", type: "fixe" },
-            "masque": { nom: "Dissimulation du visage", cat: "LV1", amende: 500, temps: 5, art: "Art 3-1.1", type: "fixe", note: "GAV" },
-            "attroupement": { nom: "Attroupement illégal", cat: "LV1", amende: 500, temps: 10, art: "Art 3-1.2", type: "fixe", note: "GAV" },
-            "ivresse_publique": { nom: "Ivresse sur la voie publique", cat: "LV1", amende: 1000, temps: 15, art: "Art 3-1.4", type: "fixe", note: "Cellule de dégrisement" },
-            "mendicite": { nom: "Mendicité", cat: "LV1", amende: 80, temps: 0, art: "Art 3-1.5", type: "fixe", note: "Rappel à la loi" },
-            "degradation_nature": { nom: "Dégradation de la nature", cat: "LV1", amende: 500, temps: 5, art: "Art 4-1.3", type: "fixe", note: "GAV" },
-            "stationnement": { nom: "Stationnement illégal ou gênant", cat: "LV1", amende: 500, temps: 5, art: "Art 3-2.0", type: "fixe", note: "Mise en fourrière" },
-            "feu_rouge": { 
-                nom: "Non-respect d'un feu rouge", cat: "LV1", art: "Art 3-1.8", type: "code",
+            // ================== CATÉGORIE 1 : INFRACTIONS (LV1) ==================
+            "c1_1": { nom: "911 Raccroché", cat: "LV1", amende: 500, temps: 0, art: "CP-Art 2-1.7", type: "fixe" },
+            "c1_2": { nom: "Dissimulation du visage", cat: "LV1", amende: 500, temps: 5, art: "CP-Art 3-1.1", type: "fixe" },
+            "c1_3": { nom: "Attroupement illégal", cat: "LV1", amende: 500, temps: 10, art: "CP-Art 3-1.2", type: "fixe" },
+            "c1_4": { nom: "Ivresse sur la voie publique", cat: "LV1", amende: 1000, temps: 15, art: "CP-Art 3-1.4", type: "fixe", note: "Cellule de dégrisement" },
+            "c1_5": { nom: "Mendicité", cat: "LV1", amende: 80, temps: 0, art: "CP-Art 3-1.5", type: "fixe", note: "Rappel à la loi" },
+            "c1_6": { nom: "Dégradation de la nature", cat: "LV1", amende: 500, temps: 5, art: "CP-Art 4-1.3", type: "fixe" },
+            "c1_7": { nom: "Stationnement illégal ou gênant", cat: "LV1", amende: 500, temps: 5, art: "CP-Art 3-2.0", type: "fixe", note: "Mise en fourrière" },
+            "c1_8": { 
+                nom: "Non-respect d'un feu rouge", cat: "LV1", art: "CP-Art 3-1.8", type: "code",
                 options: [
                     { label: "Base", amende: 250, temps: 0 },
-                    { label: "Accident avec dommages matériels", amende: 1000, temps: 14 },
-                    { label: "Accident avec blessures", amende: 500, temps: 10 }
+                    { label: "Accident avec blessures", amende: 500, temps: 10 },
+                    { label: "Accident avec dommages matériels", amende: 1000, temps: 15 }
                 ]
             },
-            "exces_vitesse": { 
-                nom: "Excès de vitesse", cat: "LV1", art: "Art 3-1.7", type: "code",
+            "c1_9": { 
+                nom: "Excès de vitesse", cat: "LV1", art: "CP-Art 3-1.7", type: "code",
                 options: [
-                    { label: "Base", amende: 500, temps: 10 },
-                    { label: "> 80 km/h", amende: 750, temps: 10 },
-                    { label: "> 90 km/h", amende: 950, temps: 10 },
-                    { label: "> 140 km/h", amende: 1500, temps: 10 }
+                    { label: "< 60km/h (Rappel)", amende: 500, temps: 10 },
+                    { label: "> 80km/h", amende: 750, temps: 10 },
+                    { label: "> 90km/h", amende: 950, temps: 10 },
+                    { label: "> 140km/h", amende: 1500, temps: 10 }
                 ]
             },
-            "stop": { 
-                nom: "Non-respect d'un panneau Stop", cat: "LV1", art: "Art 3-1.9", type: "code",
+            "c1_10": { 
+                nom: "Non-respect d'un panneau stop", cat: "LV1", art: "CP-Art 3-1.9", type: "code",
                 options: [
                     { label: "Base", amende: 250, temps: 0 },
-                    { label: "Accident avec dommages matériels", amende: 890, temps: 10 },
-                    { label: "Accident avec blessures", amende: 500, temps: 8 }
+                    { label: "Accident avec blessure", amende: 500, temps: 10 },
+                    { label: "Accident avec dommages matériels", amende: 890, temps: 15 }
                 ]
             },
-            "sans_permis": { 
-                nom: "Conduite sans permis de conduire", cat: "LV1", art: "Art 2-2.1", type: "code",
+            "c1_11": { 
+                nom: "Conduite sans permis", cat: "LV1", art: "CP-Art 2-2.1", type: "code",
                 options: [
-                    { label: "Suspendu/Expiré", amende: 1200, temps: 12 },
+                    { label: "Base", amende: 1200, temps: 0 },
                     { label: "Récidive", amende: 2000, temps: 20 }
                 ]
             },
-            "ivresse_volant": { 
-                nom: "Conduite en état d'ivresse", cat: "LV1", art: "Art 2-2.2", type: "code",
+            "c1_12": { nom: "Conduite avec un permis suspendu, expiré ou révoqué", cat: "LV1", amende: 1700, temps: 10, art: "CP-Art 2-2.1", type: "fixe" },
+            "c1_13": { 
+                nom: "Conduite en état d'ivresse", cat: "LV1", art: "CP-Art 2-2.2", type: "code",
                 options: [
                     { label: "Base", amende: 1200, temps: 20 },
-                    { label: "Taux supérieur à 0,15 %", amende: 2500, temps: 20 },
-                    { label: "Refus de se soumettre au test d’alcoolémie", amende: 3000, temps: 30 },
+                    { label: "Taux > 0,15 %", amende: 2500, temps: 20 },
+                    { label: "Refus de test", amende: 3000, temps: 30 },
                     { label: "Récidive", amende: 3500, temps: 45 }
                 ]
             },
-            "conduite_stup": { 
-                nom: "Conduite ou à pied sous l'emprise de stupéfiants", cat: "LV1", art: "Art 2-2.3", type: "code",
+            "c1_14": { 
+                nom: "Conduite / à pied sous l'emprise de stupéfiants", cat: "LV1", art: "CP-Art 2-2.3", type: "code",
                 options: [
                     { label: "Base", amende: 1800, temps: 25 },
-                    { label: "Refus de test salivaire ou sanguin", amende: 2300, temps: 30 },
-                    { label: "Conduite sous stupéfiants + alcool", amende: 6000, temps: 45 },
+                    { label: "Refus de test", amende: 2300, temps: 30 },
+                    { label: "Avec alcool", amende: 6000, temps: 45 },
                     { label: "Récidive", amende: 10000, temps: 60 }
                 ]
             },
-            "injure": { nom: "Injure", cat: "LV1", amende: 250, temps: 5, art: "Art 5-4.2", type: "fixe", note: "GAV" },
+            "c1_15": { nom: "Injure", cat: "LV1", amende: 250, temps: 5, art: "CP-Art 5-4.2", type: "fixe" },
+            "c1_16": { nom: "Port, transport ou détention d'armes (Cat D1)", cat: "LV1", amende: 1800, temps: 10, art: "CRA-Art 2-1.9", type: "fixe" },
+            "c1_17": { nom: "Utilisation d'une arme sans autorisation (Cat D1)", cat: "LV1", amende: 2000, temps: 15, art: "CRA-Art 2-1.2", type: "fixe" },
 
-            // ================== CATÉGORIE 2 : DÉLITS MINEURS ==================
-            "refus_soumettre": { nom: "Refus de se soumettre", cat: "LV2", amende: 1000, temps: 10, art: "Art 2-1.3", type: "fixe", note: "GAV" },
-            "refus_obtemperer": { nom: "Refus d'obtempérer", cat: "LV2", amende: 1000, temps: 10, art: "Art 2-1.4", type: "fixe", note: "GAV" },
-            "conduite_dangereuse": { nom: "Conduite dangereuse", cat: "LV2", amende: 1200, temps: 20, art: "Art 2-2.4", type: "fixe", note: "GAV" },
-            "conduite_contresens": { nom: "Conduite en contre-sens", cat: "LV2", amende: 1100, temps: 10, art: "Art 2-2.5", type: "fixe", note: "GAV" },
-            "delit_fuite": { nom: "Délit de fuite", cat: "LV2", amende: 1100, temps: 20, art: "Art 2-1.5", type: "fixe", note: "GAV" },
-            "trouble_ordre": { nom: "Trouble à l'ordre public", cat: "LV2", amende: 2000, temps: 15, art: "Art 2-1.6", type: "fixe", note: "GAV" },
-            "intrusion_privee": { nom: "Intrusion dans une propriété privée", cat: "LV2", amende: 2200, temps: 15, art: "Art 3-1.3", type: "fixe", note: "GAV" },
-            "manifestation_illegale": { nom: "Manifestation illégale", cat: "LV2", amende: 2050, temps: 30, art: "Art 3-1.6", type: "fixe", note: "GAV" },
-            "chasse_illegale": { nom: "Chasse illégale", cat: "LV2", amende: 890, temps: 0, art: "Art 4-1.1", type: "fixe" },
-            "peche_illegale": { nom: "Pêche illégale", cat: "LV2", amende: 890, temps: 0, art: "Art 4-1.2", type: "fixe" },
-            "agression_mineure": { nom: "Agression mineure", cat: "LV2", amende: 1050, temps: 10, art: "Art 5-1.1", type: "fixe", note: "GAV" },
-            "non_assistance": { nom: "Non-assistance à personne en danger", cat: "LV2", amende: 9000, temps: 20, art: "Art 5-2.1", type: "fixe", note: "GAV" },
-            "mise_en_danger": { nom: "Mise en danger de la vie d'autrui", cat: "LV2", amende: 2500, temps: 10, art: "Art 5-2.6", type: "fixe", note: "GAV" },
-            "harcelement": { nom: "Harcèlement", cat: "LV2", amende: 1000, temps: 0, art: "Art 5-4.1", type: "fixe", note: "Mesure d'éloignement (Justice)" },
-            "diffamation": { nom: "Diffamation", cat: "LV2", amende: 2840, temps: 5, art: "Art 5-4.3", type: "fixe", note: "GAV" },
-            "denonciation_calomnieuse": { nom: "Dénonciation calomnieuse", cat: "LV2", amende: 3000, temps: 15, art: "Art 5-4.4", type: "fixe", note: "GAV" },
-            "menace": { nom: "Menace", cat: "LV2", amende: 1000, temps: 10, art: "Art 5-4.5", type: "fixe", note: "GAV" },
-            "vol": { nom: "Vol", cat: "LV2", amende: 750, temps: 15, art: "Art 6-1.1", type: "fixe", note: "GAV" },
-            "alcool_revente": { 
-                nom: "Trafic d'alcool", cat: "LV2", art: "Art 7-2.4", type: "code",
-                options: [{ label: "Bouteille d'alcool", amende: 200, temps: 15, unite: true }]
-            },
-            "sous_location": { 
-                nom: "Sous-location illicite", cat: "LV2", art: "Art 6-3.1", type: "code",
+            // ================== CATÉGORIE 2 : DÉLITS MINEURS (LV2) ==================
+            "c2_m_1": { nom: "Port, transport ou détention d'arme (Cat A2)", cat: "LV2", amende: 1500, temps: 10, art: "CRA-Art 2-1.10", type: "fixe" },
+            "c2_m_2": { nom: "Port, transport ou détention d'arme (Cat B2)", cat: "LV2", amende: 2200, temps: 20, art: "CRA-Art 2-1.11", type: "fixe" },
+            "c2_m_3": { nom: "Non-respect procédure de cession/destruction", cat: "LV2", amende: 1450, temps: 15, art: "CRA-Art 3-1.3", type: "fixe" },
+            "c2_m_4": { nom: "Possession d'équipement tactique", cat: "LV2", amende: 1200, temps: 10, art: "CRA-Art 4-1.7", type: "fixe" },
+            "c2_m_5": { nom: "Possession de chargeurs sans PPA associé", cat: "LV2", amende: 1800, temps: 20, art: "CRA-Art 4-1.8", type: "fixe" },
+            "c2_m_6": { nom: "Possession ou port de holster sans autorisation", cat: "LV2", amende: 1800, temps: 20, art: "CRA-Art 4-1.9", type: "fixe" },
+            "c2_m_7": { nom: "Refus de se soumettre", cat: "LV2", amende: 1000, temps: 10, art: "CP-Art 2-1.3", type: "fixe" },
+            "c2_m_8": { nom: "Refus d'obtempérer", cat: "LV2", amende: 1000, temps: 10, art: "CP-Art 2-1.4", type: "fixe" },
+            "c2_m_9": { nom: "Conduite dangereuse", cat: "LV2", amende: 1200, temps: 20, art: "CP-Art 2-2.4", type: "fixe" },
+            "c2_m_10": { nom: "Conduite en contre-sens", cat: "LV2", amende: 1100, temps: 10, art: "CP-Art 2-2.5", type: "fixe" },
+            "c2_m_11": { nom: "Délit de fuite", cat: "LV2", amende: 1100, temps: 20, art: "CP-Art 2-1.5", type: "fixe" },
+            "c2_m_12": { nom: "Trouble à l'ordre public", cat: "LV2", amende: 2000, temps: 15, art: "CP-Art 2-1.6", type: "fixe" },
+            "c2_m_13": { nom: "Intrusion dans une propriété privée", cat: "LV2", amende: 2200, temps: 15, art: "CP-Art 3-1.3", type: "fixe" },
+            "c2_m_14": { nom: "Manifestation illégale", cat: "LV2", amende: 2050, temps: 30, art: "CP-Art 3-1.6", type: "fixe" },
+            "c2_m_15": { nom: "Chasse illégale", cat: "LV2", amende: 890, temps: 0, art: "CP-Art 4-1.1", type: "fixe" },
+            "c2_m_16": { nom: "Pêche illégale", cat: "LV2", amende: 890, temps: 0, art: "CP-Art 4-1.2", type: "fixe" },
+            "c2_m_17": { nom: "Agression mineure", cat: "LV2", amende: 1050, temps: 10, art: "CP-Art 5-1.1", type: "fixe" },
+            "c2_m_18": { nom: "Non-assistance à personne en danger", cat: "LV2", amende: 9000, temps: 20, art: "CP-Art 5-2.1", type: "fixe" },
+            "c2_m_19": { nom: "Mise en danger de la vie d'autrui", cat: "LV2", amende: 2500, temps: 10, art: "CP-Art 5-2.6", type: "fixe" },
+            "c2_m_20": { nom: "Harcèlement", cat: "LV2", amende: 1000, temps: 0, art: "CP-Art 5-4.1", type: "fixe" },
+            "c2_m_21": { nom: "Diffamation", cat: "LV2", amende: 2840, temps: 5, art: "CP-Art 5-4.3", type: "fixe" },
+            "c2_m_22": { nom: "Dénonciation calomnieuse", cat: "LV2", amende: 3000, temps: 15, art: "CP-Art 5-4.4", type: "fixe" },
+            "c2_m_23": { nom: "Menace", cat: "LV2", amende: 1000, temps: 10, art: "CP-Art 5-4.5", type: "fixe" },
+            "c2_m_24": { nom: "Vol", cat: "LV2", amende: 750, temps: 10, art: "CP-Art 6-1.1", type: "fixe" },
+            "c2_m_25": { 
+                nom: "Braquage ATM", cat: "LV2", art: "CP-Art 6-1.3", type: "code",
                 options: [
-                    { label: "Délit Mineur", amende: 1500, temps: 15 },
-                    { label: "Délit Majeur (Échelle/Faux)", amende: 2500, temps: 20 }
+                    { label: "Base", amende: 1000, temps: 10 },
+                    { label: "Si arme à feu", amende: 2000, temps: 10 }
                 ]
             },
-            "degradation_bien": { 
-                nom: "Dégradation de bien", cat: "LV2", art: "Art 6-2.4", type: "code",
+            "c2_m_26": { nom: "Chantage", cat: "LV2", amende: 1260, temps: 5, art: "CP-Art 6-2.2", type: "fixe" },
+            "c2_m_27": { nom: "Mutilation", cat: "LV2", amende: 1080, temps: 10, art: "CP-Art 5-1.3", type: "fixe" },
+            "c2_m_28": { nom: "Escroquerie", cat: "LV2", amende: 1480, temps: 5, art: "CP-Art 6-2.3", type: "fixe" },
+            "c2_m_29": { nom: "Dégradation de biens (tiers)", cat: "LV2", amende: 2000, temps: 10, art: "CP-Art 6-2.4", type: "fixe" },
+            "c2_m_30": { nom: "Incendie volontaire", cat: "LV2", amende: 1500, temps: 10, art: "CP-Art 6-2.5", type: "fixe" },
+            "c2_m_31": { nom: "Détention d'alcool prohibé (revente)", cat: "LV2", amende: 200, temps: 15, art: "CP-Art 7-2.4", type: "fixe", note: "Amende par unité" },
+            "c2_m_32": { nom: "Association de malfaiteurs", cat: "LV2", amende: 1300, temps: 20, art: "CP-Art 8-1.1", type: "fixe" },
+            "c2_m_33": { nom: "Détention de substances illicites", cat: "LV2", amende: 800, temps: 10, art: "CP-Art 7-2.1", type: "fixe" },
+            "c2_m_34": { nom: "La sous-location illicite", cat: "LV2", amende: 1500, temps: 15, art: "CP-Art 6-3.1", type: "fixe" },
+
+            // ================== CATÉGORIE 2 : DÉLITS MAJEURS (LV3) ==================
+            "c2_maj_1": { nom: "La sous-location illicite", cat: "LV3", amende: 2500, temps: 20, art: "CP-Art 6-3.1", type: "fixe", note: "Peine d'incarcération" },
+            "c2_maj_2": { nom: "Port, transport ou détention d'arme (Cat B1)", cat: "LV3", amende: 2800, temps: 25, art: "CRA-Art 2-1.12", type: "fixe" },
+            "c2_maj_3": { nom: "Port, transport ou détention d'arme (Cat C)", cat: "LV3", amende: 2400, temps: 15, art: "CRA-Art 2-1.14", type: "fixe" },
+            "c2_maj_4": { nom: "Détention ou entreposage d’armes/munitions hors cadre", cat: "LV3", amende: 3000, temps: 30, art: "CRA-Art 3-1.13", type: "fixe" },
+            "c2_maj_5": { 
+                nom: "Usage inapproprié ou abusif d’une arme de service", cat: "LV3", art: "CRA-Art 4-1.10", type: "code",
                 options: [
-                    { label: "Bien d'un tiers", amende: 2000, temps: 10 },
-                    { label: "Bien de l'État / Public", amende: 6000, temps: 20 }
+                    { label: "Base", amende: 2500, temps: 25 },
+                    { label: "Si blessure ou décès (x2)", amende: 5000, temps: 50 }
                 ]
             },
-            "braquage_atm": { 
-                nom: "Braquage ATM", cat: "LV2", art: "Art 6-1.3", type: "code",
-                options: [
-                    { label: "Sans arme", amende: 1000, temps: 10 },
-                    { label: "Présence d'une arme à feu", amende: 2000, temps: 10 }
-                ]
-            },
-            "chantage": { nom: "Chantage", cat: "LV2", amende: 2000, temps: 5, art: "Art 6-2.2", type: "fixe", note: "GAV" },
-            "escroquerie": { nom: "Escroquerie", cat: "LV2", amende: 2000, temps: 5, art: "Art 6-2.3", type: "fixe", note: "GAV | Indemnité d’un bien/service" },
-            "incendie_volontaire": { nom: "Incendie volontaire", cat: "LV2", amende: 1500, temps: 10, art: "Art 6-2.5", type: "fixe", note: "GAV" },
-            "asso_malfaiteurs": { nom: "Association de malfaiteurs", cat: "LV2", amende: 1300, temps: 20, art: "Art 8-1.1", type: "fixe", note: "GAV" },
-            "arme_blanche": { nom: "Possession d'une arme blanche", cat: "LV2", amende: 1800, temps: 10, art: "Art 7-1.10", type: "fixe", note: "GAV | Saisie" },
-            "substances_illicites": { nom: "Détention de substances illicites", cat: "LV2", amende: 800, temps: 10, art: "Art 7-2.1", type: "fixe", note: "GAV | Saisie drogue" },
+            "c2_maj_6": { nom: "Abus de pouvoir", cat: "LV3", amende: 11200, temps: 30, art: "CP-Art 2-1.1", type: "fixe" },
+            "c2_maj_7": { nom: "Tentative de corruption / Corruption", cat: "LV3", amende: 10000, temps: 35, art: "CP-Art 2-1.2", type: "fixe", note: "Prévenir agence fédérale" },
+            "c2_maj_8": { nom: "Obstruction à la justice", cat: "LV3", amende: 7500, temps: 30, art: "CP-Art 2-1.8", type: "fixe" },
+            "c2_maj_9": { nom: "Outrage à la justice", cat: "LV3", amende: 15000, temps: 40, art: "CP-Art 2-1-9", type: "fixe" },
+            "c2_maj_10": { nom: "Faux et usage de faux", cat: "LV3", amende: 8000, temps: 20, art: "CP-Art 2-1.10", type: "fixe" },
+            "c2_maj_11": { nom: "Agression majeure", cat: "LV3", amende: 3500, temps: 20, art: "CP-Art 5-1.2", type: "fixe" },
+            "c2_maj_12": { nom: "Homicide involontaire", cat: "LV3", amende: 10000, temps: 25, art: "CP-Art 5-2.4", type: "fixe" },
+            "c2_maj_13": { nom: "Agression sexuelle", cat: "LV3", amende: 5000, temps: 999, art: "CP-Art 5-3.1", type: "fixe", note: "Perpétuité - Prévenir Washington D.C" },
+            "c2_maj_14": { nom: "Prostitution", cat: "LV3", amende: 8000, temps: 25, art: "CP-Art 5-3.4", type: "fixe" },
+            "c2_maj_15": { nom: "Recel", cat: "LV3", amende: 10000, temps: 30, art: "CP-Art 6-1.2", type: "fixe" },
+            "c2_maj_16": { nom: "Braquage Fleeca Bank", cat: "LV3", amende: 12000, temps: 45, art: "CP-Art 6-1.3", type: "fixe", note: "Saisie des gains et armes" },
+            "c2_maj_17": { nom: "Braquage de Bijouterie", cat: "LV3", amende: 18000, temps: 60, art: "CP-Art 6-1.3", type: "fixe", note: "Saisie des gains et armes" },
+            "c2_maj_18": { nom: "Braquage de Supérette", cat: "LV3", amende: 2580, temps: 20, art: "CP-Art 6-1.3", type: "fixe", note: "Saisie des gains et armes" },
+            "c2_maj_19": { nom: "Braquage Pacific Standard", cat: "LV3", amende: 20000, temps: 60, art: "CP-Art 6-1.3", type: "fixe", note: "Saisie des gains et armes" },
+            "c2_maj_20": { nom: "Extorsion", cat: "LV3", amende: 12500, temps: 20, art: "CP-Art 6-2.1", type: "fixe" },
+            "c2_maj_21": { nom: "Exhibition d'armes", cat: "LV3", amende: 10000, temps: 20, art: "CP-Art 7-1.1", type: "fixe", note: "Saisie de l'arme" },
+            "c2_maj_22": { nom: "Possession d'une arme illégalement modifiée", cat: "LV3", amende: 10000, temps: 15, art: "CP-Art 7-1.4", type: "fixe", note: "Saisie de l'arme" },
+            "c2_maj_23": { nom: "Possession d'un fusil de précision à lunette", cat: "LV3", amende: 20000, temps: 20, art: "CP-Art 7-1.6", type: "fixe", note: "Saisie de l'arme" },
+            "c2_maj_24": { nom: "Détention de substances illicites (revente)", cat: "LV3", amende: 1080, temps: 15, art: "CP-Art 7-2.2", type: "fixe" },
+            "c2_maj_25": { nom: "Entrave au droit de succession", cat: "LV3", amende: 0, temps: 0, art: "CP-Art 6-2.6", type: "fixe", note: "Cour de Justice / Amende 100% de la somme" },
+            "c2_maj_26": { nom: "Intrusion dans une institution publique", cat: "LV3", amende: 25000, temps: 30, art: "CP-Art 2-2.6", type: "fixe" },
 
-            // ================== CATÉGORIE 3 : DÉLITS MAJEURS ==================
-            "abus_pouvoir": { nom: "Abus de pouvoir", cat: "LV3", amende: 11200, temps: 30, art: "Art 2-1.1", type: "fixe", note: "UP" },
-            "corruption": { nom: "Tentative de corruption", cat: "LV3", amende: 10000, temps: 35, art: "Art 2-1.2", type: "fixe", note: "UP | Fédéral" },
-            "obstruction_justice_maj": { nom: "Obstruction à la justice", cat: "LV3", amende: 7500, temps: 30, art: "Art 2-1.8", type: "fixe", note: "UP" },
-            "outrage_justice_maj": { nom: "Outrage à la justice", cat: "LV3", amende: 15000, temps: 40, art: "Art 2-1-9", type: "fixe", note: "UP" },
-            "faux_usage_maj": { nom: "Faux et usage de faux", cat: "LV3", amende: 8000, temps: 20, art: "Art 2-1.10", type: "fixe", note: "UP" },
-            "agression_majeure": { nom: "Agression majeure", cat: "LV3", amende: 3500, temps: 20, art: "Art 5-1.2", type: "fixe", note: "UP" },
-            "mutilation": { nom: "Mutilation", cat: "LV3", amende: 5000, temps: 15, art: "Art 5-1.3", type: "fixe", note: "GAV" },
-            "homicide_involontaire": { nom: "Homicide involontaire", cat: "LV3", amende: 10000, temps: 25, art: "Art 5-2.4", type: "fixe", note: "UP" },
-            "agression_sexuelle": { nom: "Agression sexuelle", cat: "LV3", amende: 5000, temps: "Perpétuité", art: "Art 5-3.1", type: "fixe", note: "Perpétuité" },
-            "prostitution": { nom: "Prostitution", cat: "LV3", amende: 8000, temps: 25, art: "Art 5-3.4", type: "fixe", note: "UP | Fédéral" },
-            "recel": { nom: "Recel", cat: "LV3", amende: 10000, temps: 30, art: "Art 6-1.2", type: "fixe", note: "UP" },
-            "braquage_fleeca": { nom: "Braquage Fleeca Bank", cat: "LV3", amende: 12000, temps: 45, art: "Art 6-1.3", type: "fixe", note: "UP | Saisie" },
-            "braquage_bijouterie": { nom: "Braquage de Bijouterie", cat: "LV3", amende: 18000, temps: 60, art: "Art 6-1.3", type: "fixe", note: "UP | Saisie" },
-            "braquage_superette": { nom: "Braquage de Supérette", cat: "LV3", amende: 2580, temps: 20, art: "Art 6-1.3", type: "fixe", note: "UP | Saisie" },
-            "braquage_pacific": { nom: "Braquage Pacific Standard", cat: "LV3", amende: 100000, temps: 90, art: "Art 6-1.3", type: "fixe", note: "UP | Saisie" },
-            "extorsion": { nom: "Extorsion", cat: "LV3", amende: 15000, temps: 20, art: "Art 6-2.1", type: "fixe", note: "UP" },
-            "exhibition_armes": { nom: "Exhibition d'armes", cat: "LV3", amende: 10000, temps: 20, art: "Art 7-1.1", type: "fixe", note: "UP | Saisie" },
-            "possession_arme_sans_permis": { nom: "Possession d'une arme sans PPA", cat: "LV3", amende: 15000, temps: 25, art: "Art 7-1.2", type: "fixe", note: "UP | Saisie" },
-            "possession_arme_modifiee": { nom: "Possession d'une arme modifiée", cat: "LV3", amende: 10000, temps: 15, art: "Art 7-1.4", type: "fixe", note: "UP | Saisie" },
-            "possession_fusil_precision": { nom: "Possession d'un fusil de précision", cat: "LV3", amende: 20000, temps: 20, art: "Art 7-1.6", type: "fixe", note: "UP | Saisie" },
-            "detention_substances_revente": { nom: "Détention de substances illicites aux fins de revente", cat: "LV3", amende: 1080, temps: 15, art: "Art 7-2.2", type: "fixe", note: "UP | Saisie drogue" },
-            "entrave_succession": { nom: "Entrave au droit de succession", cat: "LV3", amende: 0, temps: 10, art: "Art 6-2.6", type: "fixe", note: "GAV" },
-            "intrusion_institution": { nom: "Intrusion dans une institution publique", cat: "LV3", amende: 25000, temps: 30, art: "Art 2-2.6", type: "fixe", note: "UP" },
-
-            // ================== CATÉGORIE 4 : CRIMES ==================
-            "sequestration": { nom: "Séquestration", cat: "LV4", amende: 30000, temps: 20, art: "Art 5-1.4", type: "fixe", note: "UP" },
-            "prise_otage": { 
-                nom: "Prise d'otage", cat: "LV4", art: "Art 5-1.5", type: "code",
+            // ================== CATÉGORIE 3 : CRIMES FÉDÉRAUX (LV4) ==================
+            "c3_1": { nom: "Séquestration", cat: "LV4", amende: 30000, temps: 20, art: "CP-Art 5-1.4", type: "fixe" },
+            "c3_2": { 
+                nom: "Prise d’otage", cat: "LV4", art: "CP-Art 5-1.5", type: "code",
                 options: [
                     { label: "Base", amende: 20000, temps: 15 },
-                    { label: "Victime agent dépositaire de l'autorité publique", amende: 2000, temps: 10 },
-                    { label: "Usage d'armes à feu, armes blanches ou explosifs", amende: 3000, temps: 20 },
-                    { label: "+2 heures de séquestration ou +3 victimes retenues simultanément", amende: 4000, temps: 15 },
-                    { label: "bâtiment public ou lieu officiel", amende: 5000, temps: 10 },
-                    { label: "Organisation en bande", amende: 6000, temps: 20 }
+                    { label: "Victime agent d'autorité publique", amende: 22000, temps: 25 },
+                    { label: "Usage d'armes/explosifs", amende: 23000, temps: 35 },
+                    { label: ">2h ou >3 victimes", amende: 24000, temps: 30 },
+                    { label: "Bâtiment public ou lieu officiel", amende: 25000, temps: 25 },
+                    { label: "Organisation en bande", amende: 26000, temps: 35 }
                 ]
             },
-            "homicide_volontaire": { nom: "Homicide volontaire", cat: "LV4", amende: 25000, temps: 30, art: "Art 5-2.2", type: "fixe", note: "UP" },
-            "exhibition_crime": { nom: "Exhibition", cat: "LV4", amende: 7500, temps: 25, art: "Art 5-3.5", type: "fixe", note: "UP" },
-            "tentative_homicide": { nom: "Tentative d'homicide", cat: "LV4", amende: 15000, temps: 30, art: "Art 5-2.3", type: "fixe", note: "UP" },
-            "meurtre_premeditation": { nom: "Meurtre avec préméditation", cat: "LV4", amende: 50000, temps: 40, art: "Art 5-2.4", type: "fixe", note: "UP" },
-            "viol": { nom: "Viol", cat: "LV4", amende: 50000, temps: "Perpétuité", art: "Art 5-3.2", type: "fixe", note: "Fédéral" },
-            "proxenetisme": { nom: "Proxénétisme", cat: "LV4", amende: 25000, temps: 40, art: "Art 5-3.3", type: "fixe", note: "UP | Fédéral" },
-            "engin_explosif": { nom: "Possession d'engin explosif", cat: "LV4", amende: 32000, temps: 45, art: "Art 7-1.5", type: "fixe", note: "UP | Fédéral" },
-            "fabrication_armes": { nom: "Fabrication d'armes", cat: "LV4", amende: 50000, temps: 30, art: "Art 7-1.7", type: "fixe", note: "UP | Fédéral" },
-            "trafic_armes": { 
-                nom: "Trafic d'armes", cat: "LV4", art: "Art 7-1.8", type: "code",
+            "c3_3": { nom: "Homicide volontaire", cat: "LV4", amende: 25000, temps: 30, art: "CP-Art 5-2.2", type: "fixe" },
+            "c3_4": { nom: "Exhibition", cat: "LV4", amende: 7500, temps: 25, art: "CP-Art 5-3.5", type: "fixe" },
+            "c3_5": { nom: "Tentative d'homicide", cat: "LV4", amende: 15000, temps: 30, art: "CP-Art 5-2.3", type: "fixe" },
+            "c3_6": { nom: "Meurtre avec préméditation", cat: "LV4", amende: 45000, temps: 40, art: "CP-Art 5-2.4", type: "fixe" },
+            "c3_7": { nom: "Viol", cat: "LV4", amende: 50000, temps: 999, art: "CP-Art 5-3.2", type: "fixe", note: "Perpétuité - Prévenir Washington D.C" },
+            "c3_8": { nom: "Proxénétisme", cat: "LV4", amende: 25000, temps: 25, art: "CP-Art 5-3.3", type: "fixe", note: "Prévenir agence fédérale" },
+            "c3_9": { nom: "Port, transport ou détention d'arme (Cat A1)", cat: "LV4", amende: 32000, temps: 45, art: "CRA Art 2-1.13", type: "fixe", note: "Prévenir agence fédérale" },
+            "c3_10": { nom: "Direction d'un groupement de trafic d'armes", cat: "LV4", amende: 60000, temps: 40, art: "CRA Art 3-1.10", type: "fixe", note: "Prévenir agence fédérale" },
+            "c3_11": { nom: "Fabrication d'arme illégale ou vente", cat: "LV4", amende: 58976, temps: 40, art: "CRA Art 3-1.11", type: "fixe", note: "Prévenir agence fédérale" },
+            "c3_12": { nom: "Trafic d'armes (>19 unités)", cat: "LV4", amende: 75760, temps: 40, art: "CRA Art 3-1.12", type: "fixe", note: "Prévenir agence fédérale" },
+            "c3_13": { nom: "Utilisation d'arme contre un agent de l'État", cat: "LV4", amende: 38900, temps: 35, art: "CP-Art 7-1.9", type: "fixe" },
+            "c3_14": { nom: "Trafic de stupéfiants", cat: "LV4", amende: 0, temps: 30, art: "CP-Art 7-2.3", type: "fixe", note: "Amende Variable (Weed 30/u, Meth 100/u, Coca 130/u)" },
+            "c3_15": { nom: "Blanchiment d'argent", cat: "LV4", amende: 15000, temps: 30, art: "CP-Art 8-1.2", type: "fixe", note: "Prévenir agence fédérale" },
+            "c3_16": { nom: "Sédition", cat: "LV4", amende: 80000, temps: 35, art: "CP-Art 8-1.3", type: "fixe", note: "Prévenir agence fédérale" },
+            "c3_17": { nom: "Violation de surveillance électronique", cat: "LV4", amende: 0, temps: 0, art: "CP-Art 8-2.1", type: "fixe", note: "Sur décision Cour de Justice" },
+            "c3_18": { nom: "Fraude fiscale", cat: "LV4", amende: 0, temps: 30, art: "CP-Art 8-2.2", type: "fixe", note: "Montant dérobé + 5% pénalité. Si > 1M, temps: 00:50." },
+            "c3_19": { 
+                nom: "Trafic d’organes", cat: "LV4", art: "CP-Art 8-2.3", type: "code",
                 options: [
-                    { label: "Base", amende: 100000, temps: 30 },
-                    { label: "Aggravé (Guerre/Mineur/Attentat)", amende: 10000, temps: 1440, unite: true }
+                    { label: "Base", amende: 25000, temps: 50 },
+                    { label: "Organisation criminelle", amende: 28000, temps: 60 },
+                    { label: "Victime mineure/vulnérable", amende: 34800, temps: 65 },
+                    { label: "Décès/Mutilation grave", amende: 30000, temps: 70 },
+                    { label: "Moyens violents / Coercition", amende: 33890, temps: 60 }
                 ]
             },
-            "utilisation_arme_agent": { nom: "Utilisation d'arme à l'encontre d'un agent de l'État", cat: "LV4", amende: 30000, temps: 35, art: "Art 7-1.9", type: "fixe", note: "UP" },
-            "trafic_stupefiants": { 
-                nom: "Trafic de stupéfiants", cat: "LV4", art: "Art 7-2.3", type: "code",
-                options: [
-                    { label: "Weed", amende: 30, temps: 0, unite: true },
-                    { label: "Méthamphétamine", amende: 100, temps: 0, unite: true },
-                    { label: "Cocaïne", amende: 130, temps: 0, unite: true }
-                ]
-            },
-            "blanchiment_argent": { nom: "Blanchiment d'argent", cat: "LV4", amende: 15000, temps: 30, art: "Art 8-1.2", type: "fixe", note: "UP | Fédéral" },
-            "sedition": { nom: "Sédition", cat: "LV4", amende: 100000, temps: 35, art: "Art 8-1.3", type: "fixe", note: "UP | Fédéral" },
-            "violation_surveillance": { nom: "Violation surveillance électronique", cat: "LV4", amende: 0, temps: 0, art: "Art 8-2.1", type: "fixe", note: "Cour Supérieure" },
-            "fraude_fiscale": { 
-                nom: "Fraude fiscale", cat: "LV4", art: "Art 8-2.2", type: "code",
-                options: [
-                    { label: "Base", amende: 5000, temps: 20 },
-                    { label: "Aggravé (> 1M / Intérêts)", amende: 15000, temps: 40 }
-                ]
-            },
-            "trafic_organes": { 
-                nom: "Trafic d'organes", cat: "LV4", art: "Art 8-2.3", type: "code",
-                options: [
-                    { label: "Base (Privation de liberté)", amende: 25000, temps: 30 },
-                    { label: "Organisation criminelle", amende: 3000, temps: 10 },
-                    { label: "Victime mineure ou vulnérable", amende: 9800, temps: 15 },
-                    { label: "Décès ou mutilation grave", amende: 5000, temps: 20 },
-                    { label: "Traffic transfontalier", amende: 1000, temps: 5 },
-                    { label: "Moyens violents / Coercition", amende: 8890, temps: 10 },
-                    { label: "Mise en danger de la vie d'autrui", amende: 4000, temps: 10 }
-                ]
-            },
-            "terrorisme": { nom: "Terrorisme", cat: "LV4", amende: 2000000, temps: "Perpétuité", art: "Art 8-1.4", type: "fixe", note: "Fédéral" },
-            "traite_humaine": { nom: "Traite Humaine", cat: "LV4", amende: 1500000, temps: "Perpétuité", art: "Art 8-1.5", type: "fixe", note: "Fédéral" },
-            "evasion": { nom: "Évasion", cat: "LV4", amende: 900000, temps: 45, art: "Art 8-1.6", type: "fixe", note: "UP | Fédéral" },
-            "conspiration": { nom: "Conspiration", cat: "LV4", amende: 2000000, temps: "Perpétuité", art: "Art 8-1.7", type: "fixe", note: "Fédéral" },
-            "viol_constitution": { nom: "Viol de la Constitution", cat: "LV4", amende: 5000000, temps: "Perpétuité", art: "Art 8-1.8", type: "fixe", note: "Fédéral" },
-            "haute_trahison": { nom: "Haute trahison", cat: "LV4", amende: 5000000, temps: "Perpétuité", art: "Art 8-1.9", type: "fixe", note: "Fédéral" }
+            "c3_20": { nom: "Terrorisme", cat: "LV4", amende: 400000, temps: 999, art: "CP-Art 8-1.4", type: "fixe", note: "Perpétuité - Prévenir Washington D.C" },
+            "c3_21": { nom: "Traite Humaine", cat: "LV4", amende: 320700, temps: 999, art: "CP-Art 8-1.5", type: "fixe", note: "Perpétuité - Prévenir agence fédérale" },
+            "c3_22": { nom: "Évasion", cat: "LV4", amende: 100000, temps: 50, art: "CP-Art 8-1.6", type: "fixe", note: "Prévenir agence fédérale" },
+            "c3_23": { nom: "Conspiration", cat: "LV4", amende: 479000, temps: 999, art: "CP-Art 8-1.7", type: "fixe", note: "Perpétuité - Prévenir agence fédérale" },
+            "c3_24": { nom: "Viol de la Constitution", cat: "LV4", amende: 500000, temps: 999, art: "CP-Art 8-1.8", type: "fixe", note: "Perpétuité - Prévenir agence fédérale" },
+            "c3_25": { nom: "Haute trahison", cat: "LV4", amende: 500000, temps: 999, art: "CP-Art 8-1.9", type: "fixe", note: "Perpétuité - Prévenir agence fédérale" }
         };
 
         let dossier = [];
