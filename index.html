@@ -330,14 +330,6 @@
     target.style.display = 'block';
 }
 
-    // Gestion de l'affichage des onglets
-    document.querySelectorAll('.page-content, iframe').forEach(i => i.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-    
-    target.classList.add('active');
-    if(btn) btn.classList.add('active');
-}
-
         document.addEventListener('contextmenu', e => e.preventDefault());
     </script>
 </body>
