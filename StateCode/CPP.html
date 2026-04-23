@@ -49,7 +49,31 @@
         th, td { border: 1px solid rgba(59, 130, 246, 0.3); padding: 10px; text-align: left; }
         th { background-color: rgba(59, 130, 246, 0.1); color: #93c5fd; }
 
-        .footer-note { text-align: center; color: #475569; font-size: 0.85rem; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; }
+        /* FOOTER OFFICIEL */
+        .doc-footer {
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .doc-footer .footer-title {
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: white;
+            margin-bottom: 5px;
+        }
+        .doc-footer .footer-text {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+        .doc-footer .highlight {
+            color: var(--primary);
+            font-weight: 800;
+        }
     </style>
 </head>
 <body>
@@ -617,9 +641,10 @@
         <p>En cas de carence ou d’indisponibilité constatée du Bâtonnier de l’Ordre et d'un Juge de la Cour Supérieure, le Procureur Général, garant de la discipline de l'audience et de la probité judiciaire, exerce par intérim l'autorité ordinale. À ce titre, il peut prononcer toute mesure disciplinaire ou suspension d'exercice à l'encontre d'un avocat dont le comportement entrave la manifestation de la vérité ou l'ordre public.</p>
     </div>
 
-    <div class="footer-note">
-        Code de Procédure Pénale (Version 1 du 27/02/2026)<br>
-        Tous droits réservés - Mister Frexs "Andrew Miller"
+    <div class="doc-footer">
+        <div class="footer-title">Document Fédéral • <span class="highlight">San Andreas D.O.J.</span></div>
+        <p class="footer-text">Toute copie, diffusion ou falsification non autorisée est passible de poursuites pénales.</p>
+        <p class="footer-text" style="margin-top: 5px;">© 2026 - État de San Andreas</p>
     </div>
 
     <script>

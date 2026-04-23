@@ -40,7 +40,7 @@
         
         /* CHAPITRES AVEC FOND */
         h2 { 
-            background: rgba(37, 99, 235, 0.15); /* Fond aux couleurs du SADOJ */
+            background: rgba(37, 99, 235, 0.15); 
             color: white; 
             font-size: 1.3rem; 
             padding: 12px 20px; 
@@ -49,8 +49,8 @@
             font-weight: 800; 
             text-transform: uppercase; 
             letter-spacing: 1px;
-            border-left: 5px solid var(--primary); /* Ligne officielle à gauche */
-            border-radius: 0 8px 8px 0; /* Arrondi à droite */
+            border-left: 5px solid var(--primary);
+            border-radius: 0 8px 8px 0;
         }
         
         /* ARTICLES */
@@ -95,6 +95,32 @@
             border-radius: 6px;
             font-weight: 800;
             font-size: 0.8rem;
+        }
+
+        /* FOOTER OFFICIEL */
+        .doc-footer {
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .doc-footer .footer-title {
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: white;
+            margin-bottom: 5px;
+        }
+        .doc-footer .footer-text {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+        .doc-footer .highlight {
+            color: var(--primary);
+            font-weight: 800;
         }
 
         /* SCROLLBAR */
@@ -158,7 +184,7 @@
     <div class="article"><span class="art-num">Art 2-1.11</span><span class="art-content">Le port, le transport ou la détention d’armes de catégorie B2 est un délit mineur puni d’une contravention.</span></div>
     <div class="article"><span class="art-num">Art 2-1.12</span><span class="art-content">Le port, le transport ou la détention d’armes de catégorie B1 est un délit majeur puni d’une contravention.</span></div>
     <div class="article"><span class="art-num">Art 2-1.13</span><span class="art-content">Le port, le transport ou la détention d’armes de catégorie A1 est un crime puni d’une contravention.</span></div>
-    <div class="article"><span class="art-num">Art 2-1.14</span><span class="art-content">Le port, le transport ou la détention d’armes de catégorie C est un délit majeur puni d’une contravention.</span></div>
+    <div class="article"><span class="art-num">Art 2-1.14</span><span class="art-content">Le port, le transport ou la détention d’armes de catégorie est un délit majeur puni d’une contravention.</span></div>
 
     <h2>CHAPITRE III : VENTE ET CESSION</h2>
     <div class="article"><span class="art-num">Art 3-1.1</span><span class="art-content">L’activité de vente d’armes est soumise à une licence pouvant être obtenue pour une personne morale auprès du gouvernement. Le vendeur doit exercer au sein d’une ammu-nation.</span></div>
@@ -230,8 +256,10 @@
         </tbody>
     </table>
 
-    <div class="footer-note">
-        Code de Régulation de l'Armement - Tous droits réservés - Mister Frexs "Andrew Miller"
+    <div class="doc-footer">
+        <div class="footer-title">Document Fédéral • <span class="highlight">San Andreas D.O.J.</span></div>
+        <p class="footer-text">Toute copie, diffusion ou falsification non autorisée est passible de poursuites pénales.</p>
+        <p class="footer-text" style="margin-top: 5px;">© 2026 - État de San Andreas</p>
     </div>
 
 </body>

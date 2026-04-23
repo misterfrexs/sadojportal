@@ -47,7 +47,31 @@
         li { margin-bottom: 5px; }
         strong { color: #fff; }
 
-        .footer-note { text-align: center; color: #475569; font-size: 0.85rem; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; }
+        /* FOOTER OFFICIEL */
+        .doc-footer {
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .doc-footer .footer-title {
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: white;
+            margin-bottom: 5px;
+        }
+        .doc-footer .footer-text {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+        .doc-footer .highlight {
+            color: var(--primary);
+            font-weight: 800;
+        }
     </style>
 </head>
 <body>
@@ -111,9 +135,10 @@
         </ul>
     </div>
 
-    <div class="footer-note">
-        Code de la ruralité (Version 1 du 27/02/2026)<br>
-        Tous droits réservés - Mister Frexs "Andrew Miller"
+    <div class="doc-footer">
+        <div class="footer-title">Document Fédéral • <span class="highlight">San Andreas D.O.J.</span></div>
+        <p class="footer-text">Toute copie, diffusion ou falsification non autorisée est passible de poursuites pénales.</p>
+        <p class="footer-text" style="margin-top: 5px;">© 2026 - État de San Andreas</p>
     </div>
 
     <script>
