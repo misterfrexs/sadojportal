@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.A.D.O.J. | Code de Régulation de l'Armement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg-dark: #0f172a;
+            --panel: #1e293b;
+            --border: rgba(255, 255, 255, 0.1);
+            --text-muted: #94a3b8;
+            --danger: #ef4444;
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: transparent; 
+            color: white; 
+            margin: 0; 
+            padding: 40px; 
+            line-height: 1.6; 
+        }
+        
+        /* HEADER */
+        .doc-header { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; border-bottom: 2px solid var(--border); padding-bottom: 20px; }
+        .doc-header img { width: 90px; height: auto; }
+        h1 { font-size: 2.2rem; margin: 0 0 5px 0; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
+        .subtitle { color: var(--text-muted); font-size: 1rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        
+        /* CHAPITRES */
+        h2 { 
+            color: var(--primary); 
+            font-size: 1.3rem; 
+            border-bottom: 1px solid var(--border); 
+            padding-bottom: 10px; 
+            margin-top: 50px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+        
+        /* ARTICLES */
+        .article { 
+            background: rgba(30, 41, 59, 0.5); 
+            border: 1px solid var(--border); 
+            padding: 15px 20px; 
+            border-radius: 8px; 
+            margin-bottom: 12px; 
+            transition: 0.2s;
+        }
+        .article:hover { border-color: rgba(37, 99, 235, 0.4); background: rgba(30, 41, 59, 0.8); }
+        .art-num { 
+            font-weight: 800; 
+            color: #cbd5e1; 
+            margin-right: 15px; 
+            display: inline-block; 
+            min-width: 85px; 
+            border-right: 2px solid var(--primary);
+            padding-right: 10px;
+        }
+        .art-content { display: inline; color: #f1f5f9; font-size: 0.95rem; }
+
+        /* TABLEAU NOMENCLATURE */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+            background: rgba(30, 41, 59, 0.5); 
+            border-radius: 8px; 
+            overflow: hidden; 
+            border: 1px solid var(--border);
+        }
+        th, td { padding: 15px; border-bottom: 1px solid var(--border); text-align: left; font-size: 0.9rem; }
+        th { background: rgba(37, 99, 235, 0.15); font-weight: 800; color: white; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid var(--primary); }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(255, 255, 255, 0.03); }
+        
+        .cat-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.8rem;
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--panel); border-radius: 10px; border: 1px solid var(--border); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <div class="doc-header">
+        <img src="https://i.imgur.com/Pf4XkWF.png" alt="SADOJ Logo">
+        <div>
+            <h1>Code de Régulation de l'Armement</h1>
+            <div class="subtitle">Département de la Justice • État de San Andreas</div>
+        </div>
+    </div>
+
+    <h2>CHAPITRE I : ACQUISITION</h2>
+    <div class="article">
+        <span class="art-num">Art 1-1.1</span>
+        <span class="art-content">Le port et l’acquisition d'une arme sont conditionnés à la délivrance d’un permis de port d’armes ainsi que d’un permis de port d’armes de service, pouvant être obtenus auprès des services des forces de l’ordre (LSPD / BCSO).</span>
+    </div>
+    <div class="article">
+        <span class="art-num">Art 1-1.2</span>
+        <span class="art-content">L’achat d’une arme à feu de même que de munitions doit être effectué au sein d’un commerce agréé.</span>
+    </div>
+    <div class="article">
+        <span class="art-num">Art 1-1.3</span>
+        <span class="art-content">Les armes sont catégorisées en 4 classes. Les licences qui peuvent être obtenues par les citoyens sont celles de catégorie B2.</span>
+    </div>
+    <div class="article">
+        <span class="art-num">Art 1-1.4</span>
+        <span class="art-content">Le permis de port d’armes de service (PPAS) comprend les armes de catégorie B2.</span>
+    </div>
+    <div class="article">
+        <span class="art-num">Art 1-1.5</span>
+        <span class="art-content">Le PPA peut être obtenu moyennant le paiement du tarif fixé par l’État et est soumis à certaines restrictions d’accès. Le demandeur doit être un citoyen américain âgé de 21 ans, avoir rempli le registre d’identification (Recensement) et posséder un casier judiciaire vierge. Il doit également réussir l’examen psychologique mis en place par un psychiatre/psychologue de l'Emergency Medical Service (EMS) ainsi que l’examen théorique mis en place par un instructeur du LSPD ou du BCSO. La commission d'un crime ou d'un délit de mise en danger de la vie d'autrui peut entraîner, sur décision de justice, le retrait de la licence ainsi que des poursuites judiciaires. Le PPAS est délivré pour la nécessité de son emploi et est valide pour une durée de 3 mois.</span>
+    </div>
+    <div class="article">
+        <span class="art-num">Art 1-1.6</span>
+        <span class="art-content">Le LSPD / BCSO propose des instructeurs ayant autorité pour délivrer le permis de port d'armes ainsi que le permis de port d’armes de service.</span>
+    </div>
+    <div class="article">
+        <span class="art-num">Art 1-1.7</span>
+        <span class="art-content">Le Gouvernement de San Andreas détermine les modalités d’obtention du permis de port d'armes de service.</span>
+    </div>
+
+    <h2>CHAPITRE II : POSSESSION ET UTILISATION</h2>
+    <div class="article"><span class="art-num">Art 2-1.1</span><span class="art-content">L’utilisation d’une arme à feu est limitée à l’acte de légitime défense ou dans les cadres prévus par la loi.</span></div>
+    <div class="article"><span class="art-num">Art 2-1.2</span><span class="art-content">Le fait qu'une personne utilise une arme sans autorisation légale, dans un cadre non prévu par la loi, constitue une infraction grave.</span></div>
+    <div class="article"><span class="art-num">Art 2-1.3</span><span class="art-content">L’autorisation de port d’armes de service est strictement limitée à l’exercice d’une profession des forces de l’ordre. Celle-ci n’est donc plus valide en cas de licenciement ou de démission.</span></div>
+    <div class="article"><span class="art-num">Art 2-1.4</span><span class="art-content">Le port d’une arme à feu, même sous licence, est prohibé dans une institution publique. Les bâtiments et entreprises privées sont libres de restreindre le port d'armes dans leurs propriétés.</span></div>
+    <div class="article"><span class="art-num">Art 2-1.5</span><span class="art-content">Les forces de l'ordre ne sont pas soumises à l'interdiction de port d'arme dans les institutions publiques.</span></div>
+    <div class="article"><span class="art-num">Art 2-1.6</span><span class="art-content">Une arme de catégorie I ou pouvant être apparentée (batte de baseball, pied de biche…) doit être transportée dans un étui ou sac prévu à cet effet ou alors dans le coffre d’une voiture. Elle doit être sortie uniquement dans le cadre prévu pour son utilisation (sport, travaux, légitime défense…).</span></div>
+    <div class="article"><span class="art-num">Art 2-1.7</span><span class="art-content">Le port d’une arme est le fait de porter une arme sur soi. La détention d’une arme est le fait de détenir une arme non immédiatement accessible par quelqu’un. Le transport d’une arme est le fait de détenir une arme non immédiatement accessible à l’intérieur d’un véhicule en circulation.</span></div>
+    <div class="article"><span class="art-num">Art 2-1.8</span><span class="art-content">Le port, le transport, la détention et/ou l’utilisation d’armes en violation des dispositions du présent code est interdit et puni selon les modalités décrites ci-après.</span></div>
+    <div class="article"><span class="art-num">Art 2-1.9</span><span class="art-content">Le port, le transport ou la détention d'armes de catégorie D1 est une infraction punie d’une contravention.</span></div>
+    <div class="article"><span class="art-num">Art 2-1.10</span><span class="art-content">Le port, le transport ou la détention d'armes de catégorie A2 est un délit mineur puni d’une contravention.</span></div>
+    <div class="article"><span class="art-num">Art 2-1.11</span><span class="art-content">Le port, le transport ou la détention d’armes de catégorie B2 est un délit mineur puni d’une contravention.</span></div>
+    <div class="article"><span class="art-num">Art 2-1.12</span><span class="art-content">Le port, le transport ou la détention d’armes de catégorie B1 est un délit majeur puni d’une contravention.</span></div>
+    <div class="article"><span class="art-num">Art 2-1.13</span><span class="art-content">Le port, le transport ou la détention d’armes de catégorie A1 est un crime puni d’une contravention.</span></div>
+    <div class="article"><span class="art-num">Art 2-1.14</span><span class="art-content">Le port, le transport ou la détention d’armes de catégorie est un délit majeur puni d’une contravention.</span></div>
+
+    <h2>CHAPITRE III : VENTE ET CESSION</h2>
+    <div class="article"><span class="art-num">Art 3-1.1</span><span class="art-content">L’activité de vente d’armes est soumise à une licence pouvant être obtenue pour une personne morale auprès du gouvernement. Le vendeur doit exercer au sein d’une ammu-nation.</span></div>
+    <div class="article"><span class="art-num">Art 3-1.2</span><span class="art-content">La revente d’une arme, ayant servi ou non, ne peut être effectuée qu’auprès d’une ammunation.</span></div>
+    <div class="article"><span class="art-num">Art 3-1.3</span><span class="art-content">La personne qui veut se séparer d'une arme doit procéder à sa cession auprès des forces de l'ordre. Charge à cette entité de procéder à l'éventuelle destruction. Le non-respect de cet article est un délit mineur puni d’une contravention.</span></div>
+    <div class="article"><span class="art-num">Art 3-1.4</span><span class="art-content">L’employé de vente doit s’assurer de l’agrément de la société qui l’emploie dans le cadre de cette activité, auquel cas, il se rend complice de trafic d'armes à feu.</span></div>
+    <div class="article"><span class="art-num">Art 3-1.5</span><span class="art-content">Toute personne détentrice d’une arme à feu doit se rendre auprès des forces de l’ordre afin de faire enregistrer son arme dans le registre d'État avec le numéro de série ainsi que sa pièce d’identité.</span></div>
+    <div class="article"><span class="art-num">Art 3-1.6</span><span class="art-content">L’établissement s’assure que l’acheteur détient la licence en lien avec l’arme qu’il achète, auquel cas le vendeur et l’établissement sont complices de trafic d'armes à feu.</span></div>
+    <div class="article"><span class="art-num">Art 3-1.7</span><span class="art-content">L’acheteur se doit de garder le numéro de série visible, non rayé et propre. Si tel n’est pas le cas, cette arme devient non sérialisée et illégale.</span></div>
+    <div class="article"><span class="art-num">Art 3-1.8</span><span class="art-content">Le fait qu'une personne achète, importe ou détient une arme sans autorisation constitue un acte interdit par la loi.</span></div>
+    <div class="article"><span class="art-num">Art 3-1.9</span><span class="art-content">La vente et/ou la cession d’armes déduite des dispositions des articles du présent code est interdite et punie selon les modalités légales.</span></div>
+    <div class="article"><span class="art-num">Art 3-1.10</span><span class="art-content">Le fait de diriger ou d'organiser un groupement ayant pour objet la production, la fabrication, l'importation, l'exportation, le transport, la détention, l'offre, la cession, l'acquisition ou l'emploi illicites d'armes constitue un crime.</span></div>
+    <div class="article"><span class="art-num">Art 3-1.11</span><span class="art-content">Seules les Entités et Entreprises Spécialisées peuvent vendre des Armes sur l'État de San Andreas avec Accord Gouvernemental. Toute entité ne peut s'en assujettir et le cas échéant peut être punie pour Fabrication d'Arme Illégale, ce qui constitue un crime.</span></div>
+    <div class="article"><span class="art-num">Art 3-1.12</span><span class="art-content">Le trafic d’armes réside au fait de revendre de manière illégale de l'armement sans disposer d'une autorisation gouvernementale. Détenir une importante quantité d'armes illégales supérieure à 19 se rattache également à du trafic d'armes et est un crime.</span></div>
+    <div class="article"><span class="art-num">Art 3-1.13</span><span class="art-content">La détention ou l’entreposage d’armes, de munitions ou d’explosifs en dehors des cadres légaux constitue un délit majeur exposant à des poursuites pénales, la confiscation du matériel et l’emprisonnement ferme.</span></div>
+
+    <h2>CHAPITRE IV : INFORMATION SUR LES CATÉGORIES</h2>
+    <div class="article"><span class="art-num">Art 4-1.1</span><span class="art-content">La catégorie D1 répertorie les armes de corps à corps ou les armes d’autodéfenses.</span></div>
+    <div class="article"><span class="art-num">Art 4-1.2</span><span class="art-content">Tout objet utilisé pour porter préjudice physique, matériel ou utilisé comme menace peut être considéré comme une arme par destination.</span></div>
+    <div class="article"><span class="art-num">Art 4-1.3</span><span class="art-content">La catégorie B2 répertorie les armes légères non automatiques. Elle nécessite de posséder le permis de port d’armes ou PPAS afin de pouvoir en faire l’acquisition.</span></div>
+    <div class="article"><span class="art-num">Art 4-1.4</span><span class="art-content">La catégorie B1 répertorie les armes automatiques. Elles ne sont disponibles que pour les forces de l’ordre dans l’exercice de leurs fonctions.</span></div>
+    <div class="article"><span class="art-num">Art 4-1.5</span><span class="art-content">Les catégories A1 et A2 répertorient les armes incapacitantes et explosives. Elles ne sont disponibles que pour les forces de l’ordre dans l’exercice de leurs fonctions.</span></div>
+    <div class="article"><span class="art-num">Art 4-1.6</span><span class="art-content">Pendant l'exercice de leur fonction, les agents de police sont habilités à porter des armes de catégorie A1 et A2.</span></div>
+    <div class="article"><span class="art-num">Art 4-1.7</span><span class="art-content">Est reconnu comme Délit Mineur la possession d'équipement tactique, ce qui inclut tout type de protection pare-balle.</span></div>
+    <div class="article"><span class="art-num">Art 4-1.8</span><span class="art-content">La possession de chargeurs sans avoir le PPA associé au type de munitions (Pistolet, Automatique ou Fusil à pompe) est un délit mineur.</span></div>
+    <div class="article"><span class="art-num">Art 4-1.9</span><span class="art-content">Est reconnu comme Délit Mineur la possession ou le port de tout type d'holster lorsqu'il est utilisé sans autorisation préalable. Sont exemptés les forces de l’ordre en service ou hors service, les agents de sécurité accrédités, les membres des forces armées et toute personne dûment habilitée par le Gouvernement ou la Justice.</span></div>
+    <div class="article"><span class="art-num">Art 4-1.10</span><span class="art-content">L’usage inapproprié, abusif ou non autorisé d’une arme de service par un agent fédéral, agent de police (local, sheriff, municipale) et militaire constitue une infraction disciplinaire et pénale pouvant aller jusqu’à la destitution et des poursuites judiciaires.</span></div>
+
+    <h2>CHAPITRE V : NOMENCLATURE DES CATÉGORIES</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Catégorie</th>
+                <th>Type d'armement</th>
+                <th>Exemples</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="cat-badge">D1</span></td>
+                <td>Blanches & Contondantes</td>
+                <td>Matraque, Poing américain, Couteau, Hachette, Billard.</td>
+            </tr>
+            <tr>
+                <td><span class="cat-badge" style="color: #eab308;">A2</span></td>
+                <td>Incapacitantes</td>
+                <td>Taser x26, Pepper spray, Gaz lacrymogène, Beanbag.</td>
+            </tr>
+            <tr>
+                <td><span class="cat-badge" style="color: #3b82f6;">B2</span></td>
+                <td>Armes de poing</td>
+                <td>Glock, Beretta, Cal.50, Revolver .44, Vintage.</td>
+            </tr>
+            <tr>
+                <td><span class="cat-badge" style="color: #f97316;">B1</span></td>
+                <td>Automatiques & Semi-auto</td>
+                <td>AK47, M4, MP5, G36c, Mossberg 500, Remington.</td>
+            </tr>
+            <tr>
+                <td><span class="cat-badge" style="color: #ef4444;">A1</span></td>
+                <td>Guerre et explosifs</td>
+                <td>Lance-roquettes, C4, Grenades, Cocktail Molotov.</td>
+            </tr>
+            <tr>
+                <td><span class="cat-badge" style="color: #10b981;">C</span></td>
+                <td>Chasse</td>
+                <td>Mousquet.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
