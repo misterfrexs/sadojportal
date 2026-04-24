@@ -341,149 +341,155 @@
         }
 
         async function traiterDossier() {
-            const nomS = document.getElementById('nom').value.trim() || "INCONNU";
-            const preS = document.getElementById('prenom').value.trim() || "Inconnu";
-            const procureurN = document.getElementById('procureur').value.trim() || "Procureur";
-            const aT = document.getElementById('total-fine').innerText;
-            const tT = document.getElementById('total-time').innerText;
-            const authCode = "DOJ-" + Math.floor(100000 + Math.random() * 900000);
-            const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-            const idS = Math.floor(1000 + Math.random() * 9000);
-            const coopText = document.getElementById('modifier').options[document.getElementById('modifier').selectedIndex].text;
-            const sigTitle = "Authorized Attorney";
-            const displayId = "Credential ID: " + (Math.random().toString(36).substring(2, 10).toUpperCase());
+    const nomS = document.getElementById('nom').value.trim() || "INCONNU";
+    const preS = document.getElementById('prenom').value.trim() || "Inconnu";
+    const procureurN = document.getElementById('procureur').value.trim() || "Procureur non renseigné";
+    const aT = document.getElementById('total-fine').innerText;
+    const tT = document.getElementById('total-time').innerText;
+    const authCode = "DOJ-" + Math.floor(100000 + Math.random() * 900000);
+    const date = new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+    const idS = Math.floor(1000 + Math.random() * 9000);
+    
+    // Récupération du texte de coopération (ex: "Coopération : Excellente (-25%)")
+    const coopSelect = document.getElementById('modifier');
+    const coopText = coopSelect.options[coopSelect.selectedIndex].text;
 
-            if (selectedInfractions.length === 0) return alert("Ajoutez des infractions !");
+    if (selectedInfractions.length === 0) return alert("⚠️ Erreur : Ajoutez au moins un chef d'accusation !");
 
-            // 1. DISCORD
-            const payload = {
-                embeds: [{
-                    title: "⚖️ OFFICIAL CRIMINAL RECORD PUBLISHED",
-                    color: 2303786,
-                    fields: [
-                        { name: "👤 Identité", value: `**${preS} ${nomS.toUpperCase()}** (#${idS})`, inline: true },
-                        { name: "👮 Procureur", value: procureurN, inline: true },
-                        { name: "🤝 Statut", value: coopText, inline: false },
-                        { name: "💰 Montant total de l'amende", value: `**${aT}**`, inline: true },
-                        { name: "⏳ Durée totale de la peine", value: `**${tT}**`, inline: true }
-                    ],
-                    footer: { text: `Référence: ${authCode} | S.A Department Of Justice` },
-                    timestamp: new Date()
-                }]
-            };
+    // --- ENVOI DISCORD ---
+    const payload = {
+        embeds: [{
+            title: "⚖️ NOUVEAU DOSSIER JUDICIAIRE ENREGISTRÉ",
+            color: 2303786, // Bleu SADOJ
+            fields: [
+                { name: "👤 Identité du Citoyen", value: `**${preS} ${nomS.toUpperCase()}** (#${idS})`, inline: true },
+                { name: "👮 Officier / Procureur", value: procureurN, inline: true },
+                { name: "🤝 Statut de Coopération", value: `\`${coopText}\``, inline: false },
+                { name: "💰 Amende Totale", value: `**${aT}**`, inline: true },
+                { name: "⏳ Peine de Prison", value: `**${tT}**`, inline: true }
+            ],
+            footer: { text: `Réf: ${authCode} | Système de traçabilité S.A.D.O.J.` },
+            timestamp: new Date()
+        }]
+    };
 
-            try {
-                await fetch(DISCORD_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-            } catch (e) { console.error("Discord Error"); }
+    try {
+        await fetch(DISCORD_WEBHOOK_URL, { 
+            method: 'POST', 
+            headers: { 'Content-Type': 'application/json' }, 
+            body: JSON.stringify(payload) 
+        });
+    } catch (e) { 
+        console.error("Erreur Discord Webhook"); 
+    }
 
-            // 2. GENERATION DU PDF
-            const win = window.open("", "_blank");
-            win.document.write(`
-                <html>
-                <head>
-                    <title>Official Criminal Record - ${nomS} ${preS}</title>
-                    <style>
-                        @import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39&family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap');
-                        body { font-family: 'Roboto', sans-serif; padding: 40px; color: #1a1a1a; line-height: 1.4; background: #fff; }
-                        .page-border { border: 2px solid #000; padding: 20px; min-height: 94vh; position: relative; }
-                        .gov-header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 25px; position: relative; }
-                        .gov-header img { width: 80px; position: absolute; left: 0; top: 0; }
-                        .gov-header p { margin: 0; font-weight: 700; font-size: 14px; letter-spacing: 2px; }
-                        .gov-header h1 { margin: 5px 0; font-family: 'Playfair Display', serif; font-size: 28px; text-transform: uppercase; }
-                        .meta-info { display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
-                        .section-title { background: #1e293b; color: #fff; padding: 6px 12px; font-size: 13px; font-weight: 700; text-transform: uppercase; margin-top: 20px; letter-spacing: 1px; }
-                        .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 10px 0; border: 1px solid #000; }
-                        .info-item { padding: 10px; border-right: 1px solid #eee; }
-                        .info-item:last-child { border-right: none; }
-                        .label { display: block; font-size: 10px; color: #666; text-transform: uppercase; font-weight: 700; }
-                        .value { display: block; font-size: 14px; font-weight: 700; margin-top: 2px; }
-                        .doc-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-                        .doc-table th { background: #f1f5f9; text-align: left; padding: 10px; font-size: 11px; border: 1px solid #000; }
-                        .doc-table td { padding: 10px; border: 1px solid #000; font-size: 12px; }
-                        .verdict-box { margin-top: 20px; border: 2px solid #000; display: flex; }
-                        .verdict-item { flex: 1; padding: 15px; text-align: center; border-right: 1px solid #000; }
-                        .verdict-item:last-child { border-right: none; background: #f8fafc; }
-                        .total-val { font-size: 18px; font-weight: 800; color: #000; }
-                        .footer { margin-top: 50px; display: flex; justify-content: space-between; align-items: flex-end; }
-                        .barcode { font-family: 'Libre Barcode 39', cursive; font-size: 40px; }
-                        .sig-block { text-align: center; width: 250px; }
-                        .sig-line { border-top: 1px solid #000; padding-top: 5px; margin-top: 10px; }
-                        .sig-name { font-family: 'Brush Script MT', cursive; font-size: 24px; color: #2563eb; }
-                        .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 100px; color: rgba(0,0,0,0.03); font-weight: 900; pointer-events: none; z-index: -1; white-space: nowrap; }
-                        @media print { body { padding: 0; } .page-border { min-height: 98vh; } }
-                    </style>
-                </head>
-                <body onload="window.print();"> 
-                    <div class="page-border">
-                        <div class="watermark">STATE OF SAN ANDREAS</div> 
-                        <div class="gov-header">
-                            <img src="https://i.imgur.com/Pf4XkWF.png" alt="Seal">
-                            <p>DEPARTMENT OF JUSTICE • STATE OF SAN ANDREAS</p>
-                            <h1>Official Criminal History Record</h1>
-                        </div> 
-                        <div class="meta-info">
-                            <span>Référence: ${authCode}</span>
-                            <span>Publié le: ${date}</span>
-                        </div> 
-                        <div class="section-title">Section I - Identification personnelle</div> 
-                        <div class="info-grid">
-                            <div class="info-item"><span class="label">Nom de famille</span><span class="value">${nomS.toUpperCase()}</span></div>
-                            <div class="info-item"><span class="label">Prénom</span><span class="value">${preS}</span></div>
-                            <div class="info-item"><span class="label">Numéro d'identité</span><span class="value">#${idS}</span></div>
-                        </div>
-                        <div class="section-title">Section II - Infractions pénales et chefs d'accusation</div> 
-                        <table class="doc-table">
-                            <thead>
-                                <tr>
-                                    <th>ARTICLE DE LOI / DESCRIPTION DE L'INFRACTION</th>
-                                    <th>PÉNALITÉ</th>
-                                    <th>PEINE OBLIGATOIRE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${selectedInfractions.map(i => `
-                                    <tr>
-                                        <td>${i.art} - ${i.nom}</td>
-                                        <td>${i.amende.toLocaleString()}$</td>
-                                        <td>${i.temps === 999 ? "LIFE IMPRISONMENT" : i.temps + " UP"}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table> 
-                        <div class="section-title">Section III - Décision finale et verdict</div> 
-                        <div class="verdict-box">
-                            <div class="verdict-item">
-                                <span class="label">Niveau de coopération</span>
-                                <span class="value">${coopText}</span>
-                            </div>
-                            <div class="verdict-item">
-                                <span class="label">Amende totale due</span>
-                                <span class="total-val">${aT}</span>
-                            </div>
-                            <div class="verdict-item">
-                                <span class="label">Durée totale de la peine purgée</span>
-                                <span class="total-val">${tT}</span>
-                            </div>
-                        </div>
-                        <div class="footer">
-                            <div>
-                                <div class="barcode">${authCode}</div>
-                                <span style="font-size: 8px; font-weight: bold;">SECURITY VERIFICATION SYSTEM • SAN ANDREAS DEPARTMENT OF JUSTICE</span>
-                            </div>
-                            <div class="sig-block">
-                                <span class="sig-name">${procureurN}</span>
-                                <div class="sig-line"></div>
-                                <span style="font-size: 11px; font-weight: bold; text-transform: uppercase; color: #333;">${sigTitle}</span><br>
-                                <span style="font-size: 10px; color: #666;">${displayId}</span>
-                            </div>
-                        </div>
+    // --- GÉNÉRATION PDF ---
+    // (Garde ton code window.open habituel ici, il est déjà correct !)
+    genererPDF(nomS, preS, procureurN, aT, tT, authCode, date, idS, coopText);
+    
+    resetTerminal();
+}
+
+// Fonction séparée pour la propreté du code
+function genererPDF(nomS, preS, procureurN, aT, tT, authCode, date, idS, coopText) {
+    const displayId = "Credential ID: " + (Math.random().toString(36).substring(2, 10).toUpperCase());
+    const sigTitle = "Authorized Attorney";
+    const win = window.open("", "_blank");
+    win.document.write(`
+        <html>
+        <head>
+            <title>Criminal Record - ${nomS}</title>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39&family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+                body { font-family: 'Roboto', sans-serif; padding: 40px; color: #1a1a1a; line-height: 1.4; background: #fff; }
+                .page-border { border: 2px solid #000; padding: 20px; min-height: 94vh; position: relative; }
+                .gov-header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 25px; position: relative; }
+                .gov-header img { width: 80px; position: absolute; left: 0; top: 0; }
+                .gov-header p { margin: 0; font-weight: 700; font-size: 14px; letter-spacing: 2px; }
+                .gov-header h1 { margin: 5px 0; font-family: 'Playfair Display', serif; font-size: 28px; text-transform: uppercase; }
+                .meta-info { display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+                .section-title { background: #1e293b; color: #fff; padding: 6px 12px; font-size: 13px; font-weight: 700; text-transform: uppercase; margin-top: 20px; letter-spacing: 1px; }
+                .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 10px 0; border: 1px solid #000; }
+                .info-item { padding: 10px; border-right: 1px solid #eee; }
+                .info-item:last-child { border-right: none; }
+                .label { display: block; font-size: 10px; color: #666; text-transform: uppercase; font-weight: 700; }
+                .value { display: block; font-size: 14px; font-weight: 700; margin-top: 2px; }
+                .doc-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+                .doc-table th { background: #f1f5f9; text-align: left; padding: 10px; font-size: 11px; border: 1px solid #000; }
+                .doc-table td { padding: 10px; border: 1px solid #000; font-size: 12px; }
+                .verdict-box { margin-top: 20px; border: 2px solid #000; display: flex; }
+                .verdict-item { flex: 1; padding: 15px; text-align: center; border-right: 1px solid #000; }
+                .verdict-item:last-child { border-right: none; background: #f8fafc; }
+                .total-val { font-size: 18px; font-weight: 800; color: #000; }
+                .footer { margin-top: 50px; display: flex; justify-content: space-between; align-items: flex-end; }
+                .barcode { font-family: 'Libre Barcode 39', cursive; font-size: 40px; }
+                .sig-block { text-align: center; width: 250px; }
+                .sig-line { border-top: 1px solid #000; padding-top: 5px; margin-top: 10px; }
+                .sig-name { font-family: 'Brush Script MT', cursive; font-size: 24px; color: #2563eb; }
+                .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 100px; color: rgba(0,0,0,0.03); font-weight: 900; pointer-events: none; z-index: -1; white-space: nowrap; }
+            </style>
+        </head>
+        <body onload="window.print();"> 
+            <div class="page-border">
+                <div class="watermark">STATE OF SAN ANDREAS</div> 
+                <div class="gov-header">
+                    <img src="https://i.imgur.com/Pf4XkWF.png" alt="Seal">
+                    <p>DEPARTMENT OF JUSTICE • STATE OF SAN ANDREAS</p>
+                    <h1>Official Criminal History Record</h1>
+                </div> 
+                <div class="meta-info">
+                    <span>Référence: ${authCode}</span>
+                    <span>Publié le: ${date}</span>
+                </div> 
+                <div class="section-title">Section I - Identification</div> 
+                <div class="info-grid">
+                    <div class="info-item"><span class="label">Nom</span><span class="value">${nomS.toUpperCase()}</span></div>
+                    <div class="info-item"><span class="label">Prénom</span><span class="value">${preS}</span></div>
+                    <div class="info-item"><span class="label">ID Citoyen</span><span class="value">#${idS}</span></div>
+                </div>
+                <div class="section-title">Section II - Charges</div> 
+                <table class="doc-table">
+                    <thead>
+                        <tr>
+                            <th>ARTICLE / DESCRIPTION</th>
+                            <th>AMENDE</th>
+                            <th>PEINE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${selectedInfractions.map(i => `
+                            <tr>
+                                <td>${i.art} - ${i.nom}</td>
+                                <td>${i.amende.toLocaleString()}$</td>
+                                <td>${i.temps === 999 ? "PERPÉTUITÉ" : i.temps + " UP"}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table> 
+                <div class="section-title">Section III - Verdict Final</div> 
+                <div class="verdict-box">
+                    <div class="verdict-item"><span class="label">Coopération</span><span class="value">${coopText}</span></div>
+                    <div class="verdict-item"><span class="label">Amende Totale</span><span class="total-val">${aT}</span></div>
+                    <div class="verdict-item"><span class="label">Peine Totale</span><span class="total-val">${tT}</span></div>
+                </div>
+                <div class="footer">
+                    <div>
+                        <div class="barcode">${authCode}</div>
+                        <span style="font-size: 8px; font-weight: bold;">SECURITY VERIFICATION SYSTEM • SAN ANDREAS DOJ</span>
                     </div>
-                </body>
-                </html>
-            `);
-            win.document.close();
-            resetTerminal();
-        }
+                    <div class="sig-block">
+                        <span class="sig-name">${procureurN}</span>
+                        <div class="sig-line"></div>
+                        <span style="font-size: 11px; font-weight: bold;">${sigTitle}</span><br>
+                        <span style="font-size: 10px;">${displayId}</span>
+                    </div>
+                </div>
+            </div>
+        </body>
+        </html>
+    `);
+    win.document.close();
+}
 
         function resetTerminal() {
             selectedInfractions = [];

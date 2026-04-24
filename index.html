@@ -61,17 +61,19 @@
         .stat-card { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; border: 1px solid var(--border); }
 
         .btn-logout {
-            margin-top: auto;
-            color: var(--danger);
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-align: center;
-            padding: 15px;
-            cursor: pointer;
-            border-top: 1px solid var(--border);
-            opacity: 0.7;
-            transition: 0.3s;
-        }
+    margin-top: auto;
+    color: var(--danger);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-align: center;
+    padding: 15px;
+    cursor: pointer;
+    border-top: 1px solid var(--border);
+    opacity: 0.8;
+    transition: 0.3s;
+    position: relative; /* Sécurité pour le clic */
+    z-index: 100;      /* Passe par dessus tout */
+}
         .btn-logout:hover { opacity: 1; background: rgba(239, 68, 68, 0.1); }
     </style>
 </head>
@@ -184,12 +186,19 @@
         netlifyIdentity.on('logout', () => window.location.reload());
 
         function logoutSession() {
-            if (netlifyIdentity.currentUser()) {
-                netlifyIdentity.logout();
-            } else {
-                window.location.reload();
-            }
-        }
+    // 1. Déconnexion Netlify Identity si présent
+    if (window.netlifyIdentity) {
+        netlifyIdentity.logout();
+    }
+    
+    // 2. Nettoyage local au cas où
+    localStorage.clear();
+    sessionStorage.clear();
+
+    // 3. Redirection forcée vers l'accueil pour reset l'interface
+    const home = window.location.origin + window.location.pathname;
+    window.location.replace(home); 
+}
 
         function loginSuccess(user) {
             document.getElementById('view-login').style.display = 'none';
